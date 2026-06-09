@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="./logos/Logo_header.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Experiencia Transmedia — Los colores de la guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --light-cream: #FAF7F2;
+      --warm-dark: #1A1510;
+      --earth: #6B4C2A;
+      --moss: #4A5C3E;
+      --moss-light: #6B7F5A;
+      --clay: #B5663A;
+      --clay-light: #D4845A;
+      --dust: #C4A97D;
+      --fog: #8A8275;
+      --border: rgba(107, 76, 42, 0.18);
+      --sage: #7A9B6E;
+      --sage-light: #A8C49A;
+      --ochre: #C89B3C;
+      --mauve: #9E7B8C;
+      --mauve-light: #C4A0B2;
+      --terracotta: #C05840;
+      --teal-deep: #2E5C54;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3.5rem;
+      background: rgba(245, 240, 232, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fog);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fog);
+      transition: color 0.3s;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--clay);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--fog);
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .social-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    @keyframes floatA {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    @keyframes floatB {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(3deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+    }
+
+    @keyframes floatC {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(2deg);
+      }
+    }
+
+    @keyframes handFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(-1deg);
+      }
+    }
+
+    /* ── MONTSERRAT 900 para headings de pantalla ── */
+    .page-hero-title,
+    .sec-title,
+    .stat-n,
+    .footer-brand,
+    .footer-quote,
+    .tl-title,
+    .inline-quote p,
+    .cat-title,
+    .intro-num,
+    .tc-product,
+    .method-title {
+      font-weight: 900;
+    }
+
+    /* ── BIBLIA NAV ── */
+    .nav-biblia {
+      color: #B28B17 !important;
+      border: 1px solid rgba(178, 139, 23, 0.38) !important;
+      padding: 0.28rem 0.75rem !important;
+      border-radius: 2px;
+    }
+
+    .nav-biblia:hover {
+      background: rgba(178, 139, 23, 0.1) !important;
+    }
+
+    .nav-biblia::after {
+      display: none !important;
+    }
+
+    /* ── LEAF ENTRANCE ── */
+    .leaf-deco {
+      transition: opacity 0.9s ease;
+    }
+
+    .leaf-deco.leaf-hidden {
+      opacity: 0 !important;
+    }
+
+    /* ── PRODUCT BADGES ── */
+    .prod-badge {
+      display: inline-block;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .badge-diegetico {
+      background: rgba(245, 240, 232, 0.15);
+      color: var(--cream);
+      border: 1px solid rgba(245, 240, 232, 0.3);
+    }
+
+    .badge-paratextual {
+      background: transparent;
+      color: rgba(245, 240, 232, 0.6);
+      border: 1px dashed rgba(245, 240, 232, 0.3);
+    }
+
+    .paratextual-group {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(245, 240, 232, 0.06);
+    }
+
+    .paratextual-title {
+      font-size: 0.65rem;
+      color: rgba(245, 240, 232, 0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1rem;
+    }
+
+    .paratextual-items {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .para-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(0, 0, 0, 0.2);
+      padding: 0.8rem;
+      border-radius: 3px;
+      border: 1px solid rgba(245, 240, 232, 0.04);
+    }
+
+    .para-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      background: rgba(245, 240, 232, 0.05);
+    }
+
+    .para-icon svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--cream);
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+    }
+
+    .para-info p {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 0.2rem;
+    }
+
+    .para-info span {
+      font-size: 0.65rem;
+      color: rgba(245, 240, 232, 0.5);
+    }
+
+    .leaf-deco {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 10rem 3.5rem 5rem;
+      background: var(--moss);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #3d5033 0%, #1e2f18 55%, #0f1c0c 100%);
+    }
+
+    .page-crumb {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-crumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-crumb a:hover {
+      color: var(--dust);
+    }
+
+    .page-hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--sage-light);
+    }
+
+    .page-hero-sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.55);
+      font-weight: 300;
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* FILTER BAR */
+    .filter-bar {
+      background: var(--light-cream);
+      padding: 1rem 3.5rem;
+      display: flex;
+      gap: 0.6rem;
+      flex-wrap: wrap;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 74px;
+      z-index: 100;
+    }
+
+    .filter-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fog);
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+
+    .filter-btn {
+      padding: 0.4rem 1rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      border-radius: 30px;
+      transition: all 0.25s;
+      color: var(--fog);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .filter-btn.active {
+      background: var(--warm-dark);
+      color: var(--cream);
+      border-color: var(--warm-dark);
+    }
+
+    /* PRODUCTS GRID */
+    .products-section {
+      padding: 5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── SELÉCTOR DE PORTADAS CINEMÁTICAS VERTICALES (REDISEÑO TRANSFORMA-TARJETAS) ── */
+    .products-grid {
+      display: grid;
+      /* Forzamos exactamente 3 columnas del mismo ancho */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+      position: relative;
+      z-index: 10;
+      /* Le damos un ancho máximo y lo centramos para que las portadas no se estiren al infinito en pantallas gigantes */
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-tile {
+      background: #0d0a08;
+      border: 1px solid rgba(245, 240, 232, 0.04);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      aspect-ratio: 1 / 1.414;
+      /* <--- Proporción matemática exacta de un formato vertical A4 */
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+      transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+        border-color 0.5s ease;
+      cursor: pointer;
+    }
+
+    .product-tile:hover {
+      transform: translateY(-12px) scale(1.02);
+      border-color: rgba(196, 169, 125, 0.25);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65);
+    }
+
+    .pt-image-wrap {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .pt-image {
+      width: 100%;
+      height: 100%;
+    }
+
+    .pt-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .product-tile:hover .pt-image img {
+      transform: scale(1.06);
+    }
+
+    /* Capa de degradado base para que el texto inicial sea legible sobre la foto */
+    .product-tile::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(13, 10, 8, 0.95) 0%, rgba(13, 10, 8, 0.3) 30%, transparent 60%);
+      z-index: 2;
+      transition: opacity 0.5s ease;
+    }
+
+    /* Cortina interactiva: oculta la descripción abajo y sube en Hover */
+    .pt-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 2.2rem 1.8rem;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100%;
+      background: linear-gradient(to top, #0a0806 0%, rgba(13, 10, 8, 0.98) 55%, rgba(13, 10, 8, 0.85) 75%, transparent 100%);
+      transform: translateY(64%);
+      /* Muestra solo etiquetas y título al inicio */
+      transition: transform 0.55s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+
+    .product-tile:hover .pt-body {
+      transform: translateY(0);
+      /* Se despliega por completo mostrando el bloque de texto */
+    }
+
+    .pt-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .pt-type {
+      font-size: 0.62rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clay-light);
+      font-weight: 700;
+    }
+
+    .pt-channel {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--sage-light);
+      font-weight: 700;
+    }
+
+    .pt-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.45rem;
+      font-weight: 900;
+      line-height: 1.2;
+      color: var(--cream);
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    /* Detalles ocultos que se revelan al subir la cortina */
+    .pt-desc {
+      font-size: 0.84rem;
+      line-height: 1.75;
+      color: rgba(245, 240, 232, 0.6);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      opacity: 0;
+      transition: opacity 0.4s ease 0.1s;
+    }
+
+    .pt-archetyp {
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      color: var(--mauve-light);
+      font-weight: 600;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      transition: opacity 0.4s ease 0.15s;
+    }
+
+    .pt-btn {
+      align-self: flex-start;
+      background: var(--cream);
+      color: var(--warm-dark);
+      padding: 0.75rem 1.8rem;
+      text-decoration: none;
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 2px;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: background 0.3s, color 0.3s, opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .product-tile:hover .pt-desc,
+    .product-tile:hover .pt-archetyp {
+      opacity: 1;
+    }
+
+    .product-tile:hover .pt-btn {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .pt-btn:hover {
+      background: var(--clay);
+      color: var(--cream);
+    }
+
+    /* INTERTEXTUAL MAP */
+    .map-section {
+      padding: 6rem 3.5rem;
+      background: var(--warm-dark);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-canvas {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 3rem;
+    }
+
+    .map-canvas svg {
+      min-width: 900px;
+      width: 100%;
+    }
+
+    /* ACTIVATION TIMELINE */
+    .activation-section {
+      padding: 6rem 3.5rem;
+      background: var(--light-cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .timeline-horiz {
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      margin-top: 3rem;
+    }
+
+    .timeline-horiz::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tl-step {
+      flex: 0 0 220px;
+      padding: 2rem 1.5rem;
+      border-right: 1px solid var(--border);
+      position: relative;
+    }
+
+    .tl-step:first-child {
+      border-left: 1px solid var(--border);
+    }
+
+    .tl-step-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: rgba(107, 76, 42, 0.1);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+
+    .tl-step-phase {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-step-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .tl-step-body {
+      font-size: 0.78rem;
+      line-height: 1.65;
+      color: var(--fog);
+      font-weight: 300;
+    }
+
+    .tl-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--clay);
+      border-radius: 50%;
+      position: absolute;
+      bottom: -4px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    /* REVEAL */
+    [data-reveal] {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    [data-reveal="fade-up"] {
+      transform: translateY(40px);
+    }
+
+    [data-reveal="fade-left"] {
+      transform: translateX(40px);
+    }
+
+    [data-reveal="fade-right"] {
+      transform: translateX(-40px);
+    }
+
+    [data-reveal="scale"] {
+      transform: scale(0.88);
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-reveal].revealed.delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    [data-reveal].revealed.delay-2 {
+      transition-delay: 0.22s;
+    }
+
+    [data-reveal].revealed.delay-3 {
+      transition-delay: 0.34s;
+    }
+
+    [data-reveal].revealed.delay-4 {
+      transition-delay: 0.46s;
+    }
+
+    [data-reveal].revealed.delay-5 {
+      transition-delay: 0.58s;
+    }
+
+    [data-reveal].revealed.delay-6 {
+      transition-delay: 0.70s;
+    }
+
+    .split-line {
+      overflow: hidden;
+      display: block;
+    }
+
+    .split-line span {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    }
+
+    .split-line.revealed span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .split-line.delay-1 span {
+      transition-delay: 0.12s;
+    }
+
+    .split-line.delay-2 span {
+      transition-delay: 0.24s;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--warm-dark);
+      color: var(--cream);
+      padding: 4rem 3.5rem 2rem;
+      border-top: 1px solid rgba(245, 240, 232, 0.06);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+      padding-bottom: 3rem;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-about {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 300;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .footer-social-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    .footer-social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .footer-social-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a {
+      font-size: 0.8rem;
+      color: rgba(245, 240, 232, 0.4);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--cream);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: rgba(245, 240, 232, 0.2);
+      font-weight: 300;
+    }
+
+    .footer-quote {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(196, 169, 125, 0.45);
+      text-align: right;
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .products-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .map-section,
+      .activation-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .page-hero {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .filter-bar {
+        padding: 1rem 1.5rem;
+      }
+    }
+
+    /* Hamburger CSS */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 201;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--warm-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: rgba(245, 240, 232, 0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .nav-mobile-overlay.open {
+      display: flex;
+    }
+
+    .nav-mobile-overlay a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-mobile-overlay a:hover,
+    .nav-mobile-overlay a.active {
+      color: var(--clay);
+    }
+
+    .nav-mobile-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media(max-width:900px) {
+
+      .nav-links,
+      .nav-social {
+        display: none !important;
+      }
+
+      .nav-hamburger {
+        display: flex !important;
+      }
+    }
+
+    @media(max-width: 900px) {
+
+      /* En tablets o pantallas medianas, bajamos a 2 columnas */
+      .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+    }
+
+    @media(max-width: 600px) {
+
+      /* En celulares, 1 sola columna */
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="preloader"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 1s ease;">
+    <img src="./logos/Logo_preloader.png" alt="Cargando..."
+      style="max-width: 250px; animation: smoothPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+  </div>
+  <style>
+    @keyframes smoothPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.style.display = 'none', 1000);
+        }, 1500);
+      }
+    });
+  </script>
+
+
+  <nav id="main-nav">
+    <a href="./index.html" class="nav-logo" style="display:flex;align-items:center;"><img src="./logos/Logo_header.png"
+        alt="Los colores de la guerra" style="height:80px;"></a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="">Inicio</a></li>
+      <li><a href="./contexto.html" class="">Contexto</a></li>
+      <li><a href="./historia.html" class="">Historia</a></li>
+      <li><a href="./experiencia.html" class="active">Experiencia Transmedia</a></li>
+      <li><a href="./equipos.html" class="">Equipos</a></li>
+      <li><a href="#" class="nav-biblia" title="Próximamente">Biblia ↗</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="social-icon"
+        aria-label="Facebook"><svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="social-icon"
+        aria-label="YouTube"><svg viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg></a>
+      <a href="https://www.tiktok.com/@loscoloresdelaguerra" target="_blank" class="social-icon"
+        aria-label="TikTok"><svg viewBox="0 0 24 24">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+      <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank" class="social-icon"
+        aria-label="Instagram"><svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="nav-mobile-overlay" id="mobile-nav">
+    <a href="./index.html" class="">Inicio</a>
+    <a href="./contexto.html" class="">Contexto</a>
+    <a href="./historia.html" class="">Historia</a>
+    <a href="./experiencia.html" class="active">Experiencia</a>
+    <a href="./equipos.html" class="">Equipos</a>
+    <a href="#" style="color:#B28B17;font-size:1.5rem;">Biblia Transmedia</a>
+    <div class="nav-mobile-social">
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Instagram"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Facebook"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="TikTok"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+    </div>
+  </div>
+
+
+  <!-- PAGE HERO -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="vector-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="6" dy="12" stdDeviation="8" flood-color="#050a05" flood-opacity="0.65" />
+        </filter>
+        <filter id="vector-shadow-light" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="3" dy="6" stdDeviation="4" flood-color="#050a05" flood-opacity="0.45" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="leaf-deco" style="top:-30px; left:-40px; width:clamp(160px, 24vw, 340px); z-index:2;">
+      <svg viewBox="0 0 200 240" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10,10 C90,-20 190,40 180,160 C140,220 80,240 10,210 Z" fill="#233B29" />
+        <path d="M10,10 Q95,110 10,210" fill="none" stroke="#132217" stroke-width="4" />
+        <path d="M40,40 Q90,50 130,35 Q95,70 40,65 Z" fill="#365C40" />
+        <path d="M50,90 Q110,100 150,90 Q105,120 50,115 Z" fill="#446E4F" />
+        <path d="M40,140 Q100,150 140,155 Q95,170 40,165 Z" fill="#365C40" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="bottom:-40px; left:-30px; width:clamp(110px, 16vw, 190px); z-index:1;">
+      <svg viewBox="0 0 150 250" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,250 C40,150 110,60 150,0 C90,90 40,160 0,250 Z" fill="#2E4724" />
+        <path d="M20,250 C60,170 120,100 140,40 C95,130 50,190 20,250 Z" fill="#456B36" />
+        <path d="M-10,250 C20,180 70,120 90,50 C60,130 20,190 -10,250 Z" fill="#36542A" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="top:-50px; right:-30px; width:clamp(240px, 35vw, 460px); z-index:2;">
+      <svg viewBox="0 0 250 250" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M250,0 C150,40 50,110 0,200 C80,150 170,80 250,0 Z" fill="#1A3322" />
+        <path d="M250,0 C170,80 90,170 40,240 C110,180 180,100 250,0 Z" fill="#284D34" />
+        <path d="M250,0 C190,110 130,200 90,260 C150,200 200,120 250,0 Z" fill="#346343" />
+        <path d="M250,0 L0,200" fill="none" stroke="#0F1F14" stroke-width="2" />
+        <path d="M250,0 L40,240" fill="none" stroke="#0F1F14" stroke-width="2" />
+        <path d="M250,0 L90,260" fill="none" stroke="#0F1F14" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="bottom:-40px; right:-20px; width:clamp(200px, 30vw, 420px); z-index:4;">
+      <svg viewBox="0 0 260 220" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M260,220 C180,120 90,70 0,40 C70,110 150,170 260,220 Z" fill="#204231" />
+        <path d="M260,220 Q130,130 0,40" fill="none" stroke="#11241A" stroke-width="3" />
+        <path d="M260,220 C210,140 130,100 50,80 C110,150 180,190 260,220 Z" fill="#31634A" />
+        <path d="M260,220 Q155,160 50,80" fill="none" stroke="#204231" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="top:22%; right:24%; width:clamp(70px, 11vw, 130px); z-index:3;">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B28B17" />
+        <path d="M 50,140 Q 35,70 50,0" fill="none" stroke="#8A6A10" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="bottom:20%; left:20%; width:clamp(60px, 9vw, 110px); z-index:3; transform: rotate(35deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#8A4A25" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div
+      style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; width: 100%;">
+      <p class="page-crumb"><a href="./index.html">Inicio</a> &nbsp;/&nbsp; Experiencia Transmedia</p>
+      <h1 class="page-hero-title">
+        <span class="split-line"><span>Los productos</span></span>
+        <span class="split-line delay-1"><span>del <em>universo</em></span></span>
+      </h1>
+      <p class="page-hero-sub">Cada producto es una entrada distinta a la historia. Filtra por formato, por plataforma o
+        por el arquetipo de audiencia al que está dirigido.</p>
+    </div>
+  </div>
+
+  <!-- FILTER BAR -->
+  <div class="filter-bar">
+    <span class="filter-label">Filtrar:</span>
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="video">Video</button>
+    <button class="filter-btn" data-filter="audio">Audio</button>
+    <button class="filter-btn" data-filter="texto">Texto / Web</button>
+    <button class="filter-btn" data-filter="interactivo">Interactivo</button>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <div class="products-section">
+
+    <div class="leaf-deco" style="top: 5%; left: -40px; width: clamp(150px, 20vw, 300px); z-index: 1;">
+      <svg viewBox="0 0 200 250" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,50 Q 100,0 180,180 C 100,120 40,100 0,50 Z" fill="#2E4A35" />
+        <path d="M 0,50 Q 90,20 180,180" fill="none" stroke="#1A2D20" stroke-width="3" />
+        <path d="M 30,70 Q 80,60 130,130 C 80,90 50,80 30,70 Z" fill="#4A7A40" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="bottom: 10%; left: -50px; width: clamp(180px, 25vw, 350px); z-index: 2;">
+      <svg viewBox="0 0 300 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,200 C 100,180 180,100 250,0 C 150,100 80,160 0,200 Z" fill="#1A332E" />
+        <path d="M 0,200 C 80,150 150,80 200,0 C 120,80 50,140 0,200 Z" fill="#2E5C54" />
+        <path d="M 0,200 Q 120,100 250,0" fill="none" stroke="#0F1A15" stroke-width="3" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="top: 15%; right: -30px; width: clamp(120px, 18vw, 250px); z-index: 1; transform: scaleX(-1);">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 200,50 C 100,80 50,150 0,250 C 80,180 150,100 200,50 Z" fill="#3A6030" />
+        <path d="M 200,50 C 120,100 80,180 40,250 C 100,180 160,120 200,50 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="bottom: -20px; right: -40px; width: clamp(200px, 28vw, 400px); z-index: 3;">
+      <svg viewBox="0 0 300 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 300,300 C 200,150 100,100 0,180 C 100,250 200,280 300,300 Z" fill="#203A28" />
+        <path d="M 300,300 Q 150,150 0,180" fill="none" stroke="#112115" stroke-width="4" />
+        <path d="M 250,300 C 150,180 50,190 20,260 C 100,280 180,290 250,300 Z" fill="#365C40" />
+        <path d="M 250,300 Q 120,200 20,260" fill="none" stroke="#1A2D20" stroke-width="3" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="top: 45%; left: 8%; width: clamp(50px, 8vw, 90px); z-index: 4; transform: rotate(45deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B28B17" />
+        <path d="M 50,140 Q 35,70 50,0" fill="none" stroke="#8A6A10" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="bottom: 35%; right: 5%; width: clamp(40px, 7vw, 80px); z-index: 2; transform: rotate(-60deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#8A4A25" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="products-grid" id="products-grid">
+
+      <div class="product-tile" data-reveal="scale" data-delay="0.05" data-cat="video texto">
+        <div class="pt-image-wrap">
+          <div class="pt-image">
+            <img src="./covers/rectangular/cartas_A4.png" alt="Las Cartas de Tomás">
+          </div>
+        </div>
+        <div class="pt-body">
+          <div class="pt-meta"><span class="pt-type">Novela gráfica · Obra seminal</span><span class="pt-channel">Web ·
+              Instagram</span></div>
+          <h3 class="pt-name">Las Cartas de Tomás</h3>
+          <p class="pt-desc">La historia central del universo. Tomás, de 13 años, es reclutado en Vistahermosa, Meta, el
+            2 de febrero de 2022. Escribe cartas secretas en su cuaderno azul por las noches para no olvidar quién es.
+          </p>
+          <p class="pt-archetyp">↗ Manuela Díaz · Martín Londoño</p>
+          <a href="./producto-cartas-tomas.html" class="pt-btn">Explorar →</a>
+        </div>
+      </div>
+
+      <div class="product-tile" data-reveal="scale" data-delay="0.1" data-cat="interactivo texto">
+        <div class="pt-image-wrap">
+          <div class="pt-image">
+            <img src="./covers/rectangular/silencio_A4.png" alt="El Silencio de los Arrozales">
+          </div>
+        </div>
+        <div class="pt-body">
+          <div class="pt-meta"><span class="pt-type">Cómic Interactivo</span><span class="pt-channel">Genially ·
+              Web</span></div>
+          <h3 class="pt-name">El Silencio de los Arrozales</h3>
+          <p class="pt-desc">Narra la dolorosa y silenciosa espera de Luz María y Raúl, los padres de Tomás, quienes
+            intentan sobrevivir al vacío de la ausencia refugiándose en las rutinas de los arrozales de Vistahermosa.
+          </p>
+          <p class="pt-archetyp">↗ Martín Londoño · Ricardo Suárez</p>
+          <a href="./producto-silencio-arrozales.html" class="pt-btn">Ver cómic →</a>
+        </div>
+      </div>
+
+      <div class="product-tile" data-reveal="scale" data-delay="0.15" data-cat="video">
+        <div class="pt-image-wrap">
+          <div class="pt-image">
+            <img src="./covers/rectangular/theking_A4.png" alt="The King">
+          </div>
+        </div>
+        <div class="pt-body">
+          <div class="pt-meta"><span class="pt-type">Shorts animados</span><span class="pt-channel">TikTok ·
+              Facebook</span></div>
+          <h3 class="pt-name">The King</h3>
+          <p class="pt-desc">La cara más ambigua del conflicto. Joaquín, "The King", un chico de 15 años de Toribío,
+            Cauca, entra a la guerrilla buscando poder y protección. Tomás le enseñará las letras antes de su trágico
+            final.</p>
+          <p class="pt-archetyp">↗ Andrés Felipe García · Diego</p>
+          <a href="./producto-the-king.html" class="pt-btn">Ver shorts →</a>
+        </div>
+      </div>
+
+      <div class="product-tile" data-reveal="scale" data-delay="0.05" data-cat="audio">
+        <div class="pt-image-wrap">
+          <div class="pt-image">
+            <img src="./covers/rectangular/entresombras_A4.png" alt="Entre las Sombras">
+          </div>
+        </div>
+        <div class="pt-body">
+          <div class="pt-meta"><span class="pt-type">Audiorelatos · Podcast</span><span class="pt-channel">YouTube ·
+              Spotify</span></div>
+          <h3 class="pt-name">Entre las Sombras</h3>
+          <p class="pt-desc">Tres capítulos sonoros que profundizan en Efraín, alias "El Flaco", el comandante de la
+            columna 25 que reclutó a Tomás. El retrato íntimo de un perpetrador atrapado por las deudas de su propio
+            pasado rural.</p>
+          <p class="pt-archetyp">↗ Ricardo Suárez · Manuela Díaz</p>
+          <a href="./producto-entre-sombras.html" class="pt-btn">Escuchar →</a>
+        </div>
+      </div>
+
+      <div class="product-tile" data-reveal="scale" data-delay="0.1" data-cat="texto interactivo">
+        <div class="pt-image-wrap">
+          <div class="pt-image">
+            <img src="./covers/rectangular/morrales_A4.png" alt="Morrales Vacíos">
+          </div>
+        </div>
+        <div class="pt-body">
+          <div class="pt-meta"><span class="pt-type">Novela Vertical</span><span class="pt-channel">WhatsApp</span>
+          </div>
+          <h3 class="pt-name">Morrales Vacíos</h3>
+          <p class="pt-desc">La cruzada de la profesora Diana Ospina tras el secuestro de sus estudiantes en la escuela
+            rural de Meta. Una experiencia conversacional inmersiva cuyos mensajes de chat llegan directo al lector.</p>
+          <p class="pt-archetyp">↗ Blanca Gómez De León</p>
+          <a href="./producto-morrales-vacios.html" class="pt-btn">Ver novela →</a>
+        </div>
+      </div>
+
+      <div class="product-tile" data-reveal="scale" data-delay="0.15" data-cat="interactivo">
+        <div class="pt-image-wrap">
+          <div class="pt-image">
+            <img src="./covers/rectangular/conlupa_A4.png" alt="El Azul No Se Borra">
+          </div>
+        </div>
+        <div class="pt-body">
+          <div class="pt-meta"><span class="pt-type">Periódico interactivo con AR</span><span class="pt-channel">Impreso
+              · Web AR</span></div>
+          <h3 class="pt-name">El Azul No Se Borra</h3>
+          <p class="pt-desc">La edición impresa especial del universo. Al escanear sus páginas con la cámara del
+            celular, la realidad aumentada de la web emerge revelando la correspondencia oculta de los hermanos Herrera
+            Suárez.</p>
+          <p class="pt-archetyp">↗ Todos los arquetipos</p>
+          <a href="./producto-con-lupa.html" class="pt-btn">Ver periódico →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  </div>
+
+  <!-- INTERTEXTUAL MAP -->
+  <div class="map-section" data-reveal="fade-up"
+    style="background:#0b0907; padding: 7rem 3.5rem; border-top: 1px solid rgba(245,240,232,0.04); position:relative; overflow:hidden;">
+
+    <div class="leaf-deco" style="top:-30px; left:2%; width:clamp(120px, 18vw, 240px); z-index:1;">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C60,20 130,80 140,160 C80,120 30,80 0,0 Z" fill="#1C3322" opacity="0.6" />
+      </svg>
+    </div>
+    <div class="leaf-deco"
+      style="bottom:-40px; right:1%; width:clamp(140px, 20vw, 260px); z-index:1; transform: scaleX(-1);">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C60,20 130,80 140,160 C80,120 30,80 0,0 Z" fill="#263E2B" opacity="0.5" />
+      </svg>
+    </div>
+
+    <div
+      style="max-width:1140px; margin:0 auto; display:grid; grid-template-columns: 1.2fr 2fr; gap:4rem; align-items:center; position:relative; z-index:10;">
+
+      <div class="map-text-side">
+        <p
+          style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--clay-light); font-weight: 700; margin-bottom: 1rem;">
+          Sistema intertextual</p>
+        <h2
+          style="font-family:'Montserrat',sans-serif; font-size: clamp(2rem, 3vw, 2.8rem); font-weight: 900; color: var(--cream); line-height: 1.1; margin-bottom: 1.5rem; letter-spacing:-0.02em;">
+          Cómo se cruzan<br>los <em>relatos</em>
+        </h2>
+        <p
+          style="font-size: 0.88rem; line-height: 1.8; color: rgba(245, 240, 232, 0.5); font-weight: 300; margin-bottom: 2rem;">
+          Este universo no se expande en línea recta. Cada producto contiene un <strong>objeto puente</strong> o un
+          personaje que te abre la puerta hacia la siguiente historia:
+        </p>
+
+        <div style="display:flex; flex-direction:column; gap:1.2rem;">
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="color:var(--clay); font-weight:900; font-size:0.85rem; padding-top:2px;">•</span>
+            <p style="font-size:0.82rem; line-height:1.6; color:rgba(245,240,232,0.65); font-weight:300;">
+              <strong style="color:var(--cream); font-weight:600;">El Cuaderno Azul:</strong> Nace en la escuela de la
+              <span style="color:var(--teal-deep,#4A8C80); font-weight:600;">Profe Diana</span>, viaja por la selva con
+              <span style="color:var(--clay); font-weight:600;">Tomás</span> y termina impreso en el <span
+                style="color:var(--terracotta); font-weight:600;">Periódico AR</span>.
+            </p>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="color:var(--mauve-light); font-weight:900; font-size:0.85rem; padding-top:2px;">•</span>
+            <p style="font-size:0.82rem; line-height:1.6; color:rgba(245,240,232,0.65); font-weight:300;">
+              <strong style="color:var(--cream); font-weight:600;">Alias "El Flaco":</strong> El perpetrador de <span
+                style="color:var(--mauve-light); font-weight:600;">Entre las Sombras</span> es el mismo que confisca el
+              diario en la historia central de Tomás.
+            </p>
+          </div>
+          <div style="display:flex; gap:1rem; align-items:flex-start;">
+            <span style="color:var(--ochre); font-weight:900; font-size:0.85rem; padding-top:2px;">•</span>
+            <p style="font-size:0.82rem; line-height:1.6; color:rgba(245,240,232,0.65); font-weight:300;">
+              <strong style="color:var(--cream); font-weight:600;">Las Letras:</strong> Tomás le enseña el abecedario a
+              Joaquín en <span style="color:var(--ochre); font-weight:600;">The King</span>, permitiéndole escribir su
+              última carta antes de morir.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-canvas-wrap" style="width:100%; overflow:visible;">
+        <svg viewBox="0 0 680 480" xmlns="http://www.w3.org/2000/svg"
+          style="width:100%; height:auto; overflow:visible;">
+          <defs>
+            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="5" result="blur" />
+              <feComposite in="SourceGraphic" in2="blur" operator="over" />
+            </filter>
+            <style>
+              .node-circle {
+                transition: r 0.4s cubic-bezier(0.25, 1, 0.5, 1), fill 0.4s ease;
+                filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.6));
+              }
+
+              .node-group:hover .node-circle {
+                r: 36px;
+                cursor: pointer;
+              }
+
+              .node-group:hover text {
+                fill: #FAF7F2;
+                cursor: pointer;
+                font-weight: 700;
+              }
+
+              .center-node:hover .node-circle {
+                r: 52px;
+                fill: #416339;
+              }
+
+              .line-link {
+                stroke-dasharray: 4;
+                animation: dash 30s linear infinite;
+              }
+
+              @keyframes dash {
+                to {
+                  stroke-dashoffset: -1000;
+                }
+              }
+            </style>
+          </defs>
+
+          <g opacity="0.35">
+            <line x1="340" y1="240" x2="340" y2="70" stroke="#FAF7F2" stroke-width="1.5" class="line-link" />
+            <line x1="340" y1="240" x2="550" y2="150" stroke="#FAF7F2" stroke-width="1.5" class="line-link" />
+            <line x1="340" y1="240" x2="530" y2="340" stroke="#FAF7F2" stroke-width="1.5" class="line-link" />
+            <line x1="340" y1="240" x2="340" y2="410" stroke="#FAF7F2" stroke-width="1.5" class="line-link" />
+            <line x1="340" y1="240" x2="150" y2="340" stroke="#FAF7F2" stroke-width="1.5" class="line-link" />
+            <line x1="340" y1="240" x2="130" y2="150" stroke="#FAF7F2" stroke-width="1.5" class="line-link" />
+
+            <polygon points="340,70 550,150 530,340 340,410 150,340 130,150" fill="none" stroke="#B5663A"
+              stroke-width="1" stroke-dasharray="8" />
+          </g>
+
+          <g class="node-group center-node" transform="translate(340, 240)">
+            <circle cx="0" cy="0" r="46" fill="#2E4A35" stroke="#FAF7F2" stroke-width="2" class="node-circle" />
+            <text x="0" y="-5" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="11" fill="#FAF7F2"
+              font-weight="900" letter-spacing="1">CUADERNO</text>
+            <text x="0" y="10" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="11" fill="#C4A97D"
+              font-style="italic">AZUL</text>
+          </g>
+
+          <g class="node-group" transform="translate(340, 70)"
+            onclick="window.location.href='producto-cartas-tomas.html'">
+            <circle cx="0" cy="0" r="28" fill="#2A4664" stroke="rgba(245,240,232,0.2)" stroke-width="1"
+              class="node-circle" />
+            <text x="0" y="-38" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="11"
+              fill="rgba(245,240,232,0.5)" font-weight="600">01. LAS CARTAS DE TOMÁS</text>
+            <text x="0" y="-24" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="8" fill="#7A9B6E"
+              letter-spacing="1">NOVELA GRÁFICA</text>
+            <circle cx="0" cy="0" r="4" fill="#FAF7F2" />
+          </g>
+
+          <g class="node-group" transform="translate(550, 150)"
+            onclick="window.location.href='producto-silencio-arrozales.html'">
+            <circle cx="0" cy="0" r="28" fill="#C89B3C" stroke="rgba(245,240,232,0.2)" stroke-width="1"
+              class="node-circle" />
+            <text x="40" y="-2" text-anchor="start" font-family="'Montserrat', sans-serif" font-size="11"
+              fill="rgba(245,240,232,0.5)" font-weight="600">02. EL SILENCIO DE LOS ARROZALES</text>
+            <text x="40" y="12" text-anchor="start" font-family="'Montserrat', sans-serif" font-size="8" fill="#C89B3C"
+              letter-spacing="1">CÓMIC INTERACTIVO</text>
+            <circle cx="0" cy="0" r="4" fill="#FAF7F2" />
+          </g>
+
+          <g class="node-group" transform="translate(530, 340)" onclick="window.location.href='producto-the-king.html'">
+            <circle cx="0" cy="0" r="28" fill="#201510" stroke="#C89B3C" stroke-width="1" class="node-circle" />
+            <text x="40" y="4" text-anchor="start" font-family="'Montserrat', sans-serif" font-size="11"
+              fill="rgba(245,240,232,0.5)" font-weight="600">03. THE KING</text>
+            <text x="40" y="18" text-anchor="start" font-family="'Montserrat', sans-serif" font-size="8" fill="#FAF7F2"
+              letter-spacing="1">SHORTS ANIMADOS</text>
+            <circle cx="0" cy="0" r="4" fill="#C89B3C" />
+          </g>
+
+          <g class="node-group" transform="translate(340, 410)"
+            onclick="window.location.href='producto-entre-sombras.html'">
+            <circle cx="0" cy="0" r="28" fill="#9E7B8C" stroke="rgba(245,240,232,0.2)" stroke-width="1"
+              class="node-circle" />
+            <text x="0" y="42" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="11"
+              fill="rgba(245,240,232,0.5)" font-weight="600">04. ENTRE LAS SOMBRAS</text>
+            <text x="0" y="56" text-anchor="middle" font-family="'Montserrat', sans-serif" font-size="8" fill="#9E7B8C"
+              letter-spacing="1">AUDIORELATOS · PODCAST</text>
+            <circle cx="0" cy="0" r="4" fill="#FAF7F2" />
+          </g>
+
+          <g class="node-group" transform="translate(150, 340)"
+            onclick="window.location.href='producto-morrales-vacios.html'">
+            <circle cx="0" cy="0" r="28" fill="#2A1F2E" stroke="#9E7B8C" stroke-width="1" class="node-circle" />
+            <text x="-40" y="4" text-anchor="end" font-family="'Montserrat', sans-serif" font-size="11"
+              fill="rgba(245,240,232,0.5)" font-weight="600">05. MORRALES VACÍOS</text>
+            <text x="-40" y="18" text-anchor="end" font-family="'Montserrat', sans-serif" font-size="8" fill="#C4A0B2"
+              letter-spacing="1">NOVELA VERTICAL</text>
+            <circle cx="0" cy="0" r="4" fill="#9E7B8C" />
+          </g>
+
+          <g class="node-group" transform="translate(130, 150)" onclick="window.location.href='producto-con-lupa.html'">
+            <circle cx="0" cy="0" r="28" fill="#C05840" stroke="rgba(245,240,232,0.2)" stroke-width="1"
+              class="node-circle" />
+            <text x="-40" y="-2" text-anchor="end" font-family="'Montserrat', sans-serif" font-size="11"
+              fill="rgba(245,240,232,0.5)" font-weight="600">06. EL AZUL NO SE BORRA</text>
+            <text x="-40" y="12" text-anchor="end" font-family="'Montserrat', sans-serif" font-size="8" fill="#C05840"
+              letter-spacing="1">PERIÓDICO INTERACTIVO + AR</text>
+            <circle cx="0" cy="0" r="4" fill="#FAF7F2" />
+          </g>
+        </svg>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ACTIVATION TIMELINE -->
+  <div class="activation-section" style="text-align: center;">
+
+    <div class="leaf-deco" style="top: 10%; left: -40px; width: clamp(150px, 22vw, 300px); z-index: 1;">
+      <svg viewBox="0 0 200 250" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,50 Q 100,0 180,180 C 100,120 40,100 0,50 Z" fill="#4A7A40" />
+        <path d="M 0,50 Q 90,20 180,180" fill="none" stroke="#2E4A35" stroke-width="3" />
+        <path d="M 30,70 Q 80,60 130,130 C 80,90 50,80 30,70 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="bottom: 5%; right: -50px; width: clamp(180px, 25vw, 350px); z-index: 1; transform: scaleX(-1);">
+      <svg viewBox="0 0 300 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,200 C 100,180 180,100 250,0 C 150,100 80,160 0,200 Z" fill="#2E5C54" />
+        <path d="M 0,200 C 80,150 150,80 200,0 C 120,80 50,140 0,200 Z" fill="#3A6030" />
+        <path d="M 0,200 Q 120,100 250,0" fill="none" stroke="#1A332E" stroke-width="3" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="top: 20%; right: 15%; width: clamp(40px, 7vw, 80px); z-index: 2; transform: rotate(-20deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#8A4A25" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div style="position: relative; z-index: 10;">
+      <p style="font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay);font-weight:600;margin-bottom:1rem;"
+        data-reveal="fade-up">Plan de activación</p>
+      <h2 style="font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3vw,2.6rem);font-weight:700;line-height:1.2;"
+        data-reveal="fade-up">
+        <span class="split-line"><span>Las cinco fases del</span></span>
+        <span class="split-line delay-1"><span><em
+              style="font-style:italic;color:var(--clay);">lanzamiento</em></span></span>
+      </h2>
+    </div>
+
+    <div class="timeline-horiz" style="position: relative; z-index: 10; max-width: max-content; margin: 3rem auto 0;">
+      <div class="tl-step" data-reveal="fade-up" style="text-align: left;">
+        <div class="tl-step-num">01</div>
+        <p class="tl-step-phase">Fase 1 · Siembra</p>
+        <h4 class="tl-step-title">Activación inicial</h4>
+        <p class="tl-step-body">Vallas en ciudad, museo de cartas, carrera atlética. El universo se revela en capas:
+          primero la pregunta, luego la respuesta.</p>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-step" data-reveal="fade-up" data-delay="0.1" style="text-align: left;">
+        <div class="tl-step-num">02</div>
+        <p class="tl-step-phase">Fase 2 · Germinación</p>
+        <h4 class="tl-step-title">Lanzamiento digital</h4>
+        <p class="tl-step-body">Publicación de Las Cartas de Tomás en Instagram, apertura del servidor Discord, primeros
+          shorts de The King en TikTok.</p>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-step" data-reveal="fade-up" data-delay="0.2" style="text-align: left;">
+        <div class="tl-step-num">03</div>
+        <p class="tl-step-phase">Fase 3 · Florecimiento</p>
+        <h4 class="tl-step-title">Despliegue transmedia</h4>
+        <p class="tl-step-body">Lanzamiento del podcast, novela vertical en WhatsApp, videojuego disponible. Las
+          historias comienzan a cruzarse.</p>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-step" data-reveal="fade-up" data-delay="0.3" style="text-align: left;">
+        <div class="tl-step-num">04</div>
+        <p class="tl-step-phase">Fase 4 · Cosecha</p>
+        <h4 class="tl-step-title">Confluencia</h4>
+        <p class="tl-step-body">Videomapping, periódico AR, tarot, kit editorial. Los productos físicos y digitales
+          convergen en un gran evento final.</p>
+        <div class="tl-dot"></div>
+      </div>
+      <div class="tl-step" data-reveal="fade-up" data-delay="0.4" style="text-align: left;">
+        <div class="tl-step-num">05</div>
+        <p class="tl-step-phase">Fase 5 · Legado</p>
+        <h4 class="tl-step-title">Permanencia</h4>
+        <p class="tl-step-body">El sitio web queda como plataforma permanente. Las historias siguen vivas y accesibles.
+          La comunidad continúa.</p>
+        <div class="tl-dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="./logos/Logo_footer.png" alt="Los colores de la guerra"
+            style="max-width: 180px;"></div>
+
+
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Páginas</p>
+        <ul>
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./contexto.html">Contexto</a></li>
+          <li><a href="./historia.html">Historia</a></li>
+          <li><a href="./experiencia.html">Experiencia</a></li>
+          <li><a href="./equipos.html">Equipos</a></li>
+          <li><a href="#" style="color:#B28B17;">Biblia Transmedia ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Historias</p>
+        <ul>
+          <li><a href="./producto-cartas-tomas.html">Las Cartas de Tomás</a></li>
+          <li><a href="./producto-silencio-arrozales.html">El Silencio de los Arrozales</a></li>
+          <li><a href="./producto-the-king.html">The King</a></li>
+          <li><a href="./producto-entre-sombras.html">Entre las Sombras</a></li>
+          <li><a href="./producto-morrales-vacios.html">Morrales Vacíos</a></li>
+          <li><a href="./producto-con-lupa.html">Con Lupa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Redes sociales</p>
+        <div class="footer-social-row" style="margin-top: 1rem;">
+          <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="footer-social-icon"
+            aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg></a>
+          <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="footer-social-icon"
+            aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg></a>
+          <a href="https://www.tiktok.com/" target="_blank" class="footer-social-icon" aria-label="TikTok"><svg
+              viewBox="0 0 24 24">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+            </svg></a>
+          <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank"
+            class="footer-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-note">Pontificia Universidad Javeriana Cali · Maestría en Comunicación y Creación Interactiva</p>
+      <p class="footer-quote">"Hoy aprendí a disparar. No quería hacerlo. Cerré los ojos cuando sonó el tiro. A veces
+        pienso que si sigo escribiendo estas cartas todavía soy yo." — Tomás</p>
+    </div>
+  </footer>
+
+  <script>
+    // Filter
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const tiles = document.querySelectorAll('.product-tile');
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        tiles.forEach(tile => {
+          if (filter === 'all' || (tile.dataset.cat && tile.dataset.cat.includes(filter))) {
+            tile.style.display = 'block';
+          } else { tile.style.display = 'none'; }
+        });
+      });
+    });
+
+    // Reveal
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (e.target.dataset.delay || '0') + 's';
+          e.target.classList.add('revealed');
+          ro.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+    const so = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); so.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.split-line').forEach(el => so.observe(el));
+    setTimeout(() => { document.querySelectorAll('.page-hero .split-line').forEach(el => el.classList.add('revealed')); }, 200);
+
+    // Leaf cursor trail
+    (function () {
+      const lc = ['#4A5C3E', '#7A9B6E', '#B5663A', '#C89B3C', '#9E7B8C', '#2E5C54'];
+      let lx = 0, ly = 0, tk = 0;
+      document.addEventListener('mousemove', (e) => {
+        tk++; if (tk % 6 !== 0) return;
+        const d = Math.hypot(e.clientX - lx, e.clientY - ly);
+        if (d < 30) return;
+        lx = e.clientX; ly = e.clientY;
+        const el = document.createElement('div');
+        const c = lc[Math.floor(Math.random() * lc.length)];
+        const s = 12 + Math.random() * 16;
+        const r = Math.random() * 360;
+        el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:' + s + 'px;height:' + (s * 1.4) + 'px;opacity:0.5;transform:translate(-50%,-50%) rotate(' + r + 'deg);border-radius:50% 50% 50% 0;background:' + c + ';transition:opacity 0.8s ease,transform 1.2s ease;';
+        document.body.appendChild(el);
+        requestAnimationFrame(() => { el.style.opacity = '0'; el.style.transform = 'translate(-50%,-120%) rotate(' + (r + 45) + 'deg) scale(0.4)'; });
+        setTimeout(() => el.remove(), 1300);
+      });
+    })();
+  </script>
+
+  <script>
+    // ── HAMBURGER MENU ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-nav');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+    // ── NAV SCROLL ──
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── ENGINE INTERACTIVE: PARALLAX + FLOTACIÓN ORGÁNICA (EXPERIENCIA) ──
+    (function initExperienciaInteractive() {
+      const leaves = document.querySelectorAll('.leaf-deco');
+
+      leaves.forEach((leaf) => {
+        leaf._baseTransform = leaf.style.transform || '';
+        leaf._parallaxDepth = Math.random() * 0.4 + 0.15; // Nivel de profundidad en la retícula
+        leaf._floatPhase = Math.random() * Math.PI * 2;
+        leaf._floatSpeed = Math.random() * 0.001 + 0.0005; // Velocidad de oscilación sutil
+        leaf.style.transition = 'opacity 1s ease'; // Evita tirones con requestAnimationFrame
+      });
+
+      let mouseX = 0; let mouseY = 0; let currentX = 0; let currentY = 0;
+
+      // Seguimiento global del cursor en pantalla
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function animate() {
+        // Easing / Suavizado de inercia para el movimiento del ratón
+        currentX += (mouseX - currentX) * 0.05;
+        currentY += (mouseY - currentY) * 0.05;
+        const now = Date.now();
+
+        leaves.forEach(leaf => {
+          const d = leaf._parallaxDepth;
+          const tx = currentX * d * 80; // Desplazamiento máximo horizontal
+          const ty = currentY * d * 80; // Desplazamiento máximo vertical
+
+          // Ciclo armónico continuo (Efecto de respiración forestal)
+          const floatY = Math.sin(now * leaf._floatSpeed + leaf._floatPhase) * 14;
+          const floatRot = Math.cos(now * leaf._floatSpeed + leaf._floatPhase) * 3;
+
+          leaf.style.transform = `${leaf._baseTransform} translate(${tx}px, ${ty + floatY}px) rotate(${floatRot}deg)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      // Encender el bucle de animación
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+</body>
+
+</html>

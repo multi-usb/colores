@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="./logos/Logo_header.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Silencio de los Arrozales — Los colores de la guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --light-cream: #FAF7F2;
+      --warm-dark: #1A1510;
+      --earth: #6B4C2A;
+      --moss: #4A5C3E;
+      --moss-light: #6B7F5A;
+      --clay: #B5663A;
+      --clay-light: #D4845A;
+      --dust: #C4A97D;
+      --fog: #8A8275;
+      --border: rgba(107, 76, 42, 0.18);
+      --sage: #7A9B6E;
+      --sage-light: #A8C49A;
+      --ochre: #C89B3C;
+      --mauve: #9E7B8C;
+      --terracotta: #C05840;
+      --teal-deep: #2E5C54;
+      --prod-color: #2A4664;
+      --prod-bg1: #1A2535;
+      --prod-bg2: #111a28;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3.5rem;
+      background: rgba(245, 240, 232, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fog);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fog);
+      transition: color 0.3s;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--clay);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--fog);
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .social-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    @keyframes floatA {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    @keyframes floatB {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(3deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+    }
+
+    @keyframes handFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(-1deg);
+      }
+    }
+
+    .page-hero-title,
+    .sec-title,
+    .stat-n,
+    .footer-brand,
+    .footer-quote,
+    .tl-title,
+    .inline-quote p,
+    .cat-title,
+    .intro-num,
+    .tc-product,
+    .method-title {
+      font-weight: 900;
+    }
+
+    .nav-biblia {
+      color: #B28B17 !important;
+      border: 1px solid rgba(178, 139, 23, 0.38) !important;
+      padding: 0.28rem 0.75rem !important;
+      border-radius: 2px;
+    }
+
+    .nav-biblia:hover {
+      background: rgba(178, 139, 23, 0.1) !important;
+    }
+
+    .nav-biblia::after {
+      display: none !important;
+    }
+
+    .leaf-deco {
+      transition: opacity 0.9s ease;
+      position: absolute;
+      pointer-events: none;
+    }
+
+    .leaf-deco.leaf-hidden {
+      opacity: 0 !important;
+    }
+
+    /* PRODUCT PAGE STYLES */
+    .prod-hero {
+      padding: 10rem 3.5rem 5rem;
+      background: linear-gradient(145deg, var(--prod-bg1), var(--prod-bg2));
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .prod-crumb {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prod-crumb a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .prod-crumb a:hover {
+      color: var(--prod-color);
+    }
+
+    .prod-badge-main {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      background: rgba(245, 240, 232, 0.1);
+      color: var(--cream);
+      border: 1px solid rgba(245, 240, 232, 0.2);
+      border-radius: 2px;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prod-title-main {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+      color: var(--cream);
+    }
+
+    .prod-subtitle {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.6);
+      font-weight: 300;
+      max-width: 600px;
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prod-cta {
+      display: inline-block;
+      background: var(--prod-color);
+      color: var(--cream);
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 2;
+    }
+
+    .prod-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .prod-cta.disabled {
+      background: rgba(245, 240, 232, 0.1);
+      color: rgba(245, 240, 232, 0.4);
+      cursor: not-allowed;
+    }
+
+    .prod-cta.disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .prod-content-sec {
+      padding: 6rem 3.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .prod-col h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      margin-bottom: 1.5rem;
+      color: var(--warm-dark);
+    }
+
+    .prod-col h2 span {
+      color: var(--prod-color);
+    }
+
+    .prod-col p {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color: var(--fog);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .para-card {
+      background: var(--light-cream);
+      border: 1px solid var(--border);
+      padding: 1.5rem;
+      border-radius: 4px;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+
+    .para-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(42, 70, 100, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .para-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--prod-color);
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+    }
+
+    .para-info h4 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .para-info p {
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: var(--fog);
+      margin-bottom: 0;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--warm-dark);
+      color: var(--cream);
+      padding: 4rem 3.5rem 2rem;
+      border-top: 1px solid rgba(245, 240, 232, 0.06);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+      padding-bottom: 3rem;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-about {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 300;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .footer-social-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    .footer-social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a {
+      font-size: 0.8rem;
+      color: rgba(245, 240, 232, 0.4);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--cream);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: rgba(245, 240, 232, 0.2);
+      font-weight: 300;
+    }
+
+    .footer-quote {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(196, 169, 125, 0.45);
+      text-align: right;
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .prod-hero {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .prod-content-sec {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Mobile Nav */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 201;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--warm-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: rgba(245, 240, 232, 0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .nav-mobile-overlay.open {
+      display: flex;
+    }
+
+    .nav-mobile-overlay a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-mobile-overlay a:hover,
+    .nav-mobile-overlay a.active {
+      color: var(--clay);
+    }
+
+    .nav-mobile-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media(max-width:900px) {
+
+      .nav-links,
+      .nav-social {
+        display: none !important;
+      }
+
+      .nav-hamburger {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="preloader"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 1s ease;">
+    <img src="./logos/Logo_preloader.png" alt="Cargando..."
+      style="max-width: 250px; animation: smoothPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+  </div>
+  <style>
+    @keyframes smoothPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.style.display = 'none', 1000);
+        }, 1500);
+      }
+    });
+  </script>
+
+  <nav id="main-nav">
+    <a href="./index.html" class="nav-logo" style="display:flex;align-items:center;"><img src="./logos/Logo_header.png"
+        alt="Los colores de la guerra" style="height:80px;"></a>
+    <ul class="nav-links">
+      <li><a href="./index.html">Inicio</a></li>
+      <li><a href="./contexto.html">Contexto</a></li>
+      <li><a href="./historia.html">Historia</a></li>
+      <li><a href="./experiencia.html" class="active">Experiencia Transmedia</a></li>
+      <li><a href="./equipos.html">Equipos</a></li>
+      <li><a href="#" class="nav-biblia" title="Próximamente">Biblia ↗</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="social-icon"
+        aria-label="Facebook"><svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="social-icon"
+        aria-label="YouTube"><svg viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg></a>
+      <a href="https://www.tiktok.com/@loscoloresdelaguerra" target="_blank" class="social-icon"
+        aria-label="TikTok"><svg viewBox="0 0 24 24">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+      <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank" class="social-icon"
+        aria-label="Instagram"><svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="nav-mobile-overlay" id="mobile-nav">
+    <a href="./index.html">Inicio</a>
+    <a href="./contexto.html">Contexto</a>
+    <a href="./historia.html">Historia</a>
+    <a href="./experiencia.html" class="active">Experiencia</a>
+    <a href="./equipos.html">Equipos</a>
+    <a href="#" style="color:#B28B17;font-size:1.5rem;">Biblia Transmedia</a>
+  </div>
+
+  <!-- PRODUCT HERO: EL SILENCIO DE LOS ARROZALES (REDISEÑO INMERSIVO Y CORREGIDO) -->
+  <div class="page-hero"
+    style="background-color: #111a1e; position: relative; overflow: hidden; padding: 10rem 2rem 8rem; display: flex; align-items: center; justify-content: center; min-height: 60vh;">
+
+    <!-- Definición de filtros de sombra vectorial de alta definición -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="vector-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="6" dy="12" stdDeviation="8" flood-color="#04080a" flood-opacity="0.75" />
+        </filter>
+        <filter id="vector-shadow-light" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="3" dy="6" stdDeviation="4" flood-color="#04080a" flood-opacity="0.5" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- ========================================== -->
+    <!-- FLORA PARALLAX (ENTORNO DE ARROZALES)      -->
+    <!-- ========================================== -->
+
+    <!-- Planta 1: Arriba Izquierda (Hojas densas verde-azuladas) -->
+    <div class="leaf-deco" style="top:-20px; left:-40px; width:clamp(180px, 25vw, 350px); z-index:2;">
+      <svg viewBox="0 0 200 250" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,50 Q 100,0 180,180 C 100,120 40,100 0,50 Z" fill="#1b2e2b" />
+        <path d="M 0,50 Q 90,20 180,180" fill="none" stroke="#0e1a18" stroke-width="3" />
+        <path d="M 30,70 Q 80,60 130,130 C 80,90 50,80 30,70 Z" fill="#2c4c47" />
+      </svg>
+    </div>
+
+    <!-- Planta 2: Abajo Izquierda (Hojas alargadas) -->
+    <div class="leaf-deco"
+      style="bottom:-30px; left:-20px; width:clamp(150px, 20vw, 280px); z-index:1; transform: rotate(15deg);">
+      <svg viewBox="0 0 150 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C30,100 80,40 140,0 C100,70 50,130 0,200 Z" fill="#233a30" />
+        <path d="M20,200 C50,120 100,70 150,40 C110,100 60,150 20,200 Z" fill="#365c49" />
+      </svg>
+    </div>
+
+    <!-- Planta 3: Arriba Derecha (Enredadera de la selva húmeda) -->
+    <div class="leaf-deco"
+      style="top:-30px; right:-20px; width:clamp(200px, 28vw, 320px); z-index:2; transform: scaleX(-1);">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 200,50 C 100,80 50,150 0,250 C 80,180 150,100 200,50 Z" fill="#1c332e" />
+        <path d="M 200,50 C 120,100 80,180 40,250 C 100,180 160,120 200,50 Z" fill="#2d524a" />
+      </svg>
+    </div>
+
+    <!-- Planta 4: Abajo Derecha (Base exuberante) -->
+    <div class="leaf-deco" style="bottom:-40px; right:-30px; width:clamp(220px, 32vw, 400px); z-index:4;">
+      <svg viewBox="0 0 300 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 320,320 C 260,140 140,100 40,150 C 110,210 200,260 320,320 Z" fill="#0f1f1d" />
+        <path d="M 280,320 C 180,160 50,170 10,240 C 100,270 180,290 280,320 Z" fill="#19332f" />
+        <path d="M 220,320 C 140,200 30,230 20,310 C 80,330 160,330 220,320 Z" fill="#2d5952" />
+      </svg>
+    </div>
+
+    <!-- Acento Teal / Color de Marca de los Arrozales -->
+    <div class="leaf-deco"
+      style="top:25%; right:12%; width:clamp(45px, 7vw, 80px); z-index:3; transform: rotate(-15deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#4A8C80" opacity="0.9" />
+        <path d="M 50,140 Q 35,70 50,0" fill="none" stroke="#6ab5a8" stroke-width="2" opacity="0.8" />
+      </svg>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TEXTOS CENTRALIZADOS PROTEGIDOS            -->
+    <!-- ========================================== -->
+    <div
+      style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%; max-width: 850px;">
+
+      <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(245,240,232,0.6); font-weight: 700; margin-bottom: 1.5rem;"
+        data-reveal="fade-up">
+        <a href="./experiencia.html" style="color: inherit; text-decoration: none; transition: color 0.3s;">Experiencia
+          Transmedia</a> &nbsp;/&nbsp; <span style="color: var(--teal-deep);">El Silencio de los Arrozales</span>
+      </p>
+
+      <div
+        style="border: 1px solid rgba(245,240,232,0.2); padding: 0.4rem 1.2rem; border-radius: 4px; margin-bottom: 2rem;"
+        data-reveal="fade-up" data-delay="0.1">
+        <span
+          style="font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cream); font-weight: 700;">Producto
+          Diegético</span>
+      </div>
+
+      <h1
+        style="font-family: 'Montserrat', sans-serif; font-size: clamp(2.5rem, 5.5vw, 4.8rem); font-weight: 900; line-height: 1.1; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 1.5rem;"
+        data-reveal="fade-up" data-delay="0.2">
+        El Silencio de<br>los Arrozales
+      </h1>
+
+      <!-- Descripción Canónica Corregida -->
+      <p style="font-size: 1.05rem; line-height: 1.7; color: rgba(245,240,232,0.7); font-weight: 300; max-width: 650px; margin-bottom: 0;"
+        data-reveal="fade-up" data-delay="0.3">
+        Cómic interactivo que relata la dolorosa espera, la incertidumbre y la resistencia de los padres de Tomás desde
+        el interior de su hogar tras el reclutamiento.
+      </p>
+
+      <!-- ========================================== -->
+      <!-- BOTONERA DOBLE TRANSMEDIA CORREGIDA        -->
+      <!-- ========================================== -->
+      <div
+        style="margin-top: 2.8rem; display: flex; gap: 1rem; align-items: center; justify-content: center; flex-wrap: wrap;"
+        data-reveal="fade-up" data-delay="0.4">
+
+        <!-- Botón Ancla Inteligente -->
+        <a href="#" onclick="window.scrollBy({top: window.innerHeight * 0.8, behavior: 'smooth'}); return false;"
+          style="padding: 0.8rem 2rem; background: transparent; border: 1px solid rgba(245,240,232,0.3); color: var(--cream); text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 50px; transition: all 0.3s ease;"
+          onmouseover="this.style.background='rgba(245,240,232,0.1)'; this.style.borderColor='var(--cream)';"
+          onmouseout="this.style.background='transparent'; this.style.borderColor='rgba(245,240,232,0.3)';">
+          ↓ Explorar el cómic
+        </a>
+
+        <!-- Botón de Navegación: Conecta al Producto 03 (The King) -->
+        <a href="./producto-the-king.html"
+          style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.8rem 2rem; background: var(--clay); color: var(--cream); text-decoration: none; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(181, 102, 58, 0.2);"
+          onmouseover="this.style.transform='translateY(-4px)'; this.style.boxShadow='0 15px 25px rgba(181, 102, 58, 0.4)';"
+          onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 20px rgba(181, 102, 58, 0.2)';">
+          Siguiente Relato →
+        </a>
+
+      </div>
+
+    </div>
+  </div>
+
+
+  <div style="max-width: 1200px; margin: 4rem auto; padding: 0 3.5rem; display:flex; justify-content:center;">
+    <div style="width: 100%;">
+      <div style="position: relative; padding-bottom: 56.25%; padding-top: 0; height: 0;"><iframe
+          title="El silencio de los arrozales" frameborder="0" width="1200" height="675"
+          style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+          src="https://view.genially.com/6a25bd84d2a2e654912abed8" type="text/html" allowscriptaccess="always"
+          allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe> </div>
+    </div>
+
+
+
+
+  </div>
+
+  <!-- SINOPSIS GAMIFICADA: VERDADES OCULTAS (EL SILENCIO DE LOS ARROZALES) -->
+  <section style="padding: 6rem 2rem 4rem; background: var(--cream); position: relative; overflow: hidden; z-index: 5;">
+
+    <!-- Estilos de la mecánica de "Censura" (Verdades Ocultas) -->
+    <style>
+      .redacted-text {
+        position: relative;
+        color: var(--cream);
+        display: inline-block;
+        cursor: pointer;
+        padding: 0 0.2rem;
+        transition: color 0.4s ease;
+        font-weight: 600;
+      }
+
+      /* El bloque que oculta el texto */
+      .redacted-text::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -2px;
+        right: -2px;
+        bottom: 0;
+        background-color: var(--teal-deep);
+        border-radius: 3px;
+        transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Al pasar el cursor, el bloque se contrae hacia la derecha y desaparece */
+      .redacted-text:hover::after,
+      .redacted-text.is-revealed::after {
+        transform: scaleX(0);
+        transform-origin: right;
+        opacity: 0;
+      }
+
+      .redacted-text:hover,
+      .redacted-text.is-revealed {
+        color: #6ab5a8;
+        text-shadow: 0 0 15px rgba(106, 181, 168, 0.4);
+      }
+    </style>
+
+    <!-- ========================================== -->
+    <!-- FLORA PARALLAX PARA LA SINOPSIS            -->
+    <!-- ========================================== -->
+    <div class="leaf-deco" style="top: 25%; left: -40px; width: clamp(120px, 18vw, 240px); z-index: 1;">
+      <svg viewBox="0 0 200 250" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,50 Q 100,0 180,180 C 100,120 40,100 0,50 Z" fill="#1b2e2b" opacity="0.85" />
+        <path d="M 30,70 Q 80,60 130,130 C 80,90 50,80 30,70 Z" fill="#2c4c47" opacity="0.9" />
+      </svg>
+    </div>
+    <div class="leaf-deco"
+      style="bottom: 15%; right: -20px; width: clamp(100px, 15vw, 180px); z-index: 1; transform: rotate(-15deg) scaleX(-1);">
+      <svg viewBox="0 0 150 200" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C30,100 80,40 140,0 C100,70 50,130 0,200 Z" fill="#233a30" opacity="0.75" />
+        <path d="M20,200 C50,120 100,70 150,40 C110,100 60,150 20,200 Z" fill="#365c49" opacity="0.8" />
+      </svg>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CONTENIDO DE LA SINOPSIS                   -->
+    <!-- ========================================== -->
+    <div style="max-width: 800px; margin: 0 auto; text-align: center; position: relative; z-index: 10;">
+
+      <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--teal-deep); font-weight: 700; margin-bottom: 1rem;"
+        data-reveal="fade-up">Sinopsis Interactiva</p>
+
+      <h2
+        style="font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: var(--warm-dark); line-height: 1.1; margin-bottom: 0.5rem; letter-spacing: -0.02em;"
+        data-reveal="fade-up" data-delay="0.05">
+        El Relato <span style="color: var(--teal-deep); font-style: italic; font-weight: 700;">Diegético</span>
+      </h2>
+
+      <p style="font-size: 0.8rem; color: var(--fog); font-style: italic; margin-bottom: 2.5rem;" data-reveal="fade-up"
+        data-delay="0.1">
+        ( Pasa el cursor sobre los bloques para revelar la verdad )
+      </p>
+
+      <!-- CAJA DE TEXTO CON CENSURAS -->
+      <div
+        style="background: rgba(17, 26, 30, 0.98); border: 1px solid rgba(74, 140, 128, 0.2); border-radius: 12px; padding: 4rem 3rem; box-shadow: 0 25px 50px rgba(0,0,0,0.15); text-align: left;"
+        data-reveal="scale" data-delay="0.15">
+
+        <p
+          style="font-size: 1.25rem; line-height: 1.9; color: rgba(245,240,232,0.8); font-weight: 400; margin-bottom: 1.8rem;">
+          Luz María lava la ropa de Tomás cada semana aunque esté limpia. Raúl trabaja de sol a sol en los arrozales
+          para no tener que <span class="redacted-text">escuchar el eco de una casa vacía</span>.
+        </p>
+
+        <p
+          style="font-size: 1.05rem; line-height: 1.9; color: rgba(245,240,232,0.7); font-weight: 300; margin-bottom: 2.5rem;">
+          A través de este cómic interactivo, te adentrarás en <span class="redacted-text">la angustia de los que se
+            quedan</span>. Tomarás decisiones que guiarán a los padres de Tomás en su desesperada búsqueda de
+          respuestas, explorando los rincones de <span class="redacted-text">un pueblo que prefiere callar</span>.
+        </p>
+
+        <div
+          style="display: inline-block; padding: 0.6rem 1.8rem; border: 1px solid var(--teal-deep); background: rgba(74, 140, 128, 0.1); border-radius: 50px; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--teal-deep); font-weight: 700;">
+          Plataforma · Cómic Interactivo (Genially)
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Script para asegurar que el destape funcione con toques en celulares -->
+    <script>
+      document.querySelectorAll('.redacted-text').forEach(el => {
+        el.addEventListener('touchstart', function () {
+          this.classList.toggle('is-revealed');
+        }, { passive: true });
+      });
+    </script>
+
+  </section>
+
+
+  <!-- FOOTER GENERAL CORREGIDO (MANTIENE LA ESTRUCTURA ORIGINAL Y REPARA ÍCONOS) -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <img src="./logos/Logo_footer.png" alt="Los colores de la guerra" style="max-width: 180px;">
+        </div>
+
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Páginas</p>
+        <ul>
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./contexto.html">Contexto</a></li>
+          <li><a href="./historia.html">Historia</a></li>
+          <li><a href="./experiencia.html">Experiencia</a></li>
+          <li><a href="./equipos.html">Equipos</a></li>
+          <li><a href="#" style="color:#B28B17;">Biblia Transmedia ↗</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Historias</p>
+        <ul>
+          <li><a href="./producto-cartas-tomas.html">Las Cartas de Tomás</a></li>
+          <li><a href="./producto-silencio-arrozales.html">El Silencio de los Arrozales</a></li>
+          <li><a href="./producto-the-king.html">The King</a></li>
+          <li><a href="./producto-entre-sombras.html">Entre las Sombras</a></li>
+          <li><a href="./producto-morrales-vacios.html">Morrales Vacíos</a></li>
+          <li><a href="./producto-con-lupa.html">Con Lupa</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <p class="footer-col-title">Redes sociales</p>
+        <div class="footer-social-row" style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center;">
+
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="footer-social-icon"
+            aria-label="Facebook"
+            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(245,240,232,0.15); color: var(--cream); fill: currentColor; transition: all 0.3s ease;"
+            onmouseover="this.style.background='var(--cream)'; this.style.color='#0d120f'; this.style.transform='translateY(-3px)';"
+            onmouseout="this.style.background='transparent'; this.style.color='var(--cream)'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg>
+          </a>
+
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="footer-social-icon"
+            aria-label="YouTube"
+            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(245,240,232,0.15); color: var(--cream); fill: currentColor; transition: all 0.3s ease;"
+            onmouseover="this.style.background='var(--cream)'; this.style.color='#0d120f'; this.style.transform='translateY(-3px)';"
+            onmouseout="this.style.background='transparent'; this.style.color='var(--cream)'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg>
+          </a>
+
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/" target="_blank" class="footer-social-icon" aria-label="TikTok"
+            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(245,240,232,0.15); color: var(--cream); fill: currentColor; transition: all 0.3s ease;"
+            onmouseover="this.style.background='var(--cream)'; this.style.color='#0d120f'; this.style.transform='translateY(-3px)';"
+            onmouseout="this.style.background='transparent'; this.style.color='var(--cream)'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank"
+            class="footer-social-icon" aria-label="Instagram"
+            style="display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(245,240,232,0.15); color: var(--cream); fill: currentColor; transition: all 0.3s ease;"
+            onmouseover="this.style.background='var(--cream)'; this.style.color='#0d120f'; this.style.transform='translateY(-3px)';"
+            onmouseout="this.style.background='transparent'; this.style.color='var(--cream)'; this.style.transform='translateY(0)';">
+            <svg viewBox="0 0 24 24" style="width: 20px; height: 20px;">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+          </a>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-note">Pontificia Universidad Javeriana Cali</p>
+      <p class="footer-quote">"Hoy aprendí a disparar. No quería hacerlo." — Tomás</p>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (hamburger && mobileNav) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileNav.classList.toggle('open');
+        document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+      });
+    }
+
+    (function initArrozalesInteractive() {
+      const leaves = document.querySelectorAll('.leaf-deco');
+
+      leaves.forEach((leaf) => {
+        if (!leaf._baseTransform) {
+          leaf._baseTransform = leaf.style.transform || '';
+          leaf._parallaxDepth = Math.random() * 0.4 + 0.15; // Capas de profundidad en la retícula
+          leaf._floatPhase = Math.random() * Math.PI * 2;
+          leaf._floatSpeed = Math.random() * 0.001 + 0.0005; // Oscilación sutil de respiración
+          leaf.style.transition = 'opacity 1s ease';
+        }
+      });
+
+      let mouseX = 0; let mouseY = 0; let currentX = 0; let currentY = 0;
+
+      // Captura de coordenadas del cursor
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function animate() {
+        // Suavizado (Easing) matemático para que el movimiento sea fluido y no rígido
+        currentX += (mouseX - currentX) * 0.05;
+        currentY += (mouseY - currentY) * 0.05;
+        const now = Date.now();
+
+        leaves.forEach(leaf => {
+          const d = leaf._parallaxDepth;
+          const tx = currentX * d * 85; // Desplazamiento horizontal máximo
+          const ty = currentY * d * 85; // Desplazamiento vertical máximo
+
+          // Ciclo armónico para simular el viento de la zona rural
+          const floatY = Math.sin(now * leaf._floatSpeed + leaf._floatPhase) * 14;
+          const floatRot = Math.cos(now * leaf._floatSpeed + leaf._floatPhase) * 3;
+
+          leaf.style.transform = `${leaf._baseTransform} translate(${tx}px, ${ty + floatY}px) rotate(${floatRot}deg)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+</body>
+
+</html>

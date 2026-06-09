@@ -1,0 +1,2451 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="./logos/Logo_header.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Los colores de la guerra — Proyecto transmedia sobre el reclutamiento infantil en Colombia, narrado a través de seis historias entrelazadas.">
+  <title>Los colores de la guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ── BRAND FONTS ── */
+    /* Montserrat + Playfair Display already imported */
+
+    /* ── TOKENS ── */
+    :root {
+      /* ── Paleta principal oficial ── */
+      --brand-blue: #2A4664;
+      /* Tomás / primario */
+      --brand-green: #315200;
+      /* verde selva */
+      --brand-gold: #B28B17;
+      /* dorado */
+      --brand-brown: #441501;
+      /* café oscuro */
+
+      /* ── Paleta por historia ── */
+      --hist-tomas: #2A4664;
+      --hist-arrozales: #FFC700;
+      --hist-king: #43005B;
+      --hist-sombras: #890004;
+      --hist-morrales: #543FA4;
+      --hist-azul: #F78F21;
+
+      /* ── Roles semánticos ── */
+      --cream: #EEE9DE;
+      /* fondo claro principal */
+      --light-cream: #F5F1E8;
+      /* fondo claro secundario */
+      --warm-dark: #0D1207;
+      /* fondo oscuro (negro verdoso) */
+      --clay: #B28B17;
+      /* acento principal = dorado */
+      --clay-light: #D4AB3A;
+      /* dorado claro */
+      --clay-dark: #8A6A10;
+      /* dorado oscuro */
+      --moss: #315200;
+      /* verde oficial */
+      --moss-light: #4A7A00;
+      /* verde claro */
+      --dust: #B28B17;
+      /* alias dorado para textos tenues */
+      --fog: #7A7468;
+      /* gris neutro */
+      --border: rgba(42, 70, 100, 0.15);
+      --sage: #4A7A00;
+      --sage-light: #7AAA2A;
+      --earth: #441501;
+      --ochre: #B28B17;
+      --ochre-light: #D4AB3A;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 3.5rem;
+      background: rgba(238, 233, 222, 0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      transition: padding 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    nav.scrolled {
+      padding: 0.2rem 3.5rem;
+      box-shadow: 0 2px 24px rgba(13, 18, 7, 0.1);
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: var(--warm-dark);
+      text-decoration: none;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.52rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fog);
+      margin-top: 2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fog);
+      transition: color 0.3s;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--brand-blue);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--fog);
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--brand-blue);
+      color: var(--brand-blue);
+      background: rgba(42, 70, 100, 0.08);
+    }
+
+    .social-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    /* Hamburger */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--warm-dark);
+      transition: all 0.3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(245, 240, 232, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 190;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+
+    .nav-mobile-menu.open {
+      display: flex;
+    }
+
+    .nav-mobile-menu a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--warm-dark);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      transition: color 0.3s;
+    }
+
+    .nav-mobile-menu a:hover {
+      color: var(--clay);
+    }
+
+    .nav-mobile-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 85vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+      padding-top: 74px;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3.5rem 3rem 3.5rem 3.5rem;
+      position: relative;
+      z-index: 2;
+      background: var(--warm-dark);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      color: var(--brand-gold);
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(16px);
+      animation: fadeUp 0.8s 0.2s forwards;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--brand-gold);
+      flex-shrink: 0;
+    }
+
+    .hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      font-weight: 900;
+      line-height: 0.9;
+      color: var(--cream);
+      margin-bottom: 1.6rem;
+      opacity: 0;
+      transform: translateY(24px);
+      animation: fadeUp 0.9s 0.35s forwards;
+      letter-spacing: -0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero-title em {
+      font-style: normal;
+      color: var(--clay);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: rgba(245, 240, 232, 0.55);
+      max-width: 420px;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.8s 0.5s forwards;
+      letter-spacing: 0.01em;
+    }
+
+    .hero-cta-row {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      opacity: 0;
+      animation: fadeUp 0.8s 0.65s forwards;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--brand-blue);
+      color: var(--cream);
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      border-radius: 2px;
+      transition: all 0.35s;
+      align-self: flex-start;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--brand-blue);
+    }
+
+    .hero-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--cream);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-cta:hover {
+      color: var(--brand-blue);
+    }
+
+    .hero-cta:hover::before {
+      transform: translateX(0);
+    }
+
+    .hero-cta span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-cta-ghost {
+      display: inline-block;
+      border: 1px solid rgba(245, 240, 232, 0.25);
+      color: rgba(245, 240, 232, 0.55);
+      padding: 1rem 2.2rem;
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      transition: all 0.35s;
+    }
+
+    .hero-cta-ghost:hover {
+      border-color: rgba(245, 240, 232, 0.6);
+      color: var(--cream);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Full-bleed hero image */
+    .hero-cover-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 60%;
+      z-index: 1;
+      /* ── TRUCO DE ZOOM EDITORIAL ── */
+      transform: scale(1.35);
+      /* Hace un zoom del 35% hacia adentro */
+      transform-origin: center bottom;
+      /* El zoom se expande desde abajo, empujando las letras superiores fuera del contenedor */
+    }
+
+    /* Dark cinematic vignette on top of image */
+    .hero-cover-vignette {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background:
+        linear-gradient(to right, rgba(13, 18, 7, 0.82) 0%, rgba(13, 18, 7, 0.3) 45%, transparent 70%),
+        linear-gradient(to top, rgba(13, 18, 7, 0.7) 0%, transparent 40%),
+        linear-gradient(to bottom, rgba(13, 18, 7, 0.5) 0%, transparent 30%);
+    }
+
+    .hero-bg {
+      display: none;
+    }
+
+    .hero-bg-base {
+      display: none;
+    }
+
+    /* Overlay content on the right hero panel */
+    .hero-cover-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2.5rem 2rem 2.5rem 2.5rem;
+    }
+
+    .hero-cover-badge {
+      display: inline-block;
+      background: rgba(178, 139, 23, 0.15);
+      border: 1px solid rgba(178, 139, 23, 0.5);
+      padding: 0.25rem 0.8rem;
+      border-radius: 2px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.48rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(178, 139, 23, 0.95);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .hero-cover-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.6rem, 2.5vw, 2.6rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .hero-cover-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.7rem;
+      color: rgba(245, 240, 232, 0.45);
+      line-height: 1.65;
+      margin-bottom: 0.8rem;
+      max-width: 300px;
+    }
+
+    .hero-cover-rule {
+      width: 36px;
+      height: 1px;
+      background: rgba(178, 139, 23, 0.5);
+      margin-bottom: 0.8rem;
+    }
+
+    /* Decorative accent leaves (smaller, more subtle) */
+    .hero-deco-leaf {
+      position: absolute;
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    /* Horizontal rule in hero */
+    .hero-rule {
+      width: 48px;
+      height: 1px;
+      background: rgba(238, 233, 222, 0.12);
+      margin: 2rem 0;
+    }
+
+    .hero-figure-wrap {
+      display: none;
+      /* removed in new layout */
+    }
+
+    .hero-caption {
+      display: none;
+      /* moved to overlay */
+    }
+
+    /* ── STORY ── */
+    #story {
+      padding: clamp(2.5rem, 6vh, 5rem) 3.5rem;
+      background: var(--warm-dark);
+      color: var(--cream);
+      display: flex;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #story>div:first-child {
+      width: 100%;
+      max-width: 560px;
+      position: relative;
+      z-index: 2;
+    }
+
+    @media(max-width:600px) {
+      #story>div:first-child {
+        max-width: 100%;
+      }
+    }
+
+    .story-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .story-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--brand-gold);
+      flex-shrink: 0;
+    }
+
+    .story-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3.2rem);
+      font-weight: 900;
+      line-height: 0.95;
+      margin-bottom: 1.4rem;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .story-title em {
+      font-style: normal;
+      color: var(--clay);
+    }
+
+    .story-body {
+      font-size: 0.84rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.58);
+      font-weight: 300;
+      margin-bottom: 1.2rem;
+      max-width: 480px;
+    }
+
+    .story-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--brand-gold);
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 0.5rem;
+      transition: gap 0.3s, color 0.3s;
+    }
+
+    .story-cta::after {
+      content: '→';
+      transition: transform 0.3s;
+    }
+
+    .story-cta:hover {
+      color: var(--cream);
+      gap: 1rem;
+    }
+
+    .story-visual {
+      position: relative;
+      aspect-ratio: 3/4;
+      background: #111a07;
+      border-radius: 3px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(196, 169, 125, 0.08);
+    }
+
+    .story-visual-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      padding: 3rem;
+    }
+
+    .ph-tag {
+      font-size: 0.55rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--dust);
+      opacity: 0.3;
+    }
+
+    .ph-icon {
+      width: 52px;
+      height: 52px;
+      border: 1px solid rgba(196, 169, 125, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ph-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--dust);
+      opacity: 0.25;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+    }
+
+
+    /* ── CAROUSEL ── */
+    #experiencia {
+      padding: 4rem 0;
+      background: var(--light-cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .sec-header {
+      padding: 0 3.5rem;
+      margin-bottom: 2.5rem;
+      display: block;
+    }
+
+    .sec-header-left {}
+
+    .sec-label {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--brand-gold);
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .sec-label::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--brand-gold);
+      flex-shrink: 0;
+    }
+
+    .sec-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 900;
+      line-height: 0.95;
+      color: var(--warm-dark);
+      letter-spacing: -0.03em;
+      text-transform: uppercase;
+    }
+
+    .sec-sub {
+      font-size: 0.85rem;
+      color: var(--fog);
+      margin-top: 1rem;
+      font-weight: 300;
+      line-height: 1.75;
+      max-width: 460px;
+    }
+
+    /* 3D Carousel */
+    .carousel-wrap {
+      position: relative;
+      height: 480px;
+      perspective: 1400px;
+      margin: 0 3.5rem;
+    }
+
+    .carousel-stage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+    }
+
+    .c-card {
+      position: absolute;
+      width: 260px;
+      height: 400px;
+      left: 50%;
+      top: 50%;
+      margin-left: -130px;
+      margin-top: -200px;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    }
+
+    /* Split card layout: top = image, bottom = text panel */
+    .c-card-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Image area — top 55% */
+    .c-img-zone {
+      position: relative;
+      width: 100%;
+      height: 55%;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .c-img-zone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .c-card:hover .c-img-zone img {
+      transform: scale(1.05);
+    }
+
+    /* fallback no-image background */
+    .c-img-zone-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* thin accent line between image and text */
+    .c-accent-bar {
+      width: 100%;
+      height: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Text panel — bottom 45% with solid dark bg */
+    .c-info {
+      background: #0e0c0a;
+      padding: 1rem 1.4rem 1.3rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+    }
+
+    .c-type {
+      font-size: 0.48rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .c-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #F5F0E8;
+      line-height: 1.1;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    .c-desc {
+      font-size: 0.64rem;
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.5);
+      font-weight: 300;
+      margin-bottom: 0.7rem;
+      font-family: 'Montserrat', sans-serif;
+      flex: 1;
+    }
+
+    .c-bottom-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .c-channel {
+      font-size: 0.48rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .c-btn {
+      display: inline-block;
+      font-size: 0.52rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      padding: 0.35rem 0.8rem;
+      border-radius: 2px;
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      transition: all 0.3s;
+      border: 1px solid;
+      white-space: nowrap;
+    }
+
+    .c-btn:hover {
+      filter: brightness(1.3);
+    }
+
+    .carousel-nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .c-nav-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--warm-dark);
+    }
+
+    .c-nav-btn:hover {
+      border-color: var(--brand-blue);
+      color: var(--brand-blue);
+      background: rgba(42, 70, 100, 0.06);
+    }
+
+    .c-nav-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 2;
+    }
+
+    .c-dots {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .c-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(107, 76, 42, 0.2);
+      cursor: pointer;
+      transition: all 0.35s;
+    }
+
+    .c-dot.active {
+      background: var(--brand-blue);
+      width: 22px;
+      border-radius: 3px;
+    }
+
+    /* ── QUOTE ── */
+    .quote-band {
+      position: relative;
+      padding: 3.5rem 3.5rem;
+      background: var(--brand-blue);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-band blockquote {
+      position: relative;
+      z-index: 1;
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: clamp(1.1rem, 2vw, 1.6rem);
+      font-weight: 400;
+      color: var(--cream);
+      line-height: 1.6;
+      max-width: 680px;
+      margin: 0 auto 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-mark {
+      display: block;
+      font-size: 3.5rem;
+      line-height: 0.6;
+      color: rgba(245, 240, 232, 0.2);
+      font-family: 'Montserrat', sans-serif;
+      margin-bottom: 1.5rem;
+    }
+
+    .quote-attr {
+      position: relative;
+      z-index: 1;
+      font-size: 0.6rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.45);
+      font-weight: 600;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── CONTEXT STRIP ── */
+    #contexto-strip {
+      position: relative;
+      position: relative;
+      padding: 4rem 3.5rem;
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-block {
+      position: sticky;
+      top: 120px;
+    }
+
+    .map-ph {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: #111a07;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(196, 169, 125, 0.06);
+    }
+
+    .map-grid-bg {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: linear-gradient(var(--cream) 1px, transparent 1px), linear-gradient(90deg, var(--cream) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    .map-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--brand-gold);
+      border-radius: 50%;
+      position: relative;
+      z-index: 2;
+    }
+
+    .map-dot::after {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border: 1px solid var(--brand-gold);
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: pulse 2.2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 0.4;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0;
+        transform: scale(1.9);
+      }
+    }
+
+    .map-lbl {
+      position: relative;
+      z-index: 2;
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.78rem;
+      color: rgba(245, 240, 232, 0.35);
+      text-align: center;
+      font-weight: 300;
+    }
+
+    .map-cap {
+      font-size: 0.7rem;
+      color: var(--fog);
+      margin-top: 0.8rem;
+      text-align: center;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .stat-row {
+      display: flex;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .stat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-lbl {
+      font-size: 0.75rem;
+      line-height: 1.65;
+      color: var(--fog);
+      font-weight: 300;
+      max-width: 160px;
+    }
+
+    .ctx-text {
+      font-size: 0.9rem;
+      line-height: 2;
+      color: var(--warm-dark);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .ctx-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      color: var(--brand-blue);
+      text-decoration: none;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-top: 0.8rem;
+      transition: gap 0.3s, opacity 0.3s;
+    }
+
+    .ctx-cta::after {
+      content: '→';
+      transition: transform 0.3s;
+    }
+
+    .ctx-cta:hover {
+      gap: 1rem;
+      opacity: 0.7;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--warm-dark);
+      color: var(--cream);
+      padding: 4rem 3.5rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3.5rem;
+      margin-bottom: 4rem;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.07);
+      padding-bottom: 4rem;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 900;
+      margin-bottom: 0.4rem;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--cream);
+    }
+
+    .footer-brand-sub {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.52rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--fog);
+      font-weight: 400;
+      margin-top: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-about {
+      font-size: 0.78rem;
+      line-height: 1.9;
+      color: rgba(245, 240, 232, 0.75);
+      font-weight: 300;
+      max-width: 280px;
+      margin-bottom: 2rem;
+    }
+
+    .footer-social-row {
+      display: flex;
+      gap: 0.6rem;
+      align-items: center;
+    }
+
+    .footer-social-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: rgba(245, 240, 232, 0.38);
+    }
+
+    .footer-social-icon:hover {
+      border-color: var(--brand-gold);
+      color: var(--brand-gold);
+    }
+
+    .footer-social-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .footer-col-title {
+      font-size: 0.54rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--dust);
+      font-weight: 700;
+      margin-bottom: 1.4rem;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-col a {
+      font-size: 0.78rem;
+      color: rgba(245, 240, 232, 0.75);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: rgba(245, 240, 232, 0.85);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-note {
+      font-size: 0.68rem;
+      color: rgba(245, 240, 232, 0.5);
+      font-weight: 300;
+      line-height: 1.6;
+      max-width: 440px;
+    }
+
+    .footer-quote {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.88rem;
+      color: rgba(196, 169, 125, 0.85);
+      max-width: 280px;
+      text-align: right;
+      line-height: 1.7;
+    }
+
+    /* ── SCROLL REVEAL ── */
+    [data-reveal] {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    [data-reveal="fade-up"] {
+      transform: translateY(40px);
+    }
+
+    [data-reveal="fade-left"] {
+      transform: translateX(40px);
+    }
+
+    [data-reveal="fade-right"] {
+      transform: translateX(-40px);
+    }
+
+    [data-reveal="scale"] {
+      transform: scale(0.88);
+    }
+
+    [data-reveal="clip"] {
+      clip-path: inset(0 100% 0 0);
+    }
+
+    [data-reveal="rotate"] {
+      transform: translateY(30px) rotate(-3deg);
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+      clip-path: none;
+      transition: opacity 0.85s cubic-bezier(0.4, 0, 0.2, 1), transform 0.85s cubic-bezier(0.4, 0, 0.2, 1), clip-path 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-reveal].revealed.delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    [data-reveal].revealed.delay-2 {
+      transition-delay: 0.2s;
+    }
+
+    [data-reveal].revealed.delay-3 {
+      transition-delay: 0.35s;
+    }
+
+    [data-reveal].revealed.delay-4 {
+      transition-delay: 0.5s;
+    }
+
+    [data-reveal].revealed.delay-5 {
+      transition-delay: 0.65s;
+    }
+
+    .split-line {
+      overflow: hidden;
+      display: block;
+    }
+
+    .split-line span {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    }
+
+    .split-line.revealed span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .split-line.delay-1 span {
+      transition-delay: 0.12s;
+    }
+
+    .split-line.delay-2 span {
+      transition-delay: 0.24s;
+    }
+
+    .split-line.delay-3 span {
+      transition-delay: 0.36s;
+    }
+
+    [data-reveal="wipe"] {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      opacity: 1;
+    }
+
+    [data-reveal="wipe"].revealed {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      transition: clip-path 1.1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      nav.scrolled {
+        padding: 0.7rem 1.5rem;
+      }
+
+      .nav-links,
+      .nav-social {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: flex;
+      }
+
+      #hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .hero-left {
+        padding: 4rem 2rem 4rem 2rem;
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 14vw, 5rem);
+      }
+
+      #story {
+        padding: clamp(2rem, 4vh, 3rem) 1.5rem;
+      }
+
+      .story-visual {
+        display: none;
+      }
+
+      #contexto-strip {
+        position: relative;
+        grid-template-columns: 1fr;
+        padding: 3rem 1.5rem;
+        gap: 2rem;
+      }
+
+      .map-block {
+        position: static;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .sec-header {
+        padding: 0 1.5rem;
+      }
+
+      .carousel-wrap {
+        height: 440px;
+        margin: 0 1rem;
+      }
+
+      #experiencia {
+        padding: 5rem 0;
+      }
+
+      .quote-band {
+        position: relative;
+        padding: 5rem 1.5rem;
+      }
+    }
+
+    @media(max-width:600px) {
+      .hero-left {
+        padding: 3.5rem 1.5rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2.6rem, 13vw, 4rem);
+      }
+
+      .hero-cta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero-eyebrow {
+        font-size: 0.6rem;
+      }
+
+      .stat-row {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-quote {
+        text-align: left;
+      }
+
+      .carousel-wrap {
+        height: 370px;
+        margin: 0 0.5rem;
+      }
+
+      .c-card {
+        width: 230px;
+        height: 360px;
+        margin-left: -115px;
+        margin-top: -180px;
+      }
+
+      .sec-header {
+        padding: 0 1.2rem;
+      }
+
+      #contexto-strip {
+        padding: 4rem 1.2rem;
+      }
+
+      #story {
+        padding: 2.5rem 1.2rem;
+      }
+    }
+
+    /* ── HERO INTERACTIVE ── */
+    .hero-particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 3;
+      animation: heroParticleRise linear infinite;
+      will-change: transform, opacity;
+    }
+
+    @keyframes heroParticleRise {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      85% {
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: translateY(-90px) scale(0.15);
+        opacity: 0;
+      }
+    }
+
+    .hero-cursor-glow {
+      position: absolute;
+      /* Aumentamos el tamaño de 320px a 450px para que el destello expanda más */
+      width: 350px;
+      height: 350px;
+      border-radius: 50%;
+
+      /* ── GRADIENTE RADIAL INTENSIFICADO ── */
+      /* Usamos el dorado puro de la marca con opacidades más altas (0.35 en el centro) */
+      background: radial-gradient(circle, rgba(178, 139, 23, 0.55) 0%, rgba(212, 171, 58, 0.12) 40%, transparent 70%);
+
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+
+      /* Forzamos el modo de fusión 'screen' (pantalla) para que sume luz directamente sobre el fondo negro */
+      mix-blend-mode: screen;
+    }
+
+    .hero-right:hover .hero-cursor-glow {
+      opacity: 1;
+    }
+
+    .hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 75% at 50% 60%, transparent 28%, rgba(6, 14, 3, 0.55) 100%);
+      pointer-events: none;
+      z-index: 4;
+    }
+
+    .hero-figure-wrap::before {
+      content: '';
+      position: absolute;
+      bottom: 18%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(42, 70, 100, 0.18) 0%, transparent 70%);
+      z-index: 1;
+      animation: figGlow 4.5s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes figGlow {
+
+      0%,
+      100% {
+        opacity: 0.3;
+        transform: translateX(-50%) scale(1);
+      }
+
+      50% {
+        opacity: 0.9;
+        transform: translateX(-50%) scale(1.2);
+      }
+    }
+
+    .tw-cursor {
+      display: inline-block;
+      width: 1.5px;
+      height: 0.8em;
+      background: rgba(196, 169, 125, 0.55);
+      margin-left: 2px;
+      vertical-align: middle;
+      animation: twBlink 1.1s step-end infinite;
+    }
+
+    @keyframes twBlink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* ── NAV BIBLIA ── */
+    .nav-biblia {
+      color: var(--brand-gold) !important;
+      border: 1px solid rgba(178, 139, 23, 0.38) !important;
+      padding: 0.28rem 0.75rem !important;
+      border-radius: 2px;
+    }
+
+    .nav-biblia:hover {
+      background: rgba(178, 139, 23, 0.1) !important;
+    }
+
+    .nav-biblia::after {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="preloader"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 1s ease;">
+    <img src="./logos/Logo_preloader.png" alt="Cargando..."
+      style="max-width: 250px; animation: smoothPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+  </div>
+  <style>
+    @keyframes smoothPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.style.display = 'none', 1000);
+        }, 1500);
+      }
+    });
+  </script>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <a href="./index.html" class="nav-logo" style="display:flex;align-items:center;">
+      <img src="./logos/Logo_header.png" alt="Los colores de la guerra" style="height:80px;">
+    </a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="active">Inicio</a></li>
+      <li><a href="./contexto.html">Contexto</a></li>
+      <li><a href="./historia.html">Historia</a></li>
+      <li><a href="./experiencia.html">Experiencia Transmedia</a></li>
+      <li><a href="./equipos.html">Equipos</a></li>
+      <li><a href="#" class="nav-biblia" title="Próximamente">Biblia ↗</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="social-icon"
+        aria-label="Facebook"><svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="social-icon"
+        aria-label="YouTube"><svg viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg></a>
+      <a href="https://www.tiktok.com/@loscoloresdelaguerra" target="_blank" class="social-icon"
+        aria-label="TikTok"><svg viewBox="0 0 24 24">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+      <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank" class="social-icon"
+        aria-label="Instagram"><svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="nav-mobile-menu" id="mobile-menu">
+    <a href="./index.html">Inicio</a>
+    <a href="./contexto.html">Contexto</a>
+    <a href="./historia.html">Historia</a>
+    <a href="./experiencia.html">Experiencia</a>
+    <a href="./equipos.html">Equipos</a>
+    <a href="#" style="color:var(--brand-gold);font-size:1.6rem;">Biblia Transmedia</a>
+    <div class="nav-mobile-social">
+      <a href="#" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+      <a href="#" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="#" class="social-icon" aria-label="TikTok"><svg viewBox="0 0 24 24">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+
+    <div class="hero-left">
+      <p class="hero-eyebrow">Colombia · Reclutamiento Infantil · Narrativa Transmedia</p>
+      <h1 class="hero-title">
+        Los colores<br>de la<br><em>guerra</em>
+      </h1>
+      <p class="hero-desc">El 2 de febrero de 2022 Tomás Herrera Suárez salió solo al colegio en Vistahermosa, Meta.
+        Tenía 13 años y llevaba en la mochila un cuaderno azul que su profesora le acababa de regalar. Esa tarde no
+        regresó. Lo que ocurrió en los tres años siguientes lo escribió carta a carta, de noche, en guardia, con una
+        linterna escondida dentro de su uniforme.</p>
+      <div class="hero-cta-row">
+        <a href="./experiencia.html" class="hero-cta"><span>Comenzar la historia</span></a>
+        <a href="./contexto.html" class="hero-cta-ghost">El contexto →</a>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <!-- Filtros nativos de sombra para dar relieve 3D a las nuevas capas de hojas -->
+      <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+        <defs>
+          <filter id="hero-leaf-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="4" dy="8" stdDeviation="5" flood-color="#051005" flood-opacity="0.65" />
+          </filter>
+        </defs>
+      </svg>
+
+      <!-- HERO COVER: imagen con zoom y reencuadre editorial inferior -->
+      <img src="./covers/cuadrado/Cartasdetomas_square.png" alt="Las Cartas de Tomás - Portada" class="hero-cover-img">
+      <div class="hero-cover-vignette"></div>
+
+      <!-- ========================================== -->
+      <!-- CAPAS BOTÁNICAS CON PARALLAX (ENRIQUECIDAS)-->
+      <!-- ========================================== -->
+
+      <!-- Planta 1: Esquina Superior Derecha (Original - Rama frondosa) -->
+      <svg class="hero-deco-leaf" filter="url(#hero-leaf-shadow)"
+        style="top:-20px; right:-10px; opacity:0.90; transform:rotate(8deg); transform-origin:top right;" width="180"
+        viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M20,10 Q80,-20 160,60 Q240,140 220,280 Q160,320 100,290 Q30,250 10,160 Q-10,80 20,10Z"
+          fill="#315200" />
+        <path d="M40,5 Q80,15 130,95 Q165,165 178,278" fill="none" stroke="#4A7A00" stroke-width="3" opacity="0.9" />
+      </svg>
+
+      <!-- Planta 2: NUEVA - Esquina Superior Izquierda (Helecho colgante sobre la espiral del cuaderno) -->
+      <svg class="hero-deco-leaf" filter="url(#hero-leaf-shadow)"
+        style="top:-30px; left:10px; opacity:0.85; transform:rotate(-12deg);" width="130" viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M0,0 C60,10 120,40 150,130 C90,90 40,60 0,0 Z" fill="#2E4A35" />
+        <path d="M20,15 C60,2 90,15 100,35 C70,35 45,30 20,15 Z" fill="#4A7A40" />
+        <path d="M50,45 C95,20 125,35 132,65 C95,65 70,60 50,45 Z" fill="#5C8A50" />
+      </svg>
+
+      <!-- Planta 3: Esquina Inferior Izquierda (Original - Hojas de base) -->
+      <svg class="hero-deco-leaf" filter="url(#hero-leaf-shadow)"
+        style="bottom:-10px; left:-10px; opacity:0.85; transform:rotate(175deg);" width="140" viewBox="0 0 220 240"
+        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M110,225 Q15,175 4,85 Q-4,25 42,6 Q85,-8 110,225Z" fill="#315200" />
+        <path d="M110,225 Q152,158 168,72 Q172,18 110,225Z" fill="#3A6800" opacity="0.95" />
+      </svg>
+
+      <!-- Planta 4: NUEVA - Borde Inferior Derecho (Clúster de arbusto realista naciendo del marco) -->
+      <svg class="hero-deco-leaf" filter="url(#hero-leaf-shadow)"
+        style="bottom:-30px; right:-20px; opacity:0.90; transform:rotate(-5deg);" width="170" viewBox="0 0 200 200"
+        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 200,200 C 150,80 80,60 0,100 C 50,140 120,170 200,200 Z" fill="#1A332E" />
+        <path d="M 180,200 C 110,90 40,110 10,160 C 70,180 120,190 180,200 Z" fill="#3A6030" />
+        <path d="M 140,200 C 90,130 20,150 0,200 Z" fill="#4A8C60" />
+      </svg>
+
+      <!-- Planta 5: Brote Dorado (Original - Hoja de acento lumínico) -->
+      <svg class="hero-deco-leaf" filter="url(#hero-leaf-shadow)"
+        style="bottom:15%; right:6%; opacity:0.90; transform:rotate(22deg);" width="52" viewBox="0 0 80 130"
+        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M40,122 Q4,82 7,37 Q11,4 40,1 Q69,4 73,37 Q76,82 40,122Z" fill="#B28B17" />
+        <path d="M40,122 Q40,62 40,1" fill="none" stroke="#D4AB3A" stroke-width="2" opacity="0.9" />
+      </svg>
+
+      <!-- Planta 6: NUEVA - Brote de Acanto Arcilla (Acento de color orgánico) -->
+      <svg class="hero-deco-leaf" filter="url(#hero-leaf-shadow)"
+        style="top:35%; right:4%; opacity:0.80; transform:rotate(-40deg) scaleX(-1);" width="45" viewBox="0 0 100 150"
+        xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#8A4A25" stroke-width="2" opacity="0.8" />
+      </svg>
+
+      <!-- Overlay de texto integrado con mayor contraste -->
+      <div class="hero-cover-overlay">
+        <div class="hero-cover-rule"></div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY INTRO -->
+  <section id="story">
+
+    <svg style="position:absolute;pointer-events:none;top:-40px;left:-60px;opacity:0.55;transform:rotate(-5deg);"
+      width="240" viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20,10 Q80,-20 160,60 Q240,140 220,280 Q160,320 100,290 Q30,250 10,160 Q-10,80 20,10Z" fill="#315200" />
+      <path d="M40,5 Q80,15 130,95 Q165,165 178,278" fill="none" stroke="#4A7A00" stroke-width="3" opacity="0.7" />
+      <path d="M20,10 Q55,55 78,138 Q90,198 100,288" fill="none" stroke="#5A9A10" stroke-width="1.8" opacity="0.5" />
+    </svg><svg
+      style="position:absolute;pointer-events:none;top:-30px;right:-50px;opacity:0.50;transform:rotate(15deg) scaleX(-1);"
+      width="200" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M110,225 Q15,175 4,85 Q-4,25 42,6 Q85,-8 110,225Z" fill="#315200" />
+      <path d="M110,225 Q68,148 62,55 Q66,12 110,225Z" fill="#4A7A00" opacity="0.6" />
+      <path d="M110,225 Q152,158 168,72 Q172,18 110,225Z" fill="#3A6800" opacity="0.85" />
+      <path d="M110,225 Q185,148 200,65 Q210,12 155,4 Q110,225 110,225Z" fill="#4A7A00" opacity="0.65" />
+    </svg><svg
+      style="position:absolute;pointer-events:none;bottom:-30px;right:-40px;opacity:0.45;transform:rotate(20deg);"
+      width="160" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="100" cy="90" rx="88" ry="72" fill="#315200" transform="rotate(-12,100,90)" />
+      <path d="M100,18 Q100,90 100,162" fill="none" stroke="#4A7A00" stroke-width="2.5" opacity="0.55" />
+      <path d="M14,80 Q100,90 186,100" fill="none" stroke="#4A7A00" stroke-width="2" opacity="0.4" />
+      <path d="M28,38 Q100,90 172,142" fill="none" stroke="#6AAA20" stroke-width="1.2" opacity="0.35" />
+    </svg><svg
+      style="position:absolute;pointer-events:none;bottom:-20px;left:-35px;opacity:0.40;transform:rotate(-170deg);"
+      width="150" viewBox="0 0 220 240" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M110,225 Q15,175 4,85 Q-4,25 42,6 Q85,-8 110,225Z" fill="#315200" />
+      <path d="M110,225 Q68,148 62,55 Q66,12 110,225Z" fill="#4A7A00" opacity="0.6" />
+      <path d="M110,225 Q152,158 168,72 Q172,18 110,225Z" fill="#3A6800" opacity="0.85" />
+      <path d="M110,225 Q185,148 200,65 Q210,12 155,4 Q110,225 110,225Z" fill="#4A7A00" opacity="0.65" />
+    </svg><svg style="position:absolute;pointer-events:none;top:15%;right:4%;opacity:0.70;transform:rotate(22deg);"
+      width="65" viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M40,122 Q4,82 7,37 Q11,4 40,1 Q69,4 73,37 Q76,82 40,122Z" fill="#B28B17" />
+      <path d="M40,122 Q40,62 40,1" fill="none" stroke="#D4AB3A" stroke-width="2" opacity="0.7" />
+      <path d="M12,55 Q40,60 68,55" fill="none" stroke="#D4AB3A" stroke-width="1.2" opacity="0.5" />
+    </svg><svg style="position:absolute;pointer-events:none;bottom:20%;left:3%;opacity:0.65;transform:rotate(-15deg);"
+      width="55" viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M40,122 Q4,82 7,37 Q11,4 40,1 Q69,4 73,37 Q76,82 40,122Z" fill="#B28B17" />
+      <path d="M40,122 Q40,62 40,1" fill="none" stroke="#D4AB3A" stroke-width="2" opacity="0.7" />
+      <path d="M12,55 Q40,60 68,55" fill="none" stroke="#D4AB3A" stroke-width="1.2" opacity="0.5" />
+    </svg><svg style="position:absolute;pointer-events:none;top:10%;right:2%;opacity:0.38;transform:rotate(-100deg);"
+      width="130" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M150,95 Q135,84 116,83 L111,54 Q109,46 101,48 Q93,50 94,60 L95,82 Q89,76 81,76 Q72,76 71,85 Q64,80 57,82 Q48,84 49,94 Q43,93 38,97 Q33,106 37,117 Q31,125 33,139 Q35,157 50,163 L94,168 Q113,169 126,157 Q142,143 147,124 L155,107 Q160,100 150,95Z"
+        fill="#2A4664" />
+      <path d="M101,48 Q95,48 94,60 L95,96" fill="none" stroke="#1a2d3a" stroke-width="1.5" opacity="0.5" />
+      <path d="M71,85 L72,114" fill="none" stroke="#1a2d3a" stroke-width="1.5" opacity="0.5" />
+    </svg><svg
+      style="position:absolute;pointer-events:none;bottom:15%;left:1%;opacity:0.32;transform:rotate(80deg) scaleX(-1);"
+      width="120" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M150,95 Q135,84 116,83 L111,54 Q109,46 101,48 Q93,50 94,60 L95,82 Q89,76 81,76 Q72,76 71,85 Q64,80 57,82 Q48,84 49,94 Q43,93 38,97 Q33,106 37,117 Q31,125 33,139 Q35,157 50,163 L94,168 Q113,169 126,157 Q142,143 147,124 L155,107 Q160,100 150,95Z"
+        fill="#2A4664" />
+      <path d="M101,48 Q95,48 94,60 L95,96" fill="none" stroke="#1a2d3a" stroke-width="1.5" opacity="0.5" />
+      <path d="M71,85 L72,114" fill="none" stroke="#1a2d3a" stroke-width="1.5" opacity="0.5" />
+    </svg><svg style="position:absolute;pointer-events:none;top:55%;right:1%;opacity:0.28;transform:rotate(170deg);"
+      width="110" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        d="M150,95 Q135,84 116,83 L111,54 Q109,46 101,48 Q93,50 94,60 L95,82 Q89,76 81,76 Q72,76 71,85 Q64,80 57,82 Q48,84 49,94 Q43,93 38,97 Q33,106 37,117 Q31,125 33,139 Q35,157 50,163 L94,168 Q113,169 126,157 Q142,143 147,124 L155,107 Q160,100 150,95Z"
+        fill="#2A4664" />
+      <path d="M101,48 Q95,48 94,60 L95,96" fill="none" stroke="#1a2d3a" stroke-width="1.5" opacity="0.5" />
+      <path d="M71,85 L72,114" fill="none" stroke="#1a2d3a" stroke-width="1.5" opacity="0.5" />
+    </svg>
+    <div style="position:relative;z-index:2;">
+      <p class="story-label" data-reveal="fade-right">Una historia sobre…</p>
+      <h2 class="story-title" style="margin-bottom:1.5rem;">
+        <span class="split-line"><span>Tomás tenía 13 años</span></span>
+        <span class="split-line delay-1"><span>cuando <em>desapareció</em></span></span>
+        <span class="split-line delay-2"><span>camino al colegio.</span></span>
+      </h2>
+      <p class="story-body" data-reveal="fade-right" data-delay="0.2">Era de Vistahermosa, Meta. Sus hermanos estaban
+        enfermos ese martes de febrero, pero él insistió en ir al colegio solo. Su profesora Diana le había regalado esa
+        mañana un cuaderno azul para que escribiera todo lo que le generara curiosidad. Esa misma tarde se lo
+        confiscaron en un retén ilegal.</p>
+      <p class="story-body" data-reveal="fade-right" data-delay="0.35">Meses después recuperó el cuaderno como
+        recompensa. A partir de entonces lo escondía dentro del uniforme y por las noches, en guardia, escribía cartas
+        para su mamá con una linterna pequeña. Cartas que nunca saldrían del campamento. <em
+          style="font-style:italic;color:var(--dust);">"Mamá, ya casi no recuerdo su voz. Eso me asusta más que los
+          disparos."</em></p>
+      <a href="./historia.html" class="story-cta" data-reveal="fade-right" data-delay="0.45">Conocer la historia
+        completa</a>
+    </div>
+  </section>
+
+  <!-- CAROUSEL -->
+  <section id="experiencia">
+    <!-- plant top-right -->
+
+    <div class="sec-header" data-reveal="fade-up">
+      <div class="sec-header-left">
+        <p class="sec-label">Experiencia Transmedia</p>
+        <h2 class="sec-title">Explora las historias</h2>
+        <p class="sec-sub">Descubre cada relato y el formato en el que fue creado. Una misma historia, múltiples
+          entradas.</p>
+      </div>
+    </div>
+
+    <div class="carousel-wrap" id="carousel">
+      <div class="carousel-stage" id="stage"></div>
+    </div>
+
+    <div class="carousel-nav">
+      <button class="c-nav-btn" id="prev" aria-label="Anterior">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6" />
+        </svg>
+      </button>
+      <div class="c-dots" id="dots"></div>
+      <button class="c-nav-btn" id="next" aria-label="Siguiente">
+        <svg viewBox="0 0 24 24">
+          <polyline points="9 18 15 12 9 6" />
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <div class="quote-band">
+    <svg style="position:absolute;top:-40px;left:-20px;opacity:0.25;transform:rotate(-15deg);transition:none;"
+      width="280" viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20,10 Q80,-20 160,60 Q240,140 220,280 Q160,320 100,290 Q30,250 10,160 Q-10,80 20,10Z" fill="#315200" />
+      <path d="M40,5 Q80,15 130,95 Q165,165 178,278" fill="none" stroke="#4A7A00" stroke-width="2.5" opacity="0.8" />
+      <path d="M20,10 Q55,55 78,138" fill="none" stroke="#4A7A00" stroke-width="1.2" opacity="0.6" />
+    </svg>
+
+    <svg
+      style="position:absolute;bottom:-60px;right:-30px;opacity:0.25;transform:rotate(170deg) scaleX(-1);transition:none;"
+      width="260" viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20,10 Q80,-20 160,60 Q240,140 220,280 Q160,320 100,290 Q30,250 10,160 Q-10,80 20,10Z" fill="#315200" />
+      <path d="M40,5 Q80,15 130,95 Q165,165 178,278" fill="none" stroke="#4A7A00" stroke-width="2.5" opacity="0.7" />
+      <path d="M20,10 Q55,55 78,138" fill="none" stroke="#4A7A00" stroke-width="1.8" opacity="0.8" />
+    </svg>
+
+    <svg style="position:absolute;top:50%;left:5%;transform:translateY(-50%) rotate(5deg);opacity:0.20;transition:none;"
+      width="140" viewBox="0 0 160 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M150,95 Q135,84 116,83 L111,54 Q109,46 101,48 Q93,50 94,60 L95,82 L155,107 Z" fill="#4A7A00" />
+    </svg>
+
+    <blockquote data-reveal="fade-up" style="position:relative; z-index:2;">
+      <span class="quote-mark">"</span>
+      Mamá, si estás leyendo esto es porque el monte no pudo conmigo. No pudieron quitarme tu nombre. Estas cartas son
+      mi libertad. Ya voy llegando, pon el tinto que tengo mucho que contarte.
+    </blockquote>
+    <p class="quote-attr" data-reveal="fade-up" style="position:relative; z-index:2;">
+      — Tomás Herrera Suárez · Cuaderno azul · Meta · 2022–2025
+    </p>
+  </div>
+
+  <!-- CONTEXT STRIP -->
+  <section id="contexto-strip">
+    <svg style="position:absolute;top:-45px;right:-25px;opacity:0.18;transform:rotate(12deg);" width="190"
+      viewBox="0 0 260 320" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M20,10 Q80,-20 160,60 Q240,140 220,280 Q160,320 100,290 Q30,250 10,160 Q-10,80 20,10Z" fill="#315200" />
+      <path d="M40,5 Q80,15 130,95 Q165,165 178,278" fill="none" stroke="#4A7A00" stroke-width="3" opacity="0.7" />
+      <path d="M20,10 Q55,55 78,138 Q90,198 100,288" fill="none" stroke="#5A9A10" stroke-width="1.8" opacity="0.5" />
+      <path d="M20,10 Q110,38 160,108" fill="none" stroke="#6AAA20" stroke-width="1.2" opacity="0.4" />
+    </svg><svg style="position:absolute;bottom:-35px;left:-20px;opacity:0.15;transform:rotate(-160deg);" width="150"
+      viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <ellipse cx="100" cy="90" rx="88" ry="72" fill="#315200" transform="rotate(-12,100,90)" />
+      <path d="M100,18 Q100,90 100,162" fill="none" stroke="#4A7A00" stroke-width="2.5" opacity="0.55" />
+      <path d="M14,80 Q100,90 186,100" fill="none" stroke="#4A7A00" stroke-width="2" opacity="0.4" />
+      <path d="M28,38 Q100,90 172,142" fill="none" stroke="#6AAA20" stroke-width="1.2" opacity="0.35" />
+      <path d="M28,142 Q100,90 172,38" fill="none" stroke="#6AAA20" stroke-width="1.2" opacity="0.35" />
+    </svg><svg style="position:absolute;top:22%;left:4%;opacity:0.35;transform:rotate(-28deg);" width="72"
+      viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M40,122 Q4,82 7,37 Q11,4 40,1 Q69,4 73,37 Q76,82 40,122Z" fill="#B28B17" />
+      <path d="M40,122 Q40,62 40,1" fill="none" stroke="#D4AB3A" stroke-width="2" opacity="0.7" />
+      <path d="M12,55 Q40,60 68,55" fill="none" stroke="#D4AB3A" stroke-width="1.2" opacity="0.5" />
+      <path d="M18,85 Q40,88 62,85" fill="none" stroke="#E8C060" stroke-width="1" opacity="0.4" />
+    </svg><svg style="position:absolute;bottom:12%;right:6%;opacity:0.30;transform:rotate(18deg);" width="65"
+      viewBox="0 0 80 130" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M40,122 Q4,82 7,37 Q11,4 40,1 Q69,4 73,37 Q76,82 40,122Z" fill="#B28B17" />
+      <path d="M40,122 Q40,62 40,1" fill="none" stroke="#D4AB3A" stroke-width="2" opacity="0.7" />
+      <path d="M12,55 Q40,60 68,55" fill="none" stroke="#D4AB3A" stroke-width="1.2" opacity="0.5" />
+      <path d="M18,85 Q40,88 62,85" fill="none" stroke="#E8C060" stroke-width="1" opacity="0.4" />
+    </svg>
+    <div
+      style="position:absolute;bottom:-40px;left:-20px;width:160px;transform:rotate(-155deg);height:auto;display:block;">
+      <svg class="deco-leaf" width="100%" height="100%" style="display:block;" viewBox="0 0 180 160"
+        xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="90" cy="80" rx="80" ry="65" fill="#315200" transform="rotate(-15,90,80)" />
+        <path d="M90,15 Q90,80 90,145" fill="none" stroke="#4A7A00" stroke-width="2" opacity="0.5" />
+        <path d="M15,70 Q90,80 165,90" fill="none" stroke="#4A7A00" stroke-width="1.5" opacity="0.4" />
+        <path d="M30,35 Q90,80 150,125" fill="none" stroke="#6AAA20" stroke-width="1" opacity="0.3" />
+        <path d="M30,125 Q90,80 150,35" fill="none" stroke="#6AAA20" stroke-width="1" opacity="0.3" />
+      </svg>
+    </div>
+    <div style="position:absolute;top:20%;left:3%;width:80px;transform:rotate(-30deg);height:auto;display:block;"><svg
+        class="deco-leaf" width="100%" height="100%" style="display:block;" viewBox="0 0 80 120"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M40,110 Q5,75 8,35 Q12,5 40,2 Q68,5 72,35 Q75,75 40,110Z" fill="#B28B17" />
+        <path d="M40,110 Q40,60 40,2" fill="none" stroke="#D4AB3A" stroke-width="1.5" opacity="0.6" />
+        <path d="M15,50 Q40,55 65,50" fill="none" stroke="#D4AB3A" stroke-width="1" opacity="0.4" />
+      </svg></div>
+    <div style="position:absolute;bottom:10%;right:5%;width:75px;transform:rotate(20deg);height:auto;display:block;">
+      <svg class="deco-leaf" width="100%" height="100%" style="display:block;" viewBox="0 0 80 120"
+        xmlns="http://www.w3.org/2000/svg">
+        <path d="M40,110 Q5,75 8,35 Q12,5 40,2 Q68,5 72,35 Q75,75 40,110Z" fill="#B28B17" />
+        <path d="M40,110 Q40,60 40,2" fill="none" stroke="#D4AB3A" stroke-width="1.5" opacity="0.6" />
+        <path d="M15,50 Q40,55 65,50" fill="none" stroke="#D4AB3A" stroke-width="1" opacity="0.4" />
+      </svg>
+    </div>
+    </div>
+    <!-- plant corner -->
+    <div class="map-block" data-reveal="fade-right">
+      <p class="sec-label" style="margin-bottom:0.8rem;">Contexto geográfico</p>
+      <h2 class="sec-title" style="font-size:2.2rem;margin-bottom:1.8rem;">
+        Mapa de<br>Vistahermosa, Meta</h2>
+      <div class="map-ph" style="padding:0;">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127533.7291122678!2d-73.80582086438865!3d3.0182415174358826!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3fe2366b158055%3A0xcba20f86641e77f0!2sVistahermosa%2C%20Vista%20Hermosa%2C%20Meta!5e0!3m2!1sen!2sco!4v1700000000000!5m2!1sen!2sco"
+          width="100%" height="100%"
+          style="border:0; filter: grayscale(100%) invert(92%) contrast(83%); position:absolute; inset:0;"
+          allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p class="map-cap">Lugares clave de la historia<br><em style="font-style:italic;">Mapa interactivo ·
+          próximamente</em></p>
+    </div>
+
+    <div>
+      <p class="sec-label" data-reveal="fade-left">El reclutamiento infantil en Colombia</p>
+      <h2 class="story-title" style="color:var(--warm-dark);font-size:clamp(1.8rem,3vw,2.6rem);margin-bottom:1.5rem;">
+        <span class="split-line"><span>Una realidad que</span></span>
+        <span class="split-line delay-1"><span><em style="font-style:normal;color:var(--clay);">sigue
+              ocurriendo.</em></span></span>
+      </h2>
+      <p class="ctx-text" data-reveal="fade-left" data-delay="0.15">El reclutamiento forzado de menores es una de las
+        principales amenazas para la pervivencia de las comunidades rurales en Colombia. Los niños y niñas son separados
+        de sus familias, sus escuelas y su infancia.</p>
+      <div style="border-top:1px solid var(--border);padding-top:2.5rem;margin-top:0.5rem;">
+        <div class="stat-row">
+          <div data-reveal="scale" class="delay-1">
+            <div class="stat-num">+16K</div>
+            <p class="stat-lbl">Niños y niñas reclutados documentados en Colombia desde 1990</p>
+          </div>
+          <div data-reveal="scale" class="delay-2">
+            <div class="stat-num">80%</div>
+            <p class="stat-lbl">De los casos ocurren en zonas rurales con presencia de grupos armados</p>
+          </div>
+        </div>
+        <div class="stat-row">
+          <div data-reveal="scale" class="delay-3">
+            <div class="stat-num">13</div>
+            <p class="stat-lbl">Edad de Tomás cuando lo separaron de su familia</p>
+          </div>
+          <div data-reveal="scale" class="delay-4">
+            <div class="stat-num">Meta</div>
+            <p class="stat-lbl">Uno de los departamentos más afectados por el reclutamiento infantil</p>
+          </div>
+        </div>
+      </div>
+      <a href="./contexto.html" class="ctx-cta" data-reveal="fade-left" data-delay="0.5">Ver más contexto →</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand" style="margin-bottom:1.5rem;">
+          <img src="./logos/Logo_footer.png" alt="Los colores de la guerra" style="max-width: 180px;">
+        </div>
+
+
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Páginas</p>
+        <ul>
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./contexto.html">Contexto</a></li>
+          <li><a href="./historia.html">Historia</a></li>
+          <li><a href="./experiencia.html">Experiencia</a></li>
+          <li><a href="./equipos.html">Equipos</a></li>
+          <li><a href="#" style="color:var(--brand-gold);">Biblia Transmedia ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Historias</p>
+        <ul>
+          <li><a href="./producto-cartas-tomas.html">Las Cartas de Tomás</a></li>
+          <li><a href="./producto-silencio-arrozales.html">El Silencio de los Arrozales</a></li>
+          <li><a href="./producto-the-king.html">The King</a></li>
+          <li><a href="./producto-entre-sombras.html">Entre las Sombras</a></li>
+          <li><a href="./producto-morrales-vacios.html">Morrales Vacíos</a></li>
+          <li><a href="./producto-con-lupa.html">Con Lupa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Redes sociales</p>
+        <div class="footer-social-row" style="margin-top: 1rem;">
+          <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="footer-social-icon"
+            aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg></a>
+          <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="footer-social-icon"
+            aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg></a>
+          <a href="https://www.tiktok.com/" target="_blank" class="footer-social-icon" aria-label="TikTok"><svg
+              viewBox="0 0 24 24">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+            </svg></a>
+          <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank"
+            class="footer-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-note">Pontificia Universidad Javeriana Cali · Maestría en Comunicación y Creación Interactiva ·
+        Materia Transmedia</p>
+      <p class="footer-quote">"A veces pienso que si sigo escribiendo estas cartas todavía soy yo." — Tomás</p>
+    </div>
+  </footer>
+
+  <script>
+    // ── CAROUSEL DATA ──
+    const products = [
+      {
+        bg: 'linear-gradient(145deg,#1a2c40,#0d1a28)',       /* Cartas de Tomás: azul #2A4664 */
+        accentColor: '#2A4664',
+        icon: '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+        type: 'Novela gráfica · Obra seminal', name: 'Las Cartas de Tomás',
+        desc: 'Historia ilustrada del reclutamiento de Tomás. El relato central que da origen al universo.',
+        channel: 'Instagram · YouTube', href: 'producto-cartas-tomas.html',
+        img: 'covers/rectangular/cartas_A4.png'
+      },
+      {
+        bg: 'linear-gradient(145deg,#2a2200,#1a1500)',       /* Arrozales: dorado #FFC700 */
+        accentColor: '#FFC700',
+        icon: '<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',
+        type: 'Cómic Interactivo', name: 'El Silencio de los Arrozales',
+        desc: 'Desarrollo visual y narrativo del cómic alojado en Genially. Ilustración de viñetas, estructuración de decisiones y mecánicas interactivas.',
+        channel: 'Web', href: 'producto-silencio-arrozales.html',
+        img: 'covers/rectangular/silencio_A4.png'
+      },
+      {
+        bg: 'linear-gradient(145deg,#1e0530,#12031e)',       /* The King: morado #43005B */
+        accentColor: '#43005B',
+        icon: '<polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/>',
+        type: 'Shorts Animados', name: 'The King',
+        desc: 'Clips de 1 minuto. La historia de Joaquín, un adolescente campesino en Toribío, Cauca.',
+        channel: 'Facebook · TikTok', href: 'producto-the-king.html',
+        img: 'covers/rectangular/theking_A4.png'
+      },
+      {
+        bg: 'linear-gradient(145deg,#2a0004,#1a0002)',       /* Sombras: rojo #890004 */
+        accentColor: '#890004',
+        icon: '<path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/>',
+        type: 'Podcast · Audiorelatos', name: 'Entre las Sombras',
+        desc: 'Tres capítulos de ~3 minutos. La historia de Fincamala en las montañas del Caquetá.',
+        channel: 'YouTube · Spotify', href: 'producto-entre-sombras.html',
+        img: 'covers/rectangular/entresombras_A4.png'
+      },
+      {
+        bg: 'linear-gradient(145deg,#1a1438,#0e0d22)',       /* Morrales: violeta #543FA4 */
+        accentColor: '#543FA4',
+        icon: '<rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/>',
+        type: 'Novela Vertical', name: 'Morrales Vacíos',
+        desc: 'Formato vertical para WhatsApp. La profesora Diana se niega a aceptar que sus estudiantes desaparezcan.',
+        channel: 'WhatsApp', href: 'producto-morrales-vacios.html',
+        img: 'covers/rectangular/morrales_A4.png'
+      },
+      {
+        bg: 'linear-gradient(145deg,#1e0a06,#120503)',       /* Con Lupa: periódico AR #C05840 */
+        accentColor: '#C05840',
+        icon: '<rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="9"/><circle cx="15.5" cy="14.5" r="2.5"/><line x1="17.5" y1="16.5" x2="20" y2="19"/>',
+        type: 'Periódico · Realidad Aumentada', name: 'Con Lupa',
+        desc: 'El primer periódico impreso que cobra vida al enfocarlo con tu teléfono. La realidad aumentada revela capas de la historia del reclutamiento.',
+        channel: 'Impreso · App AR', href: 'producto-con-lupa.html',
+        img: 'covers/rectangular/conlupa_A4.png'
+      },
+      {
+        bg: 'linear-gradient(145deg,#162004,#0c1402)',       /* Monte: verde #315200 */
+        accentColor: '#315200',
+        icon: '<circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/>',
+        type: 'Radionovela', name: 'Las Luces del Monte',
+        desc: 'Narrativa sonora que recorre los paisajes del conflicto desde una perspectiva íntima y poética.',
+        channel: 'Próximamente', href: '#'
+      },
+    ];
+
+    const stage = document.getElementById('stage');
+    const dotsEl = document.getElementById('dots');
+    let current = 0;
+
+    products.forEach((p, i) => {
+      const card = document.createElement('div');
+      card.className = 'c-card';
+
+      // Build the image zone
+      const imgZone = p.img
+        ? `<div class="c-img-zone"><img src="./${p.img}" alt="${p.name}" loading="lazy"></div>`
+        : `<div class="c-img-zone"><div class="c-img-zone-bg" style="background:${p.bg};"><svg viewBox="0 0 24 24" width="44" height="44" style="stroke:${p.accentColor};opacity:0.3;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:1.2;">${p.icon}</svg></div></div>`;
+
+      card.innerHTML = `<div class="c-card-inner">
+    ${imgZone}
+    <div class="c-accent-bar" style="background:${p.accentColor};"></div>
+    <div class="c-info">
+      <p class="c-type" style="color:${p.accentColor};">${p.type}</p>
+      <h3 class="c-name">${p.name}</h3>
+      <p class="c-desc">${p.desc}</p>
+      <div class="c-bottom-row">
+        <span class="c-channel" style="color:${p.accentColor};">${p.channel}</span>
+        <a href="./${p.href}" class="c-btn" style="background:${p.accentColor}18;border-color:${p.accentColor};color:${p.accentColor};">Ver →</a>
+      </div>
+    </div>
+  </div>`;
+      card.addEventListener('click', () => goTo(i));
+      stage.appendChild(card);
+
+      const dot = document.createElement('div');
+      dot.className = 'c-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsEl.appendChild(dot);
+    });
+
+    function goTo(idx) {
+      current = ((idx % products.length) + products.length) % products.length;
+      const cards = stage.querySelectorAll('.c-card');
+      const n = cards.length;
+      cards.forEach((card, i) => {
+        const offset = ((i - current + n) % n);
+        const isActive = offset === 0;
+        const isLeft1 = offset === n - 1;
+        const isLeft2 = offset === n - 2;
+        const isRight1 = offset === 1;
+        const isRight2 = offset === 2;
+        let tx = 0, tz = -600, ry = 0, scale = 0.55, opacity = 0, zIndex = 0, blur = 0, brightness = 1;
+        if (isActive) { tx = 0; tz = 0; ry = 0; scale = 1; opacity = 1; zIndex = 10; blur = 0; brightness = 1; }
+        else if (isRight1) { tx = 330; tz = -180; ry = -22; scale = 0.8; opacity = 0.72; zIndex = 8; blur = 1; brightness = 0.75; }
+        else if (isLeft1) { tx = -330; tz = -180; ry = 22; scale = 0.8; opacity = 0.72; zIndex = 8; blur = 1; brightness = 0.75; }
+        else if (isRight2) { tx = 590; tz = -420; ry = -32; scale = 0.62; opacity = 0.35; zIndex = 6; blur = 3; brightness = 0.5; }
+        else if (isLeft2) { tx = -590; tz = -420; ry = 32; scale = 0.62; opacity = 0.35; zIndex = 6; blur = 3; brightness = 0.5; }
+        card.style.cssText = `transform:translateX(${tx}px) translateZ(${tz}px) rotateY(${ry}deg) scale(${scale});opacity:${opacity};z-index:${zIndex};filter:blur(${blur}px) brightness(${brightness});`;
+      });
+      document.querySelectorAll('.c-dot').forEach((d, i) => d.classList.toggle('active', i === current));
+    }
+
+    goTo(0);
+    document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('next').addEventListener('click', () => goTo(current + 1));
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') goTo(current - 1);
+      if (e.key === 'ArrowRight') goTo(current + 1);
+    });
+
+    // ── HAMBURGER MENU ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── NAV SCROLL ──
+    window.addEventListener('scroll', () => {
+      document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── SCROLL REVEAL ──
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.style.transitionDelay = (el.dataset.delay || '0') + 's';
+          el.classList.add('revealed');
+          revealObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+
+    const splitObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); splitObs.unobserve(entry.target); } });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.split-line').forEach(el => splitObs.observe(el));
+
+    // ── HERO INTERACTIVE: PARALLAX + PARTÍCULAS ──
+    // ── GLOBAL INTERACTIVE: PARALLAX + PARTÍCULAS + FLOTACIÓN ──
+    (function initGlobalInteractive() {
+      // 1. Partículas y Glow del Hero (mantiene la magia original del inicio)
+      const heroRight = document.querySelector('.hero-right');
+      if (heroRight) {
+        const glow = document.createElement('div');
+        glow.className = 'hero-cursor-glow';
+        heroRight.appendChild(glow);
+
+        const pColors = [
+          'rgba(178,139,23,', 'rgba(42,70,100,', 'rgba(49,82,0,',
+          'rgba(196,169,125,', 'rgba(178,139,23,'
+        ];
+        for (let i = 0; i < 28; i++) {
+          const p = document.createElement('div');
+          p.className = 'hero-particle';
+          const size = (Math.random() * 3.5 + 0.8).toFixed(1);
+          const col = pColors[Math.floor(Math.random() * pColors.length)];
+          const op = (Math.random() * 0.30 + 0.05).toFixed(2);
+          p.style.cssText = `left:${10 + Math.random() * 80}%;top:${3 + Math.random() * 88}%;width:${size}px;height:${size}px;background:${col}${op});animation-delay:${(Math.random() * 8).toFixed(1)}s;animation-duration:${(Math.random() * 5 + 5).toFixed(1)}s;`;
+          heroRight.appendChild(p);
+        }
+
+        // Animación del glow con el mouse solo en el hero
+        heroRight.addEventListener('mousemove', (e) => {
+          const r = heroRight.getBoundingClientRect();
+          glow.style.left = (e.clientX - r.left) + 'px';
+          glow.style.top = (e.clientY - r.top) + 'px';
+        });
+      }
+
+      // 2. Parallax Global y Flotación para todas las hojas (SVGs decorativos)
+      // Capturamos todos los SVG que hacen de fondo en las distintas secciones
+      const leaves = document.querySelectorAll('.hero-right > svg, #story > svg, .quote-band > svg, #contexto-strip > svg, .deco-leaf');
+
+      leaves.forEach((leaf) => {
+        // Guardamos los transforms originales (rotaciones, escalas, etc.)
+        leaf._baseTransform = leaf.style.transform || '';
+        // Profundidad para el parallax (determina qué tanto se mueve con el mouse)
+        leaf._parallaxDepth = Math.random() * 0.3 + 0.1;
+        // Fase y velocidad aleatoria para el movimiento orgánico de flotación constante
+        leaf._floatPhase = Math.random() * Math.PI * 2;
+        leaf._floatSpeed = Math.random() * 0.001 + 0.0005;
+
+        leaf.style.transition = 'opacity 1s ease'; // Quitamos transiciones que bloqueen requestAnimationFrame
+      });
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      // Escuchar el mouse en toda la ventana
+      window.addEventListener('mousemove', (e) => {
+        // Normalizamos la posición del mouse de -1 a 1 respecto al centro de la pantalla
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function animate() {
+        // Interpolación suave del mouse (Easing) para evitar movimientos bruscos
+        currentX += (mouseX - currentX) * 0.05;
+        currentY += (mouseY - currentY) * 0.05;
+
+        const now = Date.now();
+
+        leaves.forEach(leaf => {
+          const d = leaf._parallaxDepth;
+          // Movimiento Parallax basado en el cursor
+          const tx = currentX * d * 70; // Desplazamiento máximo en X
+          const ty = currentY * d * 70; // Desplazamiento máximo en Y
+
+          // Movimiento orgánico continuo (Flotación) estilo respiración
+          const floatY = Math.sin(now * leaf._floatSpeed + leaf._floatPhase) * 12; // Sube y baja +/- 12px
+          const floatRot = Math.cos(now * leaf._floatSpeed + leaf._floatPhase) * 2; // Rota levemente +/- 2 grados
+
+          // Combinar transform original + parallax de mouse + flotación constante
+          leaf.style.transform = `${leaf._baseTransform} translate(${tx}px, ${ty + floatY}px) rotate(${floatRot}deg)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      // Iniciar el loop principal
+      requestAnimationFrame(animate);
+
+      // 3. Typewriter cursor para la cita final del hero
+      const cap = document.querySelector('.hero-caption');
+      if (cap) {
+        const cur = document.createElement('span');
+        cur.className = 'tw-cursor';
+        cap.appendChild(cur);
+      }
+    })();
+  </script>
+</body>
+
+</html>

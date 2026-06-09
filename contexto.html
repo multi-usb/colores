@@ -1,0 +1,1826 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="./logos/Logo_header.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contexto — Los colores de la guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --light-cream: #FAF7F2;
+      --warm-dark: #1A1510;
+      --earth: #6B4C2A;
+      --moss: #4A5C3E;
+      --moss-light: #6B7F5A;
+      --clay: #B5663A;
+      --clay-light: #D4845A;
+      --dust: #C4A97D;
+      --fog: #8A8275;
+      --border: rgba(107, 76, 42, 0.18);
+      --sage: #7A9B6E;
+      --sage-light: #A8C49A;
+      --ochre: #C89B3C;
+      --mauve: #9E7B8C;
+      --terracotta: #C05840;
+      --teal-deep: #2E5C54;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 3.5rem;
+      background: rgba(245, 240, 232, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fog);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fog);
+      transition: color 0.3s;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--clay);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--fog);
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .social-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 10rem 3.5rem 5rem;
+      background: var(--teal-deep);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #1e4040 0%, #0e2a2a 60%, #071a1a 100%);
+    }
+
+    .page-crumb {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.45);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-crumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-crumb a:hover {
+      color: var(--dust);
+    }
+
+    .page-hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--dust);
+    }
+
+    .page-hero-sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.6);
+      font-weight: 300;
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* CONTENT */
+    .content-section {
+      padding: 6rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .content-section.dark {
+      background: var(--warm-dark);
+      color: var(--cream);
+    }
+
+    .content-section.medium {
+      background: var(--light-cream);
+    }
+
+    .content-section.teal {
+      background: var(--teal-deep);
+      color: var(--cream);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .three-col {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .sec-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .sec-label.light {
+      color: var(--clay-light);
+    }
+
+    .sec-label.ochre {
+      color: var(--ochre);
+    }
+
+    .sec-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .sec-title em {
+      font-style: italic;
+      color: var(--clay);
+    }
+
+    .sec-body {
+      font-size: 0.93rem;
+      line-height: 1.9;
+      color: var(--fog);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+    }
+
+    .sec-body.light {
+      color: rgba(245, 240, 232, 0.65);
+    }
+
+    /* STAT CARDS */
+    .stat-card {
+      border: 1px solid var(--border);
+      padding: 2rem;
+      border-radius: 3px;
+      background: var(--cream);
+    }
+
+    .stat-card.dark-card {
+      background: rgba(245, 240, 232, 0.05);
+      border-color: rgba(245, 240, 232, 0.1);
+    }
+
+    .stat-n {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--clay);
+      line-height: 1;
+      margin-bottom: 0.6rem;
+    }
+
+    .stat-n.sage {
+      color: var(--sage);
+    }
+
+    .stat-n.ochre {
+      color: var(--ochre);
+    }
+
+    .stat-n.mauve {
+      color: var(--mauve);
+    }
+
+    .stat-l {
+      font-size: 0.82rem;
+      line-height: 1.65;
+      color: var(--fog);
+      font-weight: 300;
+    }
+
+    .stat-l.light {
+      color: rgba(245, 240, 232, 0.55);
+    }
+
+    /* TIMELINE */
+    .timeline {
+      position: relative;
+      padding-left: 2rem;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .tl-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 2rem;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -2.4rem;
+      top: 6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--clay);
+      border: 2px solid var(--cream);
+    }
+
+    .tl-year {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .tl-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .tl-body {
+      font-size: 0.85rem;
+      line-height: 1.75;
+      color: var(--fog);
+      font-weight: 300;
+    }
+
+    /* QUOTE */
+    .inline-quote {
+      border-left: 3px solid var(--clay);
+      padding: 1.5rem 2rem;
+      margin: 2rem 0;
+      background: rgba(181, 102, 58, 0.06);
+    }
+
+    .inline-quote p {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 1.15rem;
+      line-height: 1.6;
+      color: var(--warm-dark);
+    }
+
+    .inline-quote cite {
+      display: block;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--fog);
+      font-style: normal;
+      margin-top: 0.8rem;
+      font-weight: 600;
+    }
+
+    /* LEAF DECORATIONS */
+    .leaf-deco {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    @keyframes floatA {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    @keyframes floatB {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(3deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+    }
+
+    @keyframes floatC {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(2deg);
+      }
+    }
+
+    @keyframes handFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(-1deg);
+      }
+    }
+
+    /* ── MONTSERRAT 900 para headings de pantalla ── */
+    .page-hero-title,
+    .sec-title,
+    .stat-n,
+    .footer-brand,
+    .footer-quote,
+    .tl-title,
+    .inline-quote p,
+    .cat-title,
+    .intro-num,
+    .tc-product,
+    .method-title {
+      font-weight: 900;
+    }
+
+    /* ── BIBLIA NAV ── */
+    .nav-biblia {
+      color: #B28B17 !important;
+      border: 1px solid rgba(178, 139, 23, 0.38) !important;
+      padding: 0.28rem 0.75rem !important;
+      border-radius: 2px;
+    }
+
+    .nav-biblia:hover {
+      background: rgba(178, 139, 23, 0.1) !important;
+    }
+
+    .nav-biblia::after {
+      display: none !important;
+    }
+
+    /* ── LEAF ENTRANCE ── */
+    .leaf-deco {
+      transition: opacity 0.9s ease;
+    }
+
+    .leaf-deco.leaf-hidden {
+      opacity: 0 !important;
+    }
+
+
+    /* REVEAL */
+    [data-reveal] {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    [data-reveal="fade-up"] {
+      transform: translateY(40px);
+    }
+
+    [data-reveal="fade-left"] {
+      transform: translateX(40px);
+    }
+
+    [data-reveal="fade-right"] {
+      transform: translateX(-40px);
+    }
+
+    [data-reveal="scale"] {
+      transform: scale(0.88);
+    }
+
+    [data-reveal="wipe"] {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      opacity: 1;
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+      clip-path: none;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), clip-path 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-reveal].revealed.delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    [data-reveal].revealed.delay-2 {
+      transition-delay: 0.22s;
+    }
+
+    [data-reveal].revealed.delay-3 {
+      transition-delay: 0.34s;
+    }
+
+    [data-reveal].revealed.delay-4 {
+      transition-delay: 0.46s;
+    }
+
+    .split-line {
+      overflow: hidden;
+      display: block;
+    }
+
+    .split-line span {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    }
+
+    .split-line.revealed span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .split-line.delay-1 span {
+      transition-delay: 0.12s;
+    }
+
+    .split-line.delay-2 span {
+      transition-delay: 0.24s;
+    }
+
+    .split-line.delay-3 span {
+      transition-delay: 0.36s;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--warm-dark);
+      color: var(--cream);
+      padding: 4rem 3.5rem 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+      padding-bottom: 3rem;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-about {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 300;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .footer-social-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    .footer-social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .footer-social-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a {
+      font-size: 0.8rem;
+      color: rgba(245, 240, 232, 0.4);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--cream);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: rgba(245, 240, 232, 0.2);
+      font-weight: 300;
+    }
+
+    .footer-quote {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(196, 169, 125, 0.45);
+      text-align: right;
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .two-col,
+      .three-col {
+        grid-template-columns: 1fr;
+      }
+
+      .content-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .page-hero {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Hamburger CSS */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 201;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--warm-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: rgba(245, 240, 232, 0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .nav-mobile-overlay.open {
+      display: flex;
+    }
+
+    .nav-mobile-overlay a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-mobile-overlay a:hover,
+    .nav-mobile-overlay a.active {
+      color: var(--clay);
+    }
+
+    .nav-mobile-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media(max-width:900px) {
+
+      .nav-links,
+      .nav-social {
+        display: none !important;
+      }
+
+      .nav-hamburger {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="preloader"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 1s ease;">
+    <img src="./logos/Logo_preloader.png" alt="Cargando..."
+      style="max-width: 250px; animation: smoothPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+  </div>
+  <style>
+    @keyframes smoothPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.style.display = 'none', 1000);
+        }, 1500);
+      }
+    });
+  </script>
+
+
+  <nav id="main-nav">
+    <a href="./index.html" class="nav-logo" style="display:flex;align-items:center;"><img src="./logos/Logo_header.png"
+        alt="Los colores de la guerra" style="height:80px;"></a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="">Inicio</a></li>
+      <li><a href="./contexto.html" class="active">Contexto</a></li>
+      <li><a href="./historia.html" class="">Historia</a></li>
+      <li><a href="./experiencia.html" class="">Experiencia Transmedia</a></li>
+      <li><a href="./equipos.html" class="">Equipos</a></li>
+      <li><a href="#" class="nav-biblia" title="Próximamente">Biblia ↗</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="social-icon"
+        aria-label="Facebook"><svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="social-icon"
+        aria-label="YouTube"><svg viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg></a>
+      <a href="https://www.tiktok.com/@loscoloresdelaguerra" target="_blank" class="social-icon"
+        aria-label="TikTok"><svg viewBox="0 0 24 24">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+      <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank" class="social-icon"
+        aria-label="Instagram"><svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="nav-mobile-overlay" id="mobile-nav">
+    <a href="./index.html" class="">Inicio</a>
+    <a href="./contexto.html" class="active">Contexto</a>
+    <a href="./historia.html" class="">Historia</a>
+    <a href="./experiencia.html" class="">Experiencia</a>
+    <a href="./equipos.html" class="">Equipos</a>
+    <a href="#" style="color:#B28B17;font-size:1.5rem;">Biblia Transmedia</a>
+    <div class="nav-mobile-social">
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Instagram"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Facebook"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="TikTok"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+    </div>
+  </div>
+
+
+  <!-- PAGE HERO (ACTUALIZADO: FLORA REALISTA, OPACA Y VECTORIAL) -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+
+    <!-- Definición de filtros de sombra vectorial -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="vector-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="6" dy="12" stdDeviation="8" flood-color="#051010" flood-opacity="0.6" />
+        </filter>
+        <filter id="vector-shadow-light" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="3" dy="6" stdDeviation="4" flood-color="#051010" flood-opacity="0.4" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- ========================================== -->
+    <!-- FLORA IZQUIERDA (Pequeña y en los bordes para no tapar el texto)  -->
+    <!-- ========================================== -->
+
+    <!-- Planta 1: Arriba Izquierda (Hojas simples de borde) -->
+    <div class="leaf-deco" style="top:-20px; left:-30px; width:clamp(100px, 15vw, 160px); z-index:1;">
+      <svg viewBox="0 0 200 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C80,10 150,60 180,180 C110,130 50,90 0,0 Z" fill="#2E4A35" />
+        <path d="M30,20 C80,5 120,25 130,55 C90,55 60,45 30,20 Z" fill="#4A7A40" />
+        <path d="M70,60 C130,30 170,50 180,90 C130,90 100,80 70,60 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <!-- Planta 2: Abajo Izquierda (Brote pequeño inferior) -->
+    <div class="leaf-deco" style="bottom:-20px; left:-30px; width:clamp(90px, 12vw, 140px); z-index:1;">
+      <svg viewBox="0 0 150 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C30,100 80,40 140,0 C100,70 50,130 0,200 Z" fill="#3A6030" />
+        <path d="M20,200 C50,120 100,70 150,40 C110,100 60,150 20,200 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- FLORA DERECHA (Hojas botánicas reales y variadas) -->
+    <!-- ========================================== -->
+
+    <!-- Planta 3: Arriba Derecha (Enredadera colgante con hojas definidas) -->
+    <div class="leaf-deco" style="top:-40px; right:-20px; width:clamp(200px, 30vw, 360px); z-index:2;">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tallo principal -->
+        <path d="M 180,-20 Q 150,120 40,250" fill="none" stroke="#1A2D20" stroke-width="4" />
+        <!-- Hojas a lo largo del tallo -->
+        <path d="M 160,20 C 110,-10 60,20 70,60 C 100,70 140,50 160,20 Z" fill="#4A7A40" />
+        <path d="M 145,80 C 80,60 40,110 50,140 C 90,140 130,110 145,80 Z" fill="#5C8A50" />
+        <path d="M 115,150 C 60,140 30,190 45,220 C 80,210 105,180 115,150 Z" fill="#3A6030" />
+        <path d="M 80,210 C 30,210 10,250 30,280 C 60,260 75,240 80,210 Z" fill="#4A8C60" />
+      </svg>
+    </div>
+
+    <!-- Planta 4: Abajo Derecha (Clúster de Hojas Tropicales Grandes) -->
+    <div class="leaf-deco" style="bottom:-50px; right:-30px; width:clamp(250px, 38vw, 480px); z-index:4;">
+      <svg viewBox="0 0 300 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <!-- Hoja 1 (Fondo - Verde muy oscuro) -->
+        <path d="M 320,320 C 260,140 140,100 40,150 C 110,210 200,260 320,320 Z" fill="#1A332E" />
+        <path d="M 320,320 Q 180,150 40,150" fill="none" stroke="#11221D" stroke-width="3" />
+
+        <!-- Hoja 2 (Medio - Verde intermedio) -->
+        <path d="M 280,320 C 180,160 50,170 10,240 C 100,270 180,290 280,320 Z" fill="#2E5C54" />
+        <path d="M 280,320 Q 130,200 10,240" fill="none" stroke="#1A332E" stroke-width="3" />
+
+        <!-- Hoja 3 (Frente - Verde más brillante) -->
+        <path d="M 220,320 C 140,200 30,230 20,310 C 80,330 160,330 220,320 Z" fill="#4A8C60" />
+        <path d="M 220,320 Q 100,250 20,310" fill="none" stroke="#2E5C54" stroke-width="3" />
+      </svg>
+    </div>
+
+    <!-- Planta 5: Centro Derecha (Palma / Helecho fragmentado) -->
+    <div class="leaf-deco" style="top:30%; right:-10px; width:clamp(150px, 22vw, 280px); z-index:1;">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tallo de palma -->
+        <path d="M 220,0 Q 150,120 0,220" fill="none" stroke="#203A1A" stroke-width="3" />
+        <!-- Frondas -->
+        <path d="M 190,30 Q 120,10 80,50 Q 130,60 170,55 Z" fill="#4A8C60" />
+        <path d="M 155,80 Q 80,70 30,120 Q 90,120 135,105 Z" fill="#5C9A70" />
+        <path d="M 115,130 Q 40,140 -10,190 Q 50,180 95,155 Z" fill="#4A7A40" />
+      </svg>
+    </div>
+
+    <!-- Planta 6: Acento Hoja Dorada (Forma orgánica con nervadura) -->
+    <div class="leaf-deco" style="top:18%; right:22%; width:clamp(70px, 11vw, 130px); z-index:3;">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B28B17" />
+        <path d="M 50,140 Q 35,70 50,0" fill="none" stroke="#8A6A10" stroke-width="2" />
+      </svg>
+    </div>
+
+    <!-- Planta 7: Acento Hoja Arcilla (Forma orgánica con nervadura) -->
+    <div class="leaf-deco"
+      style="bottom:25%; right:28%; width:clamp(60px, 9vw, 110px); z-index:2; transform: scaleX(-1) rotate(15deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#8A4A25" stroke-width="2" />
+      </svg>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- TEXTOS (Protegidos con z-index alto)       -->
+    <!-- ========================================== -->
+    <div
+      style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: flex-start; width: 100%;">
+      <p class="page-crumb"><a href="./index.html">Inicio</a> &nbsp;/&nbsp; Contexto</p>
+      <h1 class="page-hero-title">
+        <span class="split-line"><span>El reclutamiento</span></span>
+        <span class="split-line delay-1"><span>infantil en</span></span>
+        <span class="split-line delay-2"><span><em>Colombia</em></span></span>
+      </h1>
+      <p class="page-hero-sub">Una realidad que sigue ocurriendo. Entender el contexto es el primer paso para no ser
+        indiferente.</p>
+    </div>
+  </div>
+
+  <!-- STATS GRID -->
+  <div class="content-section medium" style="padding-top:5rem;padding-bottom:5rem;">
+    <div class="leaf-deco"
+      style="top:62%;left:-10px;width:clamp(75px,11vw,130px);animation:handFloat 8.5s ease-in-out infinite 2s;z-index:3;">
+      <svg viewBox="0 0 130 90" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0,48 Q18,44 35,42 Q55,40 68,35 Q82,30 86,28 Q90,26 88,31 Q86,36 75,40 Q84,35 88,33 Q93,31 91,37 Q89,43 77,46 Q86,43 89,48 Q87,55 72,54 L50,56 Q35,58 20,60 L0,62Z"
+          fill="#3D6B68" />
+        <path d="M35,42 Q30,33 33,26 Q37,19 44,22 Q49,25 46,34 Q43,39 35,42Z" fill="#3D6B68" />
+      </svg>
+    </div>
+    <p class="sec-label" data-reveal="fade-up" style="margin-bottom:2rem;">Cifras del conflicto</p>
+    <div class="three-col" style="gap:1.5rem;">
+      <div class="stat-card" data-reveal="scale" data-delay="0.05">
+        <div class="stat-n">+16K</div>
+        <p class="stat-l">Niños y niñas reclutados por grupos armados documentados en Colombia desde 1990</p>
+      </div>
+      <div class="stat-card" data-reveal="scale" data-delay="0.15">
+        <div class="stat-n sage">80%</div>
+        <p class="stat-l">De los casos ocurren en zonas rurales con presencia de grupos armados ilegales</p>
+      </div>
+      <div class="stat-card" data-reveal="scale" data-delay="0.25">
+        <div class="stat-n ochre">13</div>
+        <p class="stat-l">Edad promedio de reclutamiento. La misma edad de Tomás cuando fue separado de su familia</p>
+      </div>
+      <div class="stat-card" data-reveal="scale" data-delay="0.1">
+        <div class="stat-n mauve">7</div>
+        <p class="stat-l">Grupos armados activos documentados con prácticas de reclutamiento infantil en Colombia</p>
+      </div>
+      <div class="stat-card" data-reveal="scale" data-delay="0.2">
+        <div class="stat-n" style="color:var(--terracotta);">Meta</div>
+        <p class="stat-l">Uno de los departamentos con mayor incidencia de reclutamiento. Escenario de la historia de
+          Tomás</p>
+      </div>
+      <div class="stat-card" data-reveal="scale" data-delay="0.3">
+        <div class="stat-n" style="color:var(--teal-deep);">Cauca</div>
+        <p class="stat-l">Otro de los territorios más golpeados. Escenario de la historia de The King en Toribío</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECCIÓN PARATEXTUAL: EL LENTE DE LA REALIDAD (VIDEOS LOCALES) -->
+  <section id="paratextos-realidad"
+    style="padding: 8rem 2rem; background: #120f0e; position: relative; overflow: hidden; z-index: 5; border-top: 2px solid #B5663A;">
+
+    <!-- Hojas Decorativas en Sintonía con el Póster (Tonos Ocre y Tierra Oscuro) -->
+    <div class="leaf-deco"
+      style="position: absolute; top: -30px; left: -40px; width: clamp(150px, 22vw, 320px); z-index: 1; pointer-events: none;">
+      <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,50 Q 100,0 180,180 C 100,120 40,100 0,50 Z" fill="#2d1e15" opacity="0.7" />
+        <path d="M 30,70 Q 80,60 130,130 C 80,90 50,80 30,70 Z" fill="#422c1f" opacity="0.8" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="position: absolute; bottom: -40px; right: -40px; width: clamp(160px, 25vw, 350px); z-index: 1; transform: scaleX(-1); pointer-events: none;">
+      <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 320,320 C 260,140 140,100 40,150 C 110,210 200,260 320,320 Z" fill="#1f150e" opacity="0.8" />
+        <path d="M 280,320 C 180,160 50,170 10,240 C 100,270 180,290 280,320 Z" fill="#2d1e15" opacity="0.9" />
+      </svg>
+    </div>
+
+    <div style="max-width: 1140px; margin: 0 auto; position: relative; z-index: 10;">
+
+      <!-- ENCABEZADO UNIFICADO -->
+      <div style="text-align: center; margin-bottom: 6rem;">
+        <p
+          style="font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: #B5663A; font-weight: 700; margin-bottom: 1rem;">
+          Contenido Paratextual</p>
+        <h2
+          style="font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 900; color: var(--cream); letter-spacing: -0.02em; line-height: 1.1; margin: 0;">
+          El Lente de la <span style="color: #B5663A; font-style: italic;">Realidad</span>
+        </h2>
+        <p
+          style="font-size: 1.05rem; color: rgba(245,240,232,0.6); max-width: 650px; margin: 1.5rem auto 0; font-weight: 300; line-height: 1.8;">
+          Donde la tinta se cruza con la historia viva. Dos piezas audiovisuales que demuestran que el dolor y la
+          resistencia de nuestro universo transmedia no son solo ficción.
+        </p>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- BLOQUE 1: EL MICRODOCUMENTAL               -->
+      <!-- ========================================== -->
+      <div
+        style="margin-bottom: 8rem; background: rgba(10, 8, 7, 0.6); border: 1px solid rgba(181, 102, 58, 0.15); border-radius: 20px; padding: 3.5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.4);">
+        <div style="display: flex; flex-wrap: wrap; gap: 3.5rem; align-items: center;">
+
+          <div style="flex: 1; min-width: 320px;">
+            <span
+              style="font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; background: rgba(181,102,58,0.15); color: #B5663A; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700;">Pieza
+              Audiovisual</span>
+            <h3
+              style="font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: var(--cream); margin: 1.5rem 0 1rem; line-height: 1.2;">
+              Microdocumental:<br>Los Pasos de la Guerra
+            </h3>
+            <p
+              style="font-size: 0.95rem; line-height: 1.8; color: rgba(245,240,232,0.55); font-weight: 300; margin-bottom: 0;">
+              Una mirada cinematográfica e institucional que desentierra el contexto del conflicto armado en las zonas
+              rurales del Meta y el Caquetá. El análisis definitivo que enmarca geográficamente el viaje de Tomás,
+              Joaquín y Diana.
+            </p>
+          </div>
+
+          <!-- Reproductor de Video Local 16:9 -->
+          <div
+            style="flex: 1.3; min-width: 320px; aspect-ratio: 16 / 9; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.6); border: 1px solid rgba(245,240,232,0.1);">
+            <video width="100%" height="100%" controls preload="metadata"
+              style="display: block; width: 100%; height: 100%; object-fit: cover; outline: none;">
+              <!-- IMPORTANTE: Cambia 'microdocumental.mp4' por el nombre exacto de tu archivo -->
+              <source src="./productos/paratextuales/microdocumental.mp4" type="video/mp4">
+              Tu navegador no soporta el formato de video.
+            </video>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ========================================== -->
+      <!-- BLOQUE 2: VIDEO PODCAST CON INVITADO       -->
+      <!-- ========================================== -->
+      <div
+        style="background: rgba(10, 8, 7, 0.6); border: 1px solid rgba(181, 102, 58, 0.15); border-radius: 20px; padding: 3.5rem; box-shadow: 0 30px 60px rgba(0,0,0,0.4);">
+        <div style="display: flex; flex-wrap: wrap; gap: 4rem; align-items: center;">
+
+          <!-- Columna del Póster Oficial -->
+          <div style="flex: 1; min-width: 280px; display: flex; justify-content: center;">
+            <div
+              style="position: relative; max-width: 340px; border-radius: 12px; overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.7); border: 1px solid rgba(181, 102, 58, 0.3); transition: transform 0.4s ease;"
+              onmouseover="this.style.transform='scale(1.03)';" onmouseout="this.style.transform='scale(1)';">
+              <div
+                style="position: absolute; inset: 0; background: radial-gradient(circle, rgba(181,102,58,0.2) 0%, transparent 70%); pointer-events: none; z-index: 2;">
+              </div>
+              <!-- Uso del archivo verbatim -->
+              <img src="./covers/Rectangular/IMG_6778.PNG" alt="Entre las Sombras - En la voz de Alexander Rojas"
+                style="width: 100%; height: auto; display: block; object-fit: cover;">
+            </div>
+          </div>
+
+          <!-- Columna de Información e Interacción -->
+          <div style="flex: 1.3; min-width: 320px;">
+            <span
+              style="font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; background: rgba(181,102,58,0.15); color: #B5663A; padding: 0.4rem 1rem; border-radius: 4px; font-weight: 700;">Episodio
+              Paratextual Especial</span>
+
+            <h3
+              style="font-family: 'Montserrat', sans-serif; font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 900; color: var(--cream); margin: 1.5rem 0 1rem; line-height: 1.2;">
+              Entre las Sombras<br><span style="color: #B5663A;">En la voz de Alexander Rojas</span>
+            </h3>
+
+            <p
+              style="font-size: 0.95rem; line-height: 1.8; color: rgba(245,240,232,0.55); font-weight: 300; margin-bottom: 2rem;">
+              En este capítulo expandido de nuestro podcast narrativo, la línea entre la libreta de Tomás y la realidad
+              desaparece. Nos acompaña <strong>Alexander Rojas</strong>, un invitado de excepción que habitó y vivió el
+              rigor del conflicto armado en el mismo territorio geográfico que inspiró nuestra obra. Una conversación
+              sobre la memoria indestructible.
+            </p>
+
+            <!-- Reproductor de Video Local Integrado (Estilizado Premium Nocturno) -->
+            <div
+              style="background: #050403; padding: 1rem; border-radius: 16px; border: 1px solid rgba(181, 102, 58, 0.2); display: flex; flex-direction: column; gap: 0.8rem; box-shadow: inset 0 0 20px rgba(0,0,0,0.6);">
+              <div style="display: flex; justify-content: space-between; align-items: center; padding: 0 0.5rem;">
+                <span style="font-size: 0.7rem; color: #B5663A; font-weight: 600; letter-spacing: 0.05em;">► VISUALIZAR
+                  CAPÍTULO</span>
+                <span style="font-size: 0.65rem; color: rgba(245,240,232,0.3);">Video Podcast</span>
+              </div>
+
+              <div
+                style="width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 8px; overflow: hidden; border: 1px solid rgba(245,240,232,0.05);">
+                <video width="100%" height="100%" controls preload="metadata"
+                  style="display: block; width: 100%; height: 100%; object-fit: cover; outline: none;">
+                  <!-- IMPORTANTE: Cambia 'podcast_alexander.mp4' por el nombre exacto de tu archivo -->
+                  <source src="./productos/paratextuales/EntreLasSombras EnLaVozDeAlexanderRojas.mp4" type="video/mp4">
+                  Tu navegador no soporta el formato de video.
+                </video>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTEXT NARRATIVE -->
+  <div class="content-section dark">
+
+    <div class="leaf-deco"
+      style="bottom:-30px; left:2%; width:clamp(280px, 40vw, 550px); transform-origin: bottom center; z-index:1; transition: none;">
+      <svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" style="overflow:visible;">
+        <defs>
+          <filter id="flower-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="2" dy="6" stdDeviation="4" flood-color="#000000" flood-opacity="0.4" />
+          </filter>
+        </defs>
+
+        <path d="M 50,280 Q 60,180 40,100" fill="none" stroke="#4A8C3F" stroke-width="4" />
+        <path d="M 120,280 Q 110,150 130,80" fill="none" stroke="#3A6030" stroke-width="5" />
+        <path d="M 180,280 Q 190,160 220,90" fill="none" stroke="#5C8A50" stroke-width="4" />
+        <path d="M 250,280 Q 240,170 280,110" fill="none" stroke="#4A8C3F" stroke-width="4" />
+        <path d="M 320,280 Q 340,180 350,120" fill="none" stroke="#3A6030" stroke-width="3" />
+
+        <path d="M 125,200 Q 90,150 80,110" fill="none" stroke="#5C8A50" stroke-width="3" />
+        <path d="M 195,190 Q 160,140 150,90" fill="none" stroke="#4A8C3F" stroke-width="3" />
+        <path d="M 260,200 Q 300,160 320,100" fill="none" stroke="#4A8C3F" stroke-width="3" />
+
+        <path d="M 55,220 Q 30,200 20,230 Q 40,240 55,220 Z" fill="#3A6030" filter="url(#flower-shadow)" />
+        <path d="M 122,240 Q 150,210 160,250 Q 140,260 122,240 Z" fill="#4A8C3F" filter="url(#flower-shadow)" />
+        <path d="M 245,220 Q 210,200 200,230 Q 220,250 245,220 Z" fill="#2E4A35" filter="url(#flower-shadow)" />
+        <path d="M 330,220 Q 360,200 370,240 Q 340,250 330,220 Z" fill="#5C8A50" filter="url(#flower-shadow)" />
+        <path d="M 185,170 Q 210,150 220,180 Q 200,190 185,170 Z" fill="#4A8C3F" filter="url(#flower-shadow)" />
+        <path d="M 115,160 Q 90,140 80,170 Q 100,180 115,160 Z" fill="#3A6030" filter="url(#flower-shadow)" />
+
+        <g filter="url(#flower-shadow)">
+          <ellipse cx="40" cy="90" rx="10" ry="20" fill="#C89B3C" />
+          <ellipse cx="40" cy="110" rx="10" ry="20" fill="#C89B3C" />
+          <ellipse cx="30" cy="100" rx="20" ry="10" fill="#C89B3C" />
+          <ellipse cx="50" cy="100" rx="20" ry="10" fill="#C89B3C" />
+          <circle cx="40" cy="100" r="12" fill="#E8B840" />
+          <circle cx="40" cy="100" r="6" fill="#6B4C2A" />
+
+          <g transform="translate(80, 110) rotate(45) translate(-80, -110)">
+            <ellipse cx="80" cy="98" rx="8" ry="16" fill="#B5663A" />
+            <ellipse cx="80" cy="122" rx="8" ry="16" fill="#B5663A" />
+            <ellipse cx="68" cy="110" rx="16" ry="8" fill="#B5663A" />
+            <ellipse cx="92" cy="110" rx="16" ry="8" fill="#B5663A" />
+            <circle cx="80" cy="110" r="9" fill="#D4845A" />
+            <circle cx="80" cy="110" r="4" fill="#1A1510" />
+          </g>
+
+          <ellipse cx="130" cy="60" rx="14" ry="28" fill="#E8B840" />
+          <ellipse cx="130" cy="100" rx="14" ry="28" fill="#E8B840" />
+          <ellipse cx="110" cy="80" rx="28" ry="14" fill="#E8B840" />
+          <ellipse cx="150" cy="80" rx="28" ry="14" fill="#E8B840" />
+          <g transform="translate(130, 80) rotate(45) translate(-130, -80)">
+            <ellipse cx="130" cy="64" rx="10" ry="20" fill="#C89B3C" />
+            <ellipse cx="130" cy="96" rx="10" ry="20" fill="#C89B3C" />
+            <ellipse cx="114" cy="80" rx="20" ry="10" fill="#C89B3C" />
+            <ellipse cx="146" cy="80" rx="20" ry="10" fill="#C89B3C" />
+          </g>
+          <circle cx="130" cy="80" r="16" fill="#B28B17" />
+          <circle cx="130" cy="80" r="8" fill="#441501" />
+
+          <circle cx="150" cy="90" r="10" fill="#C05840" />
+          <circle cx="158" cy="82" r="7" fill="#B5663A" />
+          <circle cx="142" cy="84" r="6" fill="#D4845A" />
+
+          <ellipse cx="220" cy="74" rx="9" ry="18" fill="#C89B3C" />
+          <ellipse cx="220" cy="106" rx="9" ry="18" fill="#C89B3C" />
+          <ellipse cx="204" cy="90" rx="18" ry="9" fill="#C89B3C" />
+          <ellipse cx="236" cy="90" rx="18" ry="9" fill="#C89B3C" />
+          <circle cx="220" cy="90" r="11" fill="#E8B840" />
+          <circle cx="220" cy="90" r="5" fill="#6B4C2A" />
+
+          <g transform="translate(280, 110) rotate(30) translate(-280, -110)">
+            <ellipse cx="280" cy="94" rx="10" ry="20" fill="#C05840" />
+            <ellipse cx="280" cy="126" rx="10" ry="20" fill="#C05840" />
+            <ellipse cx="264" cy="110" rx="20" ry="10" fill="#C05840" />
+            <ellipse cx="296" cy="110" rx="20" ry="10" fill="#C05840" />
+            <circle cx="280" cy="110" r="12" fill="#B5663A" />
+            <circle cx="280" cy="110" r="6" fill="#1A1510" />
+          </g>
+
+          <circle cx="320" cy="100" r="9" fill="#E8B840" />
+          <circle cx="328" cy="92" r="7" fill="#C89B3C" />
+          <circle cx="312" cy="92" r="5" fill="#C89B3C" />
+
+          <circle cx="350" cy="120" r="11" fill="#B5663A" />
+          <circle cx="358" cy="114" r="6" fill="#E8B840" />
+        </g>
+      </svg>
+    </div>
+
+    <div class="two-col" style="position: relative; z-index: 10;">
+      <div>
+        <p class="sec-label light" data-reveal="fade-right">El contexto</p>
+        <h2 class="sec-title" style="color:var(--cream);">
+          <span class="split-line"><span>Una realidad</span></span>
+          <span class="split-line delay-1"><span>que no <em>termina</em></span></span>
+        </h2>
+        <p class="sec-body light" data-reveal="fade-right" data-delay="0.1">El reclutamiento forzado de menores es una
+          práctica sistemática de los grupos armados ilegales en Colombia. Los niños y niñas son separados violentamente
+          de sus familias, sus comunidades y su infancia.</p>
+        <p class="sec-body light" data-reveal="fade-right" data-delay="0.2">Las comunidades rurales, especialmente
+          aquellas con presencia indígena, afrodescendiente o campesina, son las más vulneradas. La presión sobre las
+          familias, la pobreza estructural y la ausencia del Estado crean condiciones en las que el reclutamiento se
+          vuelve casi inevitable.</p>
+        <div class="inline-quote" data-reveal="fade-right" data-delay="0.3"
+          style="border-color:var(--sage);background:rgba(74,92,62,0.2);">
+          <p style="color:var(--cream);">"El reclutamiento forzado de menores constituye una de las principales amenazas
+            para la pervivencia de los habitantes del territorio."</p>
+          <cite style="color:rgba(245,240,232,0.4);">— DANE, informe sobre violencia específica en zonas de
+            conflicto</cite>
+        </div>
+      </div>
+      <div>
+        <div class="timeline">
+          <div class="tl-item" data-reveal="fade-left">
+            <p class="tl-year">1988</p>
+            <p class="tl-title" style="color:var(--cream);">La libreta de Efraín</p>
+            <p class="tl-body">Paramilitares queman la finca de don Gildardo en el Caquetá usando las páginas de la
+              libreta de cuentas de su hijo de 11 años para encender el fuego. Efraín huye y es recogido por las FARC.
+              Décadas después será "El Gordo", el comandante que recluta a Tomás.</p>
+          </div>
+          <div class="tl-item" data-reveal="fade-left" data-delay="0.1">
+            <p class="tl-year">2016</p>
+            <p class="tl-title" style="color:var(--cream);">Acuerdo de paz y reincidencia</p>
+            <p class="tl-body">El acuerdo con las FARC incluye cláusulas sobre desvinculación de menores. Alias "El
+              Paisa" se firma. En 2021 muere y varias estructuras quedan sin mando. Según la ONU, el reclutamiento
+              infantil aumenta un 300% en los cinco años siguientes.</p>
+          </div>
+          <div class="tl-item" data-reveal="fade-left" data-delay="0.2">
+            <p class="tl-year">Feb 2022</p>
+            <p class="tl-title" style="color:var(--cream);">Tomás no regresa</p>
+            <p class="tl-body">Martes 2 de febrero. Sus hermanos están enfermos. Tomás sale solo al colegio en
+              Vistahermosa, Meta. La profesora Diana le regala el cuaderno azul esa mañana. Esa tarde un retén ilegal lo
+              sube a una camioneta junto a otros 20 niños reclutados ese día.</p>
+          </div>
+          <div class="tl-item" data-reveal="fade-left" data-delay="0.3">
+            <p class="tl-year">2022–2025</p>
+            <p class="tl-title" style="color:var(--cream);">Las cartas que nadie envió</p>
+            <p class="tl-body">Tomás escribe de noche, en guardia, con una linterna escondida dentro del uniforme. En
+              casa, José guarda cartas en una caja de zapatos. Eva empieza con dibujos. Una guerrillera llamada
+              Valentina esconde el cuaderno azul sin saber por qué. Muere antes de devolvérselo.</p>
+          </div>
+          <div class="tl-item" data-reveal="fade-left" data-delay="0.4">
+            <p class="tl-year">Mayo 2025</p>
+            <p class="tl-title" style="color:var(--cream);">El cafetal</p>
+            <p class="tl-body">Tras un asalto fallido a un banco en el Meta, Tomás y Joaquín huyen. Ocho días sin comer
+              bien. Caen a un cafetal, se entregan al Ejército. Tomás llega a Bogotá con el cuaderno azul lleno. La
+              primera noche en Medellín, José le entrega la caja de zapatos: "Te las escribí. No supe cómo enviártelas."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- META & CAUCA -->
+  <div class="content-section" style="background:var(--cream);">
+    <div class="leaf-deco"
+      style="top:-20px;right:-15px;width:clamp(130px,20vw,240px);animation:floatA 7.5s ease-in-out infinite;z-index:3;">
+      <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+        <path d="M210,12 Q248,55 230,122 Q212,190 134,208 Q66,224 28,176 Q-8,130 18,78 Q48,26 124,10 Q168,0 210,12Z"
+          fill="#3D7A5A" opacity="0.85" />
+        <path d="M210,18 Q244,58 227,120 Q210,184 132,202 Q68,218 30,172 Q-2,130 25,80 Q55,30 128,16 Q170,5 210,18Z"
+          fill="#2E5C54" opacity="0.7" />
+        <path d="M124,10 Q138,75 134,208" stroke="#1e3d2e" stroke-width="1.8" fill="none" opacity="0.4" />
+        <path d="M124,48 Q75,85 32,122" stroke="#1e3d2e" stroke-width="1" fill="none" opacity="0.3" />
+        <path d="M130,78 Q178,100 228,103" stroke="#1e3d2e" stroke-width="1" fill="none" opacity="0.3" />
+        <ellipse cx="86" cy="108" rx="13" ry="9" fill="rgba(15,28,12,0.5)" transform="rotate(-30,86,108)" />
+        <ellipse cx="160" cy="118" rx="11" ry="8" fill="rgba(15,28,12,0.5)" transform="rotate(20,160,118)" />
+      </svg>
+    </div>
+    <p class="sec-label" data-reveal="fade-up" style="margin-bottom:1rem;">Territorios de la historia</p>
+    <h2 class="sec-title" data-reveal="fade-up">
+      <span class="split-line"><span>Vistahermosa, Meta</span></span>
+      <span class="split-line delay-1"><span>y <em>Toribío, Cauca</em></span></span>
+    </h2>
+    <div class="two-col" style="margin-top:3rem;">
+
+      <div data-reveal="fade-right">
+        <div
+          style="background:var(--warm-dark);border-radius:4px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin-bottom:1.5rem;">
+          <iframe src="https://maps.google.com/maps?q=Vistahermosa,Meta,Colombia&t=&z=10&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="100%"
+            style="border:0; filter: grayscale(100%) invert(92%) contrast(83%); position:absolute; inset:0;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.8rem;">Meta</h3>
+        <p class="sec-body">Uno de los departamentos con mayor presencia histórica de las FARC y sus disidencias.
+          Vistahermosa, municipio situado en la Serranía de La Macarena, ha sido zona de disputa territorial durante
+          décadas. Es aquí donde Tomás crece y de donde es arrebatado.</p>
+      </div>
+
+      <div data-reveal="fade-left">
+        <div
+          style="background:var(--warm-dark);border-radius:4px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;margin-bottom:1.5rem;">
+          <iframe src="https://maps.google.com/maps?q=Toribio,Cauca,Colombia&t=&z=10&ie=UTF8&iwloc=&output=embed"
+            width="100%" height="100%"
+            style="border:0; filter: grayscale(100%) invert(92%) contrast(83%); position:absolute; inset:0;"
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <h3 style="font-family:'Montserrat',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:0.8rem;">Cauca
+        </h3>
+        <p class="sec-body">Territorio del pueblo Nasa, marcado por décadas de violencia, reclutamiento y resistencia.
+          En Toribío crece Joaquín, "The King", quien ve en el grupo armado la única forma de conseguir poder y
+          protección en un territorio sin Estado.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- AUDIENCE ARCHETYPES -->
+  <div class="content-section"
+    style="background:var(--light-cream);padding:6rem 3.5rem;position:relative;overflow:hidden;">
+    <div class="leaf-deco"
+      style="top:25%;right:-12px;width:clamp(85px,12vw,150px);z-index:3;animation:handFloat 6.5s ease-in-out infinite 1s;transform-origin:right center;">
+      <svg viewBox="0 0 150 100" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)">
+        <path
+          d="M0,58 Q22,52 44,50 Q66,48 82,42 Q96,36 102,33 Q108,30 106,36 Q104,42 91,46 Q102,40 108,38 Q114,35 112,42 Q110,49 96,53 Q106,49 110,54 Q108,62 90,61 L66,63 Q48,66 28,68 L0,72Z"
+          fill="#4A7B78" />
+        <path d="M44,50 Q38,39 42,31 Q47,22 55,26 Q62,29 58,40 Q54,46 44,50Z" fill="#4A7B78" />
+      </svg>
+    </div>
+    <div class="leaf-deco"
+      style="bottom:5%;right:-10px;width:clamp(90px,13vw,160px);animation:floatC 9s ease-in-out infinite 0.8s;z-index:3;">
+      <svg viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+        <path d="M80,135 Q18,112 6,65 Q0,28 36,9 Q70,-3 108,12 Q148,28 154,70 Q158,108 80,135Z" fill="#7A4520"
+          opacity="0.9" />
+        <path d="M80,9 Q85,58 80,135" stroke="#5a3018" stroke-width="1.5" fill="none" opacity="0.4" />
+        <path d="M80,38 Q42,60 10,76" stroke="#5a3018" stroke-width="1" fill="none" opacity="0.3" />
+        <path d="M80,58 Q118,72 148,75" stroke="#5a3018" stroke-width="1" fill="none" opacity="0.3" />
+      </svg>
+    </div>
+    <p class="sec-label" data-reveal="fade-up" style="margin-bottom:1rem;">¿A quién le habla este proyecto?</p>
+    <h2 class="sec-title" data-reveal="fade-up">
+      <span class="split-line"><span>Seis arquetipos,</span></span>
+      <span class="split-line delay-1"><span>seis <em style="color:var(--clay);">entradas</em></span></span>
+    </h2>
+    <p class="sec-body" style="max-width:600px;margin-bottom:3rem;" data-reveal="fade-up" data-delay="0.15">Cada
+      producto fue diseñado pensando en un perfil específico de audiencia. No porque los demás no puedan acceder, sino
+      porque cada puerta de entrada está pensada para conectar emocionalmente con quien más lo necesita.</p>
+    <div class="three-col" style="gap:1.5rem;">
+      <div
+        style="border:1px solid var(--border);padding:2rem;border-radius:3px;background:var(--cream);border-top:3px solid var(--clay);"
+        data-reveal="scale" data-delay="0.05">
+        <p
+          style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--clay);font-weight:600;margin-bottom:0.8rem;">
+          Arquetipo 1</p>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.4rem;">Manuela
+          Díaz</h4>
+        <p
+          style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);font-weight:600;margin-bottom:0.8rem;">
+          Periodista · 33 años</p>
+        <p style="font-size:0.82rem;line-height:1.7;color:var(--fog);font-weight:300;">Profesional informada, crítica y
+          comprometida. Consume contenido de fondo. Entra al universo por <em>Las Cartas de Tomás</em> en Instagram.</p>
+      </div>
+      <div
+        style="border:1px solid var(--border);padding:2rem;border-radius:3px;background:var(--cream);border-top:3px solid var(--teal-deep);"
+        data-reveal="scale" data-delay="0.1">
+        <p
+          style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--teal-deep);font-weight:600;margin-bottom:0.8rem;">
+          Arquetipo 2</p>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.4rem;">Martín
+          Londoño</h4>
+        <p
+          style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);font-weight:600;margin-bottom:0.8rem;">
+          Estudiante · 16 años</p>
+        <p style="font-size:0.82rem;line-height:1.7;color:var(--fog);font-weight:300;">Joven urbano, nativo digital. Usa
+          Discord activamente y consume comunidades en línea. Entra por <em>El Silencio de los Arrozales</em>.</p>
+      </div>
+      <div
+        style="border:1px solid var(--border);padding:2rem;border-radius:3px;background:var(--cream);border-top:3px solid var(--ochre);"
+        data-reveal="scale" data-delay="0.15">
+        <p
+          style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--ochre);font-weight:600;margin-bottom:0.8rem;">
+          Arquetipo 3</p>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.4rem;">Andrés
+          Felipe García</h4>
+        <p
+          style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);font-weight:600;margin-bottom:0.8rem;">
+          Estudiante · 16 años</p>
+        <p style="font-size:0.82rem;line-height:1.7;color:var(--fog);font-weight:300;">Consumidor de TikTok y Facebook
+          Reels. Le llaman los formatos cortos y visuales. Entra al universo por los shorts animados de <em>The
+            King</em>.</p>
+      </div>
+      <div
+        style="border:1px solid var(--border);padding:2rem;border-radius:3px;background:var(--cream);border-top:3px solid var(--moss);"
+        data-reveal="scale" data-delay="0.05">
+        <p
+          style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--moss);font-weight:600;margin-bottom:0.8rem;">
+          Arquetipo 4</p>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.4rem;">Ricardo
+          Suárez</h4>
+        <p
+          style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);font-weight:600;margin-bottom:0.8rem;">
+          Profesor · 35 años</p>
+        <p style="font-size:0.82rem;line-height:1.7;color:var(--fog);font-weight:300;">Docente comprometido con sus
+          estudiantes y con la memoria histórica. Escucha podcast. Entra por <em>Entre las Sombras</em> en YouTube.</p>
+      </div>
+      <div
+        style="border:1px solid var(--border);padding:2rem;border-radius:3px;background:var(--cream);border-top:3px solid var(--mauve);"
+        data-reveal="scale" data-delay="0.1">
+        <p
+          style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mauve);font-weight:600;margin-bottom:0.8rem;">
+          Arquetipo 5</p>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.4rem;">Blanca
+          Gómez De León</h4>
+        <p
+          style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);font-weight:600;margin-bottom:0.8rem;">
+          Madre · 55 años</p>
+        <p style="font-size:0.82rem;line-height:1.7;color:var(--fog);font-weight:300;">Usa principalmente WhatsApp.
+          Empática con la historia de la profesora Diana. Entra al universo por <em>Morrales Vacíos</em> directamente en
+          su teléfono.</p>
+      </div>
+      <div
+        style="border:1px solid var(--border);padding:2rem;border-radius:3px;background:var(--cream);border-top:3px solid var(--terracotta);"
+        data-reveal="scale" data-delay="0.15">
+        <p
+          style="font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--terracotta);font-weight:600;margin-bottom:0.8rem;">
+          Arquetipo 6</p>
+        <h4 style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:0.4rem;">Diego
+        </h4>
+        <p
+          style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--fog);font-weight:600;margin-bottom:0.8rem;">
+          Adulto indiferente · 36 años</p>
+        <p style="font-size:0.82rem;line-height:1.7;color:var(--fog);font-weight:300;">Profesional urbano que ha
+          ignorado el conflicto. El videojuego <em>El Azul No Se Borra</em> lo confronta directamente con esa
+          indiferencia.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESOURCES / ORGANIZATIONS -->
+  <div class="content-section teal" style="padding:6rem 3.5rem;position:relative;overflow:hidden;">
+    <div class="leaf-deco"
+      style="top:60%;right:-10px;width:clamp(75px,11vw,135px);z-index:3;animation:handFloat 9s ease-in-out infinite 3s;">
+      <svg viewBox="0 0 135 90" xmlns="http://www.w3.org/2000/svg" style="transform:scaleX(-1)">
+        <path
+          d="M0,48 Q18,44 35,42 Q55,40 68,35 Q82,30 86,28 Q90,26 88,31 Q86,36 75,40 Q84,35 88,33 Q93,31 91,37 Q89,43 77,46 Q86,43 89,48 Q87,55 72,54 L50,56 Q35,58 20,60 L0,62Z"
+          fill="#527E7C" />
+        <path d="M35,42 Q30,33 33,26 Q37,19 44,22 Q49,25 46,34 Q43,39 35,42Z" fill="#527E7C" />
+      </svg>
+    </div>
+    <p class="sec-label light" data-reveal="fade-up" style="margin-bottom:1rem;">Organizaciones y recursos</p>
+    <h2
+      style="font-family:'Montserrat',sans-serif;font-size:clamp(1.8rem,3vw,2.6rem);font-weight:700;line-height:1.2;color:var(--cream);margin-bottom:1.5rem;"
+      data-reveal="fade-up">
+      <span class="split-line"><span>Si quieres saber más</span></span>
+      <span class="split-line delay-1"><span>o <em
+            style="font-style:italic;color:var(--sage-light);">ayudar</em></span></span>
+    </h2>
+    <p style="font-size:0.9rem;line-height:1.8;color:rgba(245,240,232,0.55);font-weight:300;max-width:560px;margin-bottom:3rem;"
+      data-reveal="fade-up" data-delay="0.1">Estas organizaciones trabajan directamente con víctimas del reclutamiento
+      forzado y con comunidades en riesgo. Si este proyecto te moviliza, ellas son un buen lugar para comenzar a actuar.
+    </p>
+    <div class="three-col" style="gap:1.5rem;">
+      <div
+        style="background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);padding:2rem;border-radius:3px;"
+        data-reveal="scale" data-delay="0.05">
+        <p
+          style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage-light);font-weight:600;margin-bottom:0.8rem;">
+          Organización</p>
+        <h4
+          style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:0.6rem;">
+          COALICO</h4>
+        <p style="font-size:0.82rem;line-height:1.7;color:rgba(245,240,232,0.5);font-weight:300;">Coalición contra la
+          vinculación de niños, niñas y jóvenes al conflicto armado en Colombia. Monitoreo, advocacy y atención a
+          víctimas.</p>
+      </div>
+      <div
+        style="background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);padding:2rem;border-radius:3px;"
+        data-reveal="scale" data-delay="0.1">
+        <p
+          style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage-light);font-weight:600;margin-bottom:0.8rem;">
+          Organización</p>
+        <h4
+          style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:0.6rem;">
+          ICBF</h4>
+        <p style="font-size:0.82rem;line-height:1.7;color:rgba(245,240,232,0.5);font-weight:300;">Instituto Colombiano
+          de Bienestar Familiar. Programa de atención especializada para niños, niñas y adolescentes desvinculados del
+          conflicto armado.</p>
+      </div>
+      <div
+        style="background:rgba(245,240,232,0.06);border:1px solid rgba(245,240,232,0.1);padding:2rem;border-radius:3px;"
+        data-reveal="scale" data-delay="0.15">
+        <p
+          style="font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--sage-light);font-weight:600;margin-bottom:0.8rem;">
+          Organización</p>
+        <h4
+          style="font-family:'Montserrat',sans-serif;font-size:1.1rem;font-weight:700;color:var(--cream);margin-bottom:0.6rem;">
+          Human Rights Watch</h4>
+        <p style="font-size:0.82rem;line-height:1.7;color:rgba(245,240,232,0.5);font-weight:300;">Informes y
+          documentación sobre reclutamiento infantil en Colombia. Datos, casos y análisis de contexto desde una
+          perspectiva de derechos humanos.</p>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- BRIDGE CTA -->
+  <div style="padding:6rem 3.5rem;background:var(--cream);text-align:center;position:relative;overflow:hidden;">
+    <div class="leaf-deco"
+      style="top:-15px;right:-10px;width:100px;opacity:0.3;animation:floatA 7s ease-in-out infinite;">
+      <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50,85 Q10,65 5,35 Q2,12 25,4 Q50,-2 75,6 Q98,18 95,45 Q90,75 50,85Z" fill="#4A8C3F" />
+        <path d="M50,4 Q53,40 50,85" stroke="#2d5e24" stroke-width="1.2" fill="none" opacity="0.4" />
+      </svg>
+    </div>
+    <div class="leaf-deco"
+      style="top:-25px;right:-15px;width:clamp(100px,16vw,200px);opacity:0.18;animation:floatA 8s ease-in-out infinite 0.5s;">
+      <svg viewBox="0 0 200 185" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100,5 Q168,28 178,90 Q185,148 100,178 Q18,148 22,90 Q30,28 100,5Z" fill="#4A8C3F" />
+        <path d="M100,5 Q105,80 100,178" stroke="#2d5e24" stroke-width="1.5" fill="none" opacity="0.4" />
+        <path d="M100,40 Q55,68 24,92" stroke="#2d5e24" stroke-width="1" fill="none" opacity="0.3" />
+        <path d="M100,68 Q145,90 176,94" stroke="#2d5e24" stroke-width="1" fill="none" opacity="0.3" />
+      </svg>
+    </div>
+    <p style="font-size:0.65rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--clay);font-weight:600;margin-bottom:1.5rem;position:relative;z-index:1;"
+      data-reveal="fade-up">Continúa explorando</p>
+    <h2
+      style="font-family:'Montserrat',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:700;line-height:1.1;color:var(--warm-dark);margin-bottom:1.5rem;position:relative;z-index:1;"
+      data-reveal="fade-up">
+      <span class="split-line"><span>El contexto está.</span></span>
+      <span class="split-line delay-1"><span>Ahora conoce las <em
+            style="font-style:italic;color:var(--clay);">historias.</em></span></span>
+    </h2>
+    <p style="font-size:0.95rem;color:var(--fog);font-weight:300;line-height:1.8;max-width:500px;margin:0 auto 3rem;position:relative;z-index:1;"
+      data-reveal="fade-up" data-delay="0.15">El contexto importa. Pero el cambio ocurre cuando las cifras se convierten
+      en personas. Conoce a Tomás, a su familia, a su profesora y a quienes rodearon su historia.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative;z-index:1;"
+      data-reveal="fade-up" data-delay="0.25">
+      <a href="./historia.html"
+        style="display:inline-block;background:var(--warm-dark);color:var(--cream);padding:1rem 2.4rem;text-decoration:none;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:background 0.3s;">Conocer
+        la historia →</a>
+      <a href="./experiencia.html"
+        style="display:inline-block;background:transparent;color:var(--warm-dark);border:1px solid var(--warm-dark);padding:1rem 2.4rem;text-decoration:none;font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;font-weight:600;border-radius:2px;transition:all 0.3s;">Ver
+        los productos →</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="./logos/Logo_footer.png" alt="Los colores de la guerra"
+            style="max-width: 180px;"></div>
+
+
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Páginas</p>
+        <ul>
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./contexto.html">Contexto</a></li>
+          <li><a href="./historia.html">Historia</a></li>
+          <li><a href="./experiencia.html">Experiencia</a></li>
+          <li><a href="./equipos.html">Equipos</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Historias</p>
+        <ul>
+          <li><a href="./experiencia.html">Las Cartas de Tomás</a></li>
+          <li><a href="./experiencia.html">El Silencio de los Arrozales</a></li>
+          <li><a href="./experiencia.html">The King</a></li>
+          <li><a href="./experiencia.html">Entre las Sombras</a></li>
+          <li><a href="./experiencia.html">Morrales Vacíos</a></li>
+          <li><a href="./experiencia.html">El Azul No Se Borra</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Redes sociales</p>
+        <div class="footer-social-row" style="margin-top: 1rem;">
+          <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="footer-social-icon"
+            aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg></a>
+          <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="footer-social-icon"
+            aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg></a>
+          <a href="https://www.tiktok.com/" target="_blank" class="footer-social-icon" aria-label="TikTok"><svg
+              viewBox="0 0 24 24">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+            </svg></a>
+          <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank"
+            class="footer-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-note">Pontificia Universidad Javeriana Cali · Maestría en Comunicación y Creación Interactiva</p>
+      <p class="footer-quote">"Hoy aprendí a disparar. No quería hacerlo. Cerré los ojos cuando sonó el tiro. A veces
+        pienso que si sigo escribiendo estas cartas todavía soy yo." — Tomás</p>
+    </div>
+  </footer>
+
+  <script>
+
+
+    const revealObs = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { const el = entry.target; const delay = el.dataset.delay || '0'; el.style.transitionDelay = delay + 's'; el.classList.add('revealed'); revealObs.unobserve(el); } }); }, { threshold: 0.12 });
+    document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+    const splitObs = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); splitObs.unobserve(entry.target); } }); }, { threshold: 0.3 });
+    document.querySelectorAll('.split-line').forEach(el => splitObs.observe(el));
+    // Trigger page hero splits immediately
+    setTimeout(() => { document.querySelectorAll('.page-hero .split-line').forEach(el => el.classList.add('revealed')); }, 200);
+
+    // Leaf cursor trail
+    (function () {
+      const lc = ['#4A5C3E', '#7A9B6E', '#B5663A', '#C89B3C', '#9E7B8C', '#2E5C54'];
+      let lx = 0, ly = 0, tk = 0;
+      document.addEventListener('mousemove', (e) => {
+        tk++; if (tk % 6 !== 0) return;
+        const d = Math.hypot(e.clientX - lx, e.clientY - ly);
+        if (d < 30) return;
+        lx = e.clientX; ly = e.clientY;
+        const el = document.createElement('div');
+        const c = lc[Math.floor(Math.random() * lc.length)];
+        const s = 12 + Math.random() * 16;
+        const r = Math.random() * 360;
+        el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:' + s + 'px;height:' + (s * 1.4) + 'px;opacity:0.5;transform:translate(-50%,-50%) rotate(' + r + 'deg);border-radius:50% 50% 50% 0;background:' + c + ';transition:opacity 0.8s ease,transform 1.2s ease;';
+        document.body.appendChild(el);
+        requestAnimationFrame(() => { el.style.opacity = '0'; el.style.transform = 'translate(-50%,-120%) rotate(' + (r + 45) + 'deg) scale(0.4)'; });
+        setTimeout(() => el.remove(), 1300);
+      });
+    })();
+    // ── GLOBAL INTERACTIVE: PARALLAX + FLOTACIÓN (CONTEXTO) ──
+    (function initContextoInteractive() {
+      const leaves = document.querySelectorAll('.leaf-deco');
+
+      leaves.forEach((leaf) => {
+        // Guardamos el transform original y preparamos las variables
+        leaf._baseTransform = leaf.style.transform || '';
+        leaf._parallaxDepth = Math.random() * 0.4 + 0.15; // Profundidad aleatoria
+        leaf._floatPhase = Math.random() * Math.PI * 2;
+        leaf._floatSpeed = Math.random() * 0.001 + 0.0005;
+        leaf.style.transition = 'opacity 1s ease'; // Evitar colisión con requestAnimationFrame
+      });
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      // Escuchar el movimiento del mouse
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function animate() {
+        // Interpolación suave para el Parallax
+        currentX += (mouseX - currentX) * 0.05;
+        currentY += (mouseY - currentY) * 0.05;
+        const now = Date.now();
+
+        leaves.forEach(leaf => {
+          const d = leaf._parallaxDepth;
+          const tx = currentX * d * 80;
+          const ty = currentY * d * 80;
+
+          // Respiración/Flotación continua
+          const floatY = Math.sin(now * leaf._floatSpeed + leaf._floatPhase) * 15;
+          const floatRot = Math.cos(now * leaf._floatSpeed + leaf._floatPhase) * 3;
+
+          leaf.style.transform = `${leaf._baseTransform} translate(${tx}px, ${ty + floatY}px) rotate(${floatRot}deg)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      // Iniciar la animación
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+  <script>
+    // ── HAMBURGER MENU ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-nav');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+    // ── NAV SCROLL ──
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+  </script>
+
+</body>
+
+</html>

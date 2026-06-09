@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="./logos/Logo_header.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Historia — Los colores de la guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --light-cream: #FAF7F2;
+      --warm-dark: #1A1510;
+      --earth: #6B4C2A;
+      --moss: #4A5C3E;
+      --moss-light: #6B7F5A;
+      --clay: #B5663A;
+      --clay-light: #D4845A;
+      --dust: #C4A97D;
+      --fog: #8A8275;
+      --border: rgba(107, 76, 42, 0.18);
+      --sage: #7A9B6E;
+      --sage-light: #A8C49A;
+      --ochre: #C89B3C;
+      --mauve: #9E7B8C;
+      --terracotta: #C05840;
+      --teal-deep: #2E5C54;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.4rem 3.5rem;
+      background: rgba(245, 240, 232, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fog);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fog);
+      transition: color 0.3s;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--clay);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--fog);
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .social-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 10rem 3.5rem 5rem;
+      background: var(--earth);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #4a2e14 0%, #2a1a0a 60%, #160c04 100%);
+    }
+
+    .page-crumb {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-crumb a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .page-crumb a:hover {
+      color: var(--dust);
+    }
+
+    .page-hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--dust);
+    }
+
+    .page-hero-sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.55);
+      font-weight: 300;
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .leaf-deco {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    @keyframes floatA {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    @keyframes floatB {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(3deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+    }
+
+    @keyframes floatC {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(2deg);
+      }
+    }
+
+    @keyframes handFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(-1deg);
+      }
+    }
+
+    /* ── MONTSERRAT 900 para headings de pantalla ── */
+    .page-hero-title,
+    .sec-title,
+    .stat-n,
+    .footer-brand,
+    .footer-quote,
+    .tl-title,
+    .inline-quote p,
+    .cat-title,
+    .intro-num,
+    .tc-product,
+    .method-title {
+      font-weight: 900;
+    }
+
+    /* ── BIBLIA NAV ── */
+    .nav-biblia {
+      color: #B28B17 !important;
+      border: 1px solid rgba(178, 139, 23, 0.38) !important;
+      padding: 0.28rem 0.75rem !important;
+      border-radius: 2px;
+    }
+
+    .nav-biblia:hover {
+      background: rgba(178, 139, 23, 0.1) !important;
+    }
+
+    .nav-biblia::after {
+      display: none !important;
+    }
+
+    /* ── LEAF ENTRANCE ── */
+    .leaf-deco {
+      transition: opacity 0.9s ease;
+    }
+
+    .leaf-deco.leaf-hidden {
+      opacity: 0 !important;
+    }
+
+
+    /* UNIVERSE NAV */
+    .universe-nav {
+      background: var(--warm-dark);
+      padding: 0 3.5rem;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.06);
+    }
+
+    .universe-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .u-tab {
+      padding: 1.1rem 1.8rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: rgba(245, 240, 232, 0.4);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s;
+      white-space: nowrap;
+      background: none;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .u-tab:hover {
+      color: rgba(245, 240, 232, 0.8);
+    }
+
+    .u-tab.active {
+      color: var(--cream);
+      border-bottom-color: var(--clay);
+    }
+
+    /* STORY CARDS */
+    .stories-wrap {
+      padding: 5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .story-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 1px;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: box-shadow 0.4s;
+    }
+
+    .story-card:hover {
+      box-shadow: 0 8px 40px rgba(107, 76, 42, 0.15);
+    }
+
+    .story-card.reverse {
+      direction: rtl;
+    }
+
+    .story-card.reverse>* {
+      direction: ltr;
+    }
+
+    .story-img {
+      background: var(--warm-dark);
+      position: relative;
+      overflow: hidden;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .story-img-bg {
+      position: absolute;
+      inset: 0;
+    }
+
+    .story-img-content {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      padding: 2rem;
+    }
+
+    /* Estilos para las imágenes reales de las historias */
+    .story-real-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 0;
+    }
+
+    .story-card:hover .story-real-img {
+      transform: scale(1.06);
+    }
+
+    .story-img-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(26, 21, 16, 0.1) 0%, rgba(26, 21, 16, 0.6) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .s-ph-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(196, 169, 125, 0.35);
+      font-weight: 600;
+    }
+
+    .s-ph-icon {
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgba(196, 169, 125, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .s-ph-icon svg {
+      width: 24px;
+      height: 24px;
+      stroke: rgba(196, 169, 125, 0.3);
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+    }
+
+    .story-info {
+      padding: 3.5rem;
+      background: var(--light-cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .s-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 5rem;
+      font-weight: 700;
+      color: rgba(107, 76, 42, 0.08);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .s-type {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 600;
+      margin-bottom: 0.7rem;
+    }
+
+    .s-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: var(--warm-dark);
+    }
+
+    .s-char {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(26, 21, 16, 0.7);
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+    }
+
+    .s-char span {
+      color: var(--moss);
+      margin-left: 0.5rem;
+      font-weight: 700;
+    }
+
+    .s-body {
+      font-size: 0.94rem;
+      line-height: 1.85;
+      color: rgba(26, 21, 16, 0.85);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+
+    .s-body strong {
+      color: var(--warm-dark);
+      font-weight: 700;
+    }
+
+    .s-channel {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--sage);
+      font-weight: 600;
+      margin-bottom: 1.8rem;
+    }
+
+    .s-channel::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--sage);
+    }
+
+    .s-btn {
+      display: inline-block;
+      background: var(--warm-dark);
+      color: var(--cream);
+      padding: 0.85rem 1.8rem;
+      text-decoration: none;
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 600;
+      border-radius: 2px;
+      transition: all 0.3s;
+      align-self: flex-start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .s-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--clay);
+      transform: translateX(-101%);
+      transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .s-btn:hover::before {
+      transform: translateX(0);
+    }
+
+    .s-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── CHARACTERS SECTION (REDISEÑO PREMIUM) ── */
+    .chars-section {
+      padding: 8rem 3.5rem;
+      background: var(--warm-dark);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .chars-header {
+      position: relative;
+      z-index: 10;
+      margin-bottom: 4rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Forzamos 6 columnas exactas y reducimos el gap */
+    .chars-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1.2rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .char-card {
+      background: rgba(245, 240, 232, 0.02);
+      border: 1px solid rgba(245, 240, 232, 0.06);
+      border-radius: 6px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      cursor: pointer;
+    }
+
+    .char-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(245, 240, 232, 0.15);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+      background: rgba(245, 240, 232, 0.04);
+    }
+
+    .char-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      /* <--- Esto salva las cabezas */
+      filter: grayscale(100%) opacity(0.85) contrast(1.1);
+      transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .char-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(100%) opacity(0.85) contrast(1.1);
+      transition: filter 0.5s ease, transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .char-card:hover .char-img-wrap img {
+      filter: grayscale(0%) opacity(1) contrast(1);
+      transform: scale(1.05);
+    }
+
+    /* Fallback para personajes sin foto (como los papás) */
+    .char-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 4rem;
+      font-weight: 900;
+      color: rgba(245, 240, 232, 0.1);
+      background: linear-gradient(145deg, #1e2f18, #0f1c0c);
+      transition: transform 0.6s ease;
+    }
+
+    .char-card:hover .char-fallback {
+      transform: scale(1.05);
+      color: rgba(245, 240, 232, 0.2);
+    }
+
+    /* Línea de color que aparece en hover */
+    .char-color-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+      transform-origin: left;
+    }
+
+    .char-card:hover .char-color-bar {
+      transform: scaleX(1);
+    }
+
+    .char-card.tomas .char-color-bar {
+      background: var(--clay);
+    }
+
+    .char-card.padres .char-color-bar {
+      background: var(--sage);
+    }
+
+    .char-card.king .char-color-bar {
+      background: var(--ochre);
+    }
+
+    .char-card.finca .char-color-bar {
+      background: var(--mauve);
+    }
+
+    .char-card.diana .char-color-bar {
+      background: var(--teal-deep);
+    }
+
+    .char-card.hermanos .char-color-bar {
+      background: var(--dust);
+    }
+
+    .char-info {
+      padding: 1.5rem 1.2rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .char-role {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fog);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .char-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      margin-bottom: 1rem;
+      color: var(--cream);
+      letter-spacing: -0.01em;
+    }
+
+    .char-desc {
+      font-size: 0.85rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.55);
+      font-weight: 300;
+    }
+
+    /* REVEAL */
+    [data-reveal] {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    [data-reveal="fade-up"] {
+      transform: translateY(40px);
+    }
+
+    [data-reveal="fade-left"] {
+      transform: translateX(40px);
+    }
+
+    [data-reveal="fade-right"] {
+      transform: translateX(-40px);
+    }
+
+    [data-reveal="scale"] {
+      transform: scale(0.88);
+    }
+
+    [data-reveal="wipe"] {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+      opacity: 1;
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+      clip-path: none;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), clip-path 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-reveal].revealed.delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    [data-reveal].revealed.delay-2 {
+      transition-delay: 0.22s;
+    }
+
+    [data-reveal].revealed.delay-3 {
+      transition-delay: 0.34s;
+    }
+
+    [data-reveal].revealed.delay-4 {
+      transition-delay: 0.46s;
+    }
+
+    [data-reveal].revealed.delay-5 {
+      transition-delay: 0.58s;
+    }
+
+    [data-reveal].revealed.delay-6 {
+      transition-delay: 0.70s;
+    }
+
+    .split-line {
+      overflow: hidden;
+      display: block;
+    }
+
+    .split-line span {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    }
+
+    .split-line.revealed span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .split-line.delay-1 span {
+      transition-delay: 0.12s;
+    }
+
+    .split-line.delay-2 span {
+      transition-delay: 0.24s;
+    }
+
+    .split-line.delay-3 span {
+      transition-delay: 0.36s;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--warm-dark);
+      color: var(--cream);
+      padding: 4rem 3.5rem 2rem;
+      border-top: 1px solid rgba(245, 240, 232, 0.06);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+      padding-bottom: 3rem;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-about {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 300;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .footer-social-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    .footer-social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .footer-social-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a {
+      font-size: 0.8rem;
+      color: rgba(245, 240, 232, 0.4);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--cream);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: rgba(245, 240, 232, 0.2);
+      font-weight: 300;
+    }
+
+    .footer-quote {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(196, 169, 125, 0.45);
+      text-align: right;
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .story-card {
+        grid-template-columns: 1fr;
+      }
+
+      .story-card.reverse {
+        direction: ltr;
+      }
+
+      .stories-wrap {
+        padding: 4rem 1.5rem;
+      }
+
+      .page-hero {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .chars-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .universe-nav {
+        padding: 0 1.5rem;
+      }
+    }
+
+    /* Hamburger CSS */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 201;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--warm-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: rgba(245, 240, 232, 0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .nav-mobile-overlay.open {
+      display: flex;
+    }
+
+    .nav-mobile-overlay a {
+      font-family: 'HauteSauce', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-mobile-overlay a:hover,
+    .nav-mobile-overlay a.active {
+      color: var(--clay);
+    }
+
+    .nav-mobile-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media(max-width:900px) {
+
+      .nav-links,
+      .nav-social {
+        display: none !important;
+      }
+
+      .nav-hamburger {
+        display: flex !important;
+      }
+    }
+
+    @media(max-width: 1200px) {
+
+      /* En tablets o laptops pequeñas, pasamos a 3 arriba y 3 abajo */
+      .chars-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+    }
+
+    @media(max-width: 768px) {
+
+      /* En tablets verticales, 2 por fila */
+      .chars-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media(max-width: 480px) {
+
+      /* En celulares, 1 por fila */
+      .chars-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="preloader"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 1s ease;">
+    <img src="./logos/Logo_preloader.png" alt="Cargando..."
+      style="max-width: 250px; animation: smoothPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+  </div>
+  <style>
+    @keyframes smoothPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.style.display = 'none', 1000);
+        }, 1500);
+      }
+    });
+  </script>
+
+
+  <nav id="main-nav">
+    <a href="./index.html" class="nav-logo" style="display:flex;align-items:center;"><img src="./logos/Logo_header.png"
+        alt="Los colores de la guerra" style="height:80px;"></a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="">Inicio</a></li>
+      <li><a href="./contexto.html" class="">Contexto</a></li>
+      <li><a href="./historia.html" class="active">Historia</a></li>
+      <li><a href="./experiencia.html" class="">Experiencia Transmedia</a></li>
+      <li><a href="./equipos.html" class="">Equipos</a></li>
+      <li><a href="#" class="nav-biblia" title="Próximamente">Biblia ↗</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="social-icon"
+        aria-label="Facebook"><svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="social-icon"
+        aria-label="YouTube"><svg viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg></a>
+      <a href="https://www.tiktok.com/@loscoloresdelaguerra" target="_blank" class="social-icon"
+        aria-label="TikTok"><svg viewBox="0 0 24 24">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+      <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank" class="social-icon"
+        aria-label="Instagram"><svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="nav-mobile-overlay" id="mobile-nav">
+    <a href="./index.html" class="">Inicio</a>
+    <a href="./contexto.html" class="">Contexto</a>
+    <a href="./historia.html" class="active">Historia</a>
+    <a href="./experiencia.html" class="">Experiencia</a>
+    <a href="./equipos.html" class="">Equipos</a>
+    <a href="#" style="color:#B28B17;font-size:1.5rem;">Biblia Transmedia</a>
+    <div class="nav-mobile-social">
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Instagram"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Facebook"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="TikTok"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+    </div>
+  </div>
+
+
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="vector-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="6" dy="12" stdDeviation="8" flood-color="#051010" flood-opacity="0.6" />
+        </filter>
+        <filter id="vector-shadow-light" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="3" dy="6" stdDeviation="4" flood-color="#051010" flood-opacity="0.4" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="leaf-deco" style="top:-20px; left:-30px; width:clamp(100px, 15vw, 160px); z-index:1;">
+      <svg viewBox="0 0 200 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C80,10 150,60 180,180 C110,130 50,90 0,0 Z" fill="#2E4A35" />
+        <path d="M30,20 C80,5 120,25 130,55 C90,55 60,45 30,20 Z" fill="#4A7A40" />
+        <path d="M70,60 C130,30 170,50 180,90 C130,90 100,80 70,60 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="bottom:-20px; left:-30px; width:clamp(90px, 12vw, 140px); z-index:1;">
+      <svg viewBox="0 0 150 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C30,100 80,40 140,0 C100,70 50,130 0,200 Z" fill="#3A6030" />
+        <path d="M20,200 C50,120 100,70 150,40 C110,100 60,150 20,200 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="top:-40px; right:-20px; width:clamp(200px, 30vw, 360px); z-index:2;">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 180,-20 Q 150,120 40,250" fill="none" stroke="#1A2D20" stroke-width="4" />
+        <path d="M 160,20 C 110,-10 60,20 70,60 C 100,70 140,50 160,20 Z" fill="#4A7A40" />
+        <path d="M 145,80 C 80,60 40,110 50,140 C 90,140 130,110 145,80 Z" fill="#5C8A50" />
+        <path d="M 115,150 C 60,140 30,190 45,220 C 80,210 105,180 115,150 Z" fill="#3A6030" />
+        <path d="M 80,210 C 30,210 10,250 30,280 C 60,260 75,240 80,210 Z" fill="#4A8C60" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="bottom:-50px; right:-30px; width:clamp(250px, 38vw, 480px); z-index:4;">
+      <svg viewBox="0 0 300 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 320,320 C 260,140 140,100 40,150 C 110,210 200,260 320,320 Z" fill="#1A332E" />
+        <path d="M 320,320 Q 180,150 40,150" fill="none" stroke="#11221D" stroke-width="3" />
+        <path d="M 280,320 C 180,160 50,170 10,240 C 100,270 180,290 280,320 Z" fill="#2E5C54" />
+        <path d="M 280,320 Q 130,200 10,240" fill="none" stroke="#1A332E" stroke-width="3" />
+        <path d="M 220,320 C 140,200 30,230 20,310 C 80,330 160,330 220,320 Z" fill="#4A8C60" />
+        <path d="M 220,320 Q 100,250 20,310" fill="none" stroke="#2E5C54" stroke-width="3" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="top:30%; right:-10px; width:clamp(150px, 22vw, 280px); z-index:1;">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 220,0 Q 150,120 0,220" fill="none" stroke="#203A1A" stroke-width="3" />
+        <path d="M 190,30 Q 120,10 80,50 Q 130,60 170,55 Z" fill="#4A8C60" />
+        <path d="M 155,80 Q 80,70 30,120 Q 90,120 135,105 Z" fill="#5C9A70" />
+        <path d="M 115,130 Q 40,140 -10,190 Q 50,180 95,155 Z" fill="#4A7A40" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="top:18%; right:22%; width:clamp(70px, 11vw, 130px); z-index:3;">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B28B17" />
+        <path d="M 50,140 Q 35,70 50,0" fill="none" stroke="#8A6A10" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="bottom:25%; right:28%; width:clamp(60px, 9vw, 110px); z-index:2; transform: scaleX(-1) rotate(15deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#8A4A25" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div
+      style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: flex-start; width: 100%;">
+      <p class="page-crumb"><a href="./index.html">Inicio</a> &nbsp;/&nbsp; Historia</p>
+      <h1 class="page-hero-title">
+        <span class="split-line"><span>Un universo de</span></span>
+        <span class="split-line delay-1"><span><em>seis historias</em></span></span>
+        <span class="split-line delay-2"><span>entrelazadas</span></span>
+      </h1>
+      <p class="page-hero-sub">Cada relato es una entrada distinta a la misma realidad. Se pueden leer por separado,
+        pero se enriquecen juntos.</p>
+    </div>
+  </div>
+
+  <!-- UNIVERSE TABS -->
+  <div class="universe-nav" id="universe-nav">
+    <button class="u-tab active" data-target="all">Todas</button>
+    <button class="u-tab" data-target="tomas">Las Cartas de Tomás</button>
+    <button class="u-tab" data-target="arrozales">El Silencio de los Arrozales</button>
+    <button class="u-tab" data-target="king">The King</button>
+    <button class="u-tab" data-target="sombras">Entre las Sombras</button>
+    <button class="u-tab" data-target="morrales">Morrales Vacíos</button>
+    <button class="u-tab" data-target="azul">El Azul No Se Borra</button>
+  </div>
+
+  <!-- STORY CARDS -->
+  <div class="stories-wrap">
+
+    <!-- Plant deco -->
+    <div class="leaf-deco"
+      style="top:62%;left:-10px;width:clamp(75px,11vw,130px);animation:handFloat 8.5s ease-in-out infinite 2s;z-index:3;">
+      <svg viewBox="0 0 130 90" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0,48 Q18,44 35,42 Q55,40 68,35 Q82,30 86,28 Q90,26 88,31 Q86,36 75,40 Q84,35 88,33 Q93,31 91,37 Q89,43 77,46 Q86,43 89,48 Q87,55 72,54 L50,56 Q35,58 20,60 L0,62Z"
+          fill="#3D6B68" />
+        <path d="M35,42 Q30,33 33,26 Q37,19 44,22 Q49,25 46,34 Q43,39 35,42Z" fill="#3D6B68" />
+      </svg>
+    </div>
+
+    <!-- STORY 1 -->
+    <div class="story-card" data-story="tomas" data-reveal="fade-up" style="margin-bottom:2rem;">
+      <div class="story-img">
+        <img src="./covers/Cuadrado/Cartasdetomas_square.png" alt="Las Cartas de Tomás" class="story-real-img">
+        <div class="story-img-overlay"></div>
+        <!-- leaf decoration inside card (MANTENER) -->
+        <div
+          style="position:absolute;top:-20px;right:-15px;width:140px;opacity:0.25;pointer-events:none;animation:floatA 7s ease-in-out infinite; z-index:2;">
+          <svg viewBox="0 0 140 130" xmlns="http://www.w3.org/2000/svg">
+            <path d="M110,5 Q145,35 130,75 Q115,115 70,120 Q30,125 10,90 Q-10,55 15,28 Q40,0 110,5Z"
+              fill="var(--sage-light)" />
+          </svg>
+        </div>
+      </div>
+      <div class="story-info">
+        <div class="s-num">01</div>
+        <p class="s-type">Novela gráfica · Obra seminal</p>
+        <h2 class="s-title">Las Cartas de Tomás</h2>
+        <p class="s-char">Personaje central <span>Tomás Herrera Suárez · 13 años</span></p>
+        <p class="s-body">El martes 2 de febrero de 2022 amaneció lloviendo en Vistahermosa, Meta. Sus hermanos estaban
+          enfermos, pero <strong>Tomás Herrera Suárez</strong>, de 13 años, insistió en ir al colegio solo. Esa tarde no
+          regresó. Un retén ilegal de las disidencias de las FARC lo interceptó en el camino y lo subió a una camioneta
+          junto a otros veinte niños reclutados ese día.</p>
+        <p class="s-body">Su profesora, Diana Ospina, le había regalado esa mañana un cuaderno azul para que escribiera
+          todo lo que le generara curiosidad. Tomás lo guardó en su mochila. Esa misma tarde se lo confiscaron. Meses
+          después lo recuperó como recompensa por haber alertado al campamento de la presencia militar. A partir de
+          entonces lo escondía dentro de su uniforme y por las noches, en guardia, lo sacaba para escribirle cartas a su
+          mamá con una linterna pequeña. Cartas que nunca saldrían del campamento. Cartas que se convirtieron en su
+          única forma de recordar que todavía era él.</p>
+        <p class="s-body">Tres años después, Tomás escapa en medio de un operativo fallido, se entrega al Ejército en un
+          cafetal del Meta y llega a Bogotá con el cuaderno azul lleno. Con el tiempo estudia Derecho, escribe un libro
+          basado en esas cartas y trabaja con una fundación de víctimas del conflicto. Esta es la historia seminal del
+          universo.</p>
+        <p class="s-channel">Instagram · YouTube</p>
+        <a href="./experiencia.html" class="s-btn"><span>Ver el producto →</span></a>
+      </div>
+    </div>
+
+    <!-- STORY 2 -->
+    <div class="story-card reverse" data-story="arrozales" data-reveal="fade-up" data-delay="0.1"
+      style="margin-bottom:2rem;">
+      <div class="story-img">
+        <img src="./covers/Cuadrado/silencio_square.png" alt="El Silencio de los Arrozales" class="story-real-img">
+        <div class="story-img-overlay"></div>
+        <!-- (MANTENER LA HOJA) -->
+        <div
+          style="position:absolute;bottom:-10px;left:-10px;width:120px;opacity:0.2;pointer-events:none;animation:floatC 9s ease-in-out infinite; z-index:2;">
+          <svg viewBox="0 0 120 100" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="60" cy="50" rx="55" ry="22" fill="var(--dust)" transform="rotate(-30,60,50)" />
+          </svg>
+        </div>
+      </div>
+      <div class="story-info" style="background:var(--cream);">
+        <div class="s-num">02</div>
+        <p class="s-type">Cómic Interactivo</p>
+        <h2 class="s-title">El Silencio de los Arrozales</h2>
+        <p class="s-char">Personajes <span>Luz María Suárez y Raúl Herrera</span></p>
+        <p class="s-body"><strong>Luz María Suárez</strong> y <strong>Raúl Herrera</strong> eran arroceros en
+          Vistahermosa. El día que se llevaron a Tomás, Raúl llegó del jornal empapado de lluvia y quiso ir al
+          campamento a reclamarlo, machete en mano. Luz María lo atajó de la camisa. La vecina, doña Mercedes —que ya
+          había perdido un hijo— les advirtió: "Si usted va allá, el patrón no le devuelve al mijo y nos pone la lápida
+          a todos".</p>
+        <p class="s-body">Luz María lavaba la ropa de Tomás cada ocho días aunque estuviera limpia. La fregaba, la ponía
+          al sol, la doblaba y la acomodaba en su cama con el olor al jabón que a él le gustaba. Raúl se volvió una
+          sombra, trabajando sin parar para no tener que hablar de la falta que les hacía el muchacho. En 2025, cuando
+          Tomás llama desde Bogotá, la familia debe huir del Meta. Se reubican en Medellín, donde montan una tienda y
+          papelería con los recursos de la reparación.</p>
+        <p class="s-body">Narrada a través de un cómic interactivo donde los usuarios exploran la historia, toman
+          decisiones y descubren fragmentos del diario de Tomás para vivir la espera desde adentro.</p>
+        <p class="s-channel">Genially</p>
+        <a href="./producto-silencio-arrozales.html" class="s-btn"><span>Ver el producto →</span></a>
+      </div>
+    </div>
+
+    <!-- STORY 3 -->
+    <div class="story-card" data-story="king" data-reveal="fade-up" data-delay="0.05" style="margin-bottom:2rem;">
+      <div class="story-img">
+        <img src="./covers/Cuadrado/theking_square.png" alt="The King" class="story-real-img">
+        <div class="story-img-overlay"></div>
+      </div>
+      <div class="story-info">
+        <div class="s-num">03</div>
+        <p class="s-type">Shorts Animados</p>
+        <h2 class="s-title">The King</h2>
+        <p class="s-char">Personaje <span>Joaquín, alias "The King" · 15 años</span></p>
+        <p class="s-body"><strong>Joaquín</strong> creció en el Valle del Cauca, hijo de una jornalera de trapiches y de
+          un hombre que nunca conoció. Cuando descubre que ese hombre fue alias "El Paisa" —comandante guerrillero
+          asesinado en 2021—, entiende que ingresó voluntariamente a la misma estructura que destruyó a su madre. Dentro
+          del campamento lo llaman "The King": es el recluta más obediente, el que nunca llora, el que nunca pregunta.
+          Pero no es fuerte porque no siente miedo; es fuerte porque enterró su nombre para seguir vivo.</p>
+        <p class="s-body">Cuando Tomás llega al campamento, Joaquín lo observa escribir de noche con una linterna. Nunca
+          aprendió a leer. Poco a poco Tomás le enseña las letras. Joaquín escapa con Tomás en el operativo de mayo de
+          2025, pero ya tiene 18 años: el Estado no lo trata como víctima. Muere en La Modelo tres meses después. Antes
+          de morir le escribe a su madre una carta llena de errores de ortografía —aprendió a escribir tarde, gracias a
+          Tomás.</p>
+        <p class="s-channel">Facebook · TikTok</p>
+        <a href="./experiencia.html" class="s-btn"><span>Ver el producto →</span></a>
+      </div>
+    </div>
+
+    <!-- STORY 4 -->
+    <div class="story-card reverse" data-story="sombras" data-reveal="fade-up" data-delay="0.1"
+      style="margin-bottom:2rem;">
+      <div class="story-img">
+        <img src="./covers/Cuadrado/entresombras_square.png" alt="Entre las Sombras" class="story-real-img">
+        <div class="story-img-overlay"></div>
+      </div>
+      <div class="story-info" style="background:var(--cream);">
+        <div class="s-num">04</div>
+        <p class="s-type">Audiorelatos · Podcast</p>
+        <h2 class="s-title">Entre las Sombras</h2>
+        <p class="s-char">Personaje <span>Efraín, alias "El Flaco"</span></p>
+        <p class="s-body">A finales de los años 80, en las faldas del Caquetá, <strong>Efraín</strong> no soñaba con
+          fusiles: quería ser caficultor como su padre, don Gildardo. Una madrugada de 1988, paramilitares entraron a su
+          finca, usaron las páginas de su libreta de cuentas para prender el fuego, quemaron la casa y mataron a su
+          padre en el patio donde secaban el grano. Efraín tenía once años. Huyó con su madre selva adentro, donde
+          fueron recogidos por las FARC.</p>
+        <p class="s-body">Décadas después es "El Flaco", comandante de la columna 25. El día que Tomás llega al
+          campamento con su cuaderno azul, Efraín siente un pinchazo en algo que creía muerto: su pasado entre los
+          cafetales. Lo recluta para borrar esa mirada pura. Años más tarde, solo y consumido por la vejez, llega a sus
+          manos un libro de portada azul titulado <em>Las cartas de Tomás</em>. Al abrirlo se encuentra con una versión
+          de sí mismo en las páginas.</p>
+        <p class="s-channel">YouTube · Spotify</p>
+        <a href="./producto-entre-sombras.html" class="s-btn"><span>Ver el producto →</span></a>
+      </div>
+    </div>
+
+    <!-- STORY 5 -->
+    <div class="story-card" data-story="morrales" data-reveal="fade-up" data-delay="0.05" style="margin-bottom:2rem;">
+      <div class="story-img">
+        <img src="./covers/Cuadrado/morralesvacios_square.png" alt="Morrales Vacíos" class="story-real-img">
+        <div class="story-img-overlay"></div>
+        <!-- (MANTENER LA HOJA) -->
+        <div
+          style="position:absolute;top:-15px;right:-10px;width:100px;opacity:0.2;pointer-events:none;animation:floatB 8s ease-in-out infinite 2s; z-index:2;">
+          <svg viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="50" cy="45" rx="46" ry="20" fill="var(--mauve)" transform="rotate(20,50,45)" />
+          </svg>
+        </div>
+      </div>
+      <div class="story-info">
+        <div class="s-num">05</div>
+        <p class="s-type">Novela Vertical · WhatsApp</p>
+        <h2 class="s-title">Morrales Vacíos</h2>
+        <p class="s-char">Personaje <span>Diana Ospina · Profesora · 30 años</span></p>
+        <p class="s-body"><strong>Diana Ospina</strong>, oriunda de Villavicencio, llegó a la escuela rural Nuestra
+          Señora del Carmen en Vistahermosa hace cinco meses como parte de un programa de educación popular. El martes 2
+          de febrero de 2022 veinte de sus estudiantes no llegaron a clase. Para el final del día ya sabía que los
+          habían reclutado. Entre ellos estaban Tomás y Sebastián, hijo de Miriam, una enfermera del pueblo.</p>
+        <p class="s-body">Diana no se queda quieta: negocia con comandantes armados, abre su escuela a los hijos de
+          combatientes, visita familias cada viernes con su carpeta de nombres y fechas. Tres años después de la
+          desaparición de Tomás, se reencuentra en un centro de desmovilización con alias El Cachaco —que ahora es un
+          excombatiente en reinserción— y él le da la noticia: Tomás escapó. Ella cierra los ojos, abre la mano y mira
+          el separador de libros con pegatinas de carritos que Tomás dejó un día sobre su escritorio.</p>
+        <p class="s-channel">WhatsApp</p>
+        <a href="./experiencia.html" class="s-btn"><span>Ver el producto →</span></a>
+      </div>
+    </div>
+
+    <!-- STORY 6 -->
+    <div class="story-card reverse" data-story="azul" data-reveal="fade-up" data-delay="0.1"
+      style="margin-bottom:2rem;">
+      <div class="story-img">
+        <img src="./covers/Cuadrado/conlupa_square.png" alt="El Azul No Se Borra" class="story-real-img">
+        <div class="story-img-overlay"></div>
+      </div>
+      <div class="story-info" style="background:var(--cream);">
+        <div class="s-num">06</div>
+        <p class="s-type">Periódico interactivo con AR</p>
+        <h2 class="s-title">El Azul No Se Borra</h2>
+        <p class="s-char">Personajes <span>José y Eva Herrera Suárez · Hermanos de Tomás</span></p>
+        <p class="s-body">Mientras Tomás escribía cartas que nunca salían del campamento, sus hermanos
+          <strong>José</strong> (10 años) y <strong>Eva</strong> (8) le escribían cartas que nunca enviaban desde casa.
+          José las guardaba en una caja de zapatos bajo su colchón; Eva empezó con dibujos —la finca, los cuatro juntos,
+          Tomás en una jungla de colores— y aprendió a escribir mientras esperaba. Cuando Tomás regresa en 2025, la
+          primera noche José le entrega la caja sin decir nada: "Te las escribí. No supe cómo enviártelas." Al leerlas,
+          Tomás entiende que su historia no era solo suya. Esa noche decide que su cuaderno azul se convertirá en un
+          libro.
+        </p>
+        <p class="s-body">También hay una guerrillera de 22 años, <strong>Valentina</strong>, que nunca supo que
+          guardaba el cuaderno de Tomás y murió antes de devolvérselo. Sin ella el cuaderno no habría sobrevivido. El
+          lector encarna al adulto indiferente que, al explorar el periódico impreso y escanearlo con su teléfono,
+          descubre en realidad aumentada todo lo que la tinta sola no podía contar.</p>
+        <p class="s-channel">Impreso · Web AR</p>
+        <a href="./producto-el-azul-no-se-borra.html" class="s-btn"><span>Ver el producto →</span></a>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CHARACTERS -->
+  <div class="chars-section">
+
+    <div class="leaf-deco" style="bottom:-40px; left:-20px; width:clamp(150px, 25vw, 300px); z-index:2;">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,300 C 50,150 150,100 200,0 C 120,120 50,200 0,300 Z" fill="#2E4A35" />
+        <path d="M 0,300 C 50,150 150,100 200,0" fill="none" stroke="#1A2D20" stroke-width="3" />
+        <path d="M 30,220 C 100,180 160,100 180,50 C 110,130 50,180 30,220 Z" fill="#4A7A40" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="top:-30px; right:-30px; width:clamp(200px, 30vw, 350px); z-index:1;">
+      <svg viewBox="0 0 300 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="100" r="80" fill="#1A332E" />
+        <path d="M 300,0 C 200,50 100,150 0,250 C 100,180 200,100 300,0 Z" fill="#3A6030" />
+        <path d="M 220,50 C 150,100 80,180 20,280 C 100,200 180,120 220,50 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco" style="top:40%; left:2%; width:clamp(60px, 10vw, 100px); z-index:3;">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B28B17" />
+        <path d="M 50,140 Q 35,70 50,0" fill="none" stroke="#8A6A10" stroke-width="2" />
+      </svg>
+    </div>
+
+    <div class="chars-header" data-reveal="fade-up">
+      <p class="sec-label"
+        style="font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay-light);font-weight:600;margin-bottom:1rem;">
+        Personajes del universo</p>
+      <h2
+        style="font-family:'Montserrat',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:900;line-height:1.1;color:var(--cream);letter-spacing:-0.02em;">
+        <span class="split-line"><span>Quiénes habitan</span></span>
+        <span class="split-line delay-1"><span>este <em
+              style="font-style:italic;color:var(--dust);font-weight:400;">universo</em></span></span>
+      </h2>
+    </div>
+
+    <div class="chars-grid">
+      <div class="char-card tomas" data-reveal="fade-up" data-delay="0.05">
+        <div class="char-img-wrap">
+          <img src="./personajes/Tomas.jpeg" alt="Tomás">
+          <div class="char-color-bar"></div>
+        </div>
+        <div class="char-info">
+          <p class="char-role">Protagonista · 13 años</p>
+          <h3 class="char-name">Tomás</h3>
+          <p class="char-desc">Reclutado en Vistahermosa, Meta, el 2 de febrero de 2022. Escribe cartas en su cuaderno
+            azul por las noches, en guardia, con una linterna escondida. Sale en 2025, estudia Derecho y escribe un
+            libro.</p>
+        </div>
+      </div>
+
+      <div class="char-card padres" data-reveal="fade-up" data-delay="0.15">
+        <div class="char-img-wrap">
+          <img src="./personajes/LuzMariaSuarez_mamadeTomas.jpeg" alt="Luz María Suárez">
+          <div class="char-color-bar"></div>
+        </div>
+        <div class="char-info">
+          <p class="char-role">Mamá y papá de Tomás</p>
+          <h3 class="char-name">Luz María y Raúl</h3>
+          <p class="char-desc">Arroceros de Vistahermosa. Raúl quiso ir al campamento con el machete; Luz María lo
+            atajó. Ella lavó la ropa de Tomás cada semana aunque estuviera limpia. Hoy tienen una papelería en Medellín.
+          </p>
+        </div>
+      </div>
+
+      <div class="char-card king" data-reveal="fade-up" data-delay="0.25">
+        <div class="char-img-wrap">
+          <img src="./personajes/JoaquínNiño guerrilleroHistoria The King.jpeg" alt="The King">
+          <div class="char-color-bar"></div>
+        </div>
+        <div class="char-info">
+          <p class="char-role">El antagonista ambiguo</p>
+          <h3 class="char-name">The King (Joaquín)</h3>
+          <p class="char-desc">15 años, hijo de alias "El Paisa". Entra voluntariamente a la guerrilla buscando
+            venganza. Tomás le enseña a escribir. Escapa con él en 2025. Muere en La Modelo con una carta llena de
+            errores de ortografía.</p>
+        </div>
+      </div>
+
+      <div class="char-card finca" data-reveal="fade-up" data-delay="0.05">
+        <div class="char-img-wrap">
+          <img src="./personajes/Comandante guerrillero alias El Flaco.png" alt="Fincamala">
+          <div class="char-color-bar"></div>
+        </div>
+        <div class="char-info">
+          <p class="char-role">El comandante</p>
+          <h3 class="char-name">Fincamala</h3>
+          <p class="char-desc">Efraín, alias "El Flaco". Vio morir a su padre en 1988 cuando tenía 11 años. Décadas
+            después recluta a Tomás. En su vejez, una copia del libro de Tomás llega a sus manos y se encuentra con una
+            versión de sí mismo.</p>
+        </div>
+      </div>
+
+      <div class="char-card diana" data-reveal="fade-up" data-delay="0.15">
+        <div class="char-img-wrap">
+          <img src="./personajes/Profe Diana.jpeg" alt="Profe Diana">
+          <div class="char-color-bar"></div>
+        </div>
+        <div class="char-info">
+          <p class="char-role">La maestra que no calló</p>
+          <h3 class="char-name">Profe Diana</h3>
+          <p class="char-desc">30 años. Le regaló a Tomás el cuaderno azul la mañana que lo reclutaron. Negocia con
+            comandantes, abre su escuela a los hijos de combatientes y nunca suelta el separador de libros que él dejó
+            en su escritorio.</p>
+        </div>
+      </div>
+
+      <div class="char-card hermanos" data-reveal="fade-up" data-delay="0.25">
+        <div class="char-img-wrap">
+          <img src="./personajes/Jose_hermano_tomas.jpeg" alt="Valentina y los hermanos">
+          <div class="char-color-bar"></div>
+        </div>
+        <div class="char-info">
+          <p class="char-role">La familia · La que buscó</p>
+          <h3 class="char-name">Hermanos y Valentina</h3>
+          <p class="char-desc">José guarda cartas en una caja de zapatos. Eva empieza con dibujos. Valentina, una joven
+            guerrillera de 22 años, esconde el cuaderno azul en el campamento sin saber por qué, salvando la historia.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="./logos/Logo_footer.png" alt="Los colores de la guerra"
+            style="max-width: 180px;"></div>
+
+
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Páginas</p>
+        <ul>
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./contexto.html">Contexto</a></li>
+          <li><a href="./historia.html">Historia</a></li>
+          <li><a href="./experiencia.html">Experiencia</a></li>
+          <li><a href="./equipos.html">Equipos</a></li>
+          <li><a href="#" style="color:#B28B17;">Biblia Transmedia ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Historias</p>
+        <ul>
+          <li><a href="#">Las Cartas de Tomás</a></li>
+          <li><a href="#">El Silencio de los Arrozales</a></li>
+          <li><a href="#">The King</a></li>
+          <li><a href="#">Entre las Sombras</a></li>
+          <li><a href="#">Morrales Vacíos</a></li>
+          <li><a href="#">El Azul No Se Borra</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Redes sociales</p>
+        <div class="footer-social-row" style="margin-top: 1rem;">
+          <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="footer-social-icon"
+            aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg></a>
+          <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="footer-social-icon"
+            aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg></a>
+          <a href="https://www.tiktok.com/" target="_blank" class="footer-social-icon" aria-label="TikTok"><svg
+              viewBox="0 0 24 24">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+            </svg></a>
+          <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank"
+            class="footer-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-note">Pontificia Universidad Javeriana Cali · Maestría en Comunicación y Creación Interactiva</p>
+      <p class="footer-quote">"Hoy aprendí a disparar. No quería hacerlo. Cerré los ojos cuando sonó el tiro. A veces
+        pienso que si sigo escribiendo estas cartas todavía soy yo." — Tomás</p>
+    </div>
+  </footer>
+
+  <script>
+    // Tabs filter
+    const tabs = document.querySelectorAll('.u-tab');
+    const cards = document.querySelectorAll('.story-card');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.dataset.target;
+        cards.forEach(card => {
+          if (target === 'all' || card.dataset.story === target) {
+            card.style.display = 'grid';
+            requestAnimationFrame(() => { card.style.opacity = '1'; card.style.transform = 'none'; });
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Reveal
+    const revealObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          el.style.transitionDelay = (el.dataset.delay || '0') + 's';
+          el.classList.add('revealed');
+          revealObs.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => revealObs.observe(el));
+
+    const splitObs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); splitObs.unobserve(entry.target); } });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.split-line').forEach(el => splitObs.observe(el));
+    setTimeout(() => { document.querySelectorAll('.page-hero .split-line').forEach(el => el.classList.add('revealed')); }, 200);
+
+    // Leaf cursor trail
+    (function () {
+      const lc = ['#4A5C3E', '#7A9B6E', '#B5663A', '#C89B3C', '#9E7B8C', '#2E5C54'];
+      let lx = 0, ly = 0, tk = 0;
+      document.addEventListener('mousemove', (e) => {
+        tk++; if (tk % 6 !== 0) return;
+        const d = Math.hypot(e.clientX - lx, e.clientY - ly);
+        if (d < 30) return;
+        lx = e.clientX; ly = e.clientY;
+        const el = document.createElement('div');
+        const c = lc[Math.floor(Math.random() * lc.length)];
+        const s = 12 + Math.random() * 16;
+        const r = Math.random() * 360;
+        el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:' + s + 'px;height:' + (s * 1.4) + 'px;opacity:0.5;transform:translate(-50%,-50%) rotate(' + r + 'deg);border-radius:50% 50% 50% 0;background:' + c + ';transition:opacity 0.8s ease,transform 1.2s ease;';
+        document.body.appendChild(el);
+        requestAnimationFrame(() => { el.style.opacity = '0'; el.style.transform = 'translate(-50%,-120%) rotate(' + (r + 45) + 'deg) scale(0.4)'; });
+        setTimeout(() => el.remove(), 1300);
+      });
+    })();
+  </script>
+
+  <script>
+    // ── HAMBURGER MENU ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-nav');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+    // ── NAV SCROLL ──
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── GLOBAL INTERACTIVE: PARALLAX + FLOTACIÓN (HISTORIA) ──
+    (function initHistoriaInteractive() {
+      const leaves = document.querySelectorAll('.leaf-deco');
+
+      leaves.forEach((leaf) => {
+        // Solo asignamos si no tiene ya el transform base para evitar bugs al recargar
+        if (!leaf._baseTransform) {
+          leaf._baseTransform = leaf.style.transform || '';
+          leaf._parallaxDepth = Math.random() * 0.4 + 0.15;
+          leaf._floatPhase = Math.random() * Math.PI * 2;
+          leaf._floatSpeed = Math.random() * 0.001 + 0.0005;
+          leaf.style.transition = 'opacity 1s ease'; // Quitar animaciones CSS que bloqueen
+        }
+      });
+
+      let mouseX = 0;
+      let mouseY = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function animate() {
+        currentX += (mouseX - currentX) * 0.05;
+        currentY += (mouseY - currentY) * 0.05;
+        const now = Date.now();
+
+        leaves.forEach(leaf => {
+          const d = leaf._parallaxDepth;
+          const tx = currentX * d * 80;
+          const ty = currentY * d * 80;
+
+          const floatY = Math.sin(now * leaf._floatSpeed + leaf._floatPhase) * 15;
+          const floatRot = Math.cos(now * leaf._floatSpeed + leaf._floatPhase) * 3;
+
+          leaf.style.transform = `${leaf._baseTransform} translate(${tx}px, ${ty + floatY}px) rotate(${floatRot}deg)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+</body>
+
+</html>

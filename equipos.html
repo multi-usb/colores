@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="./logos/Logo_header.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Equipos — Los colores de la guerra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;0,700;0,900;1,300;1,400;1,700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #F5F0E8;
+      --light-cream: #FAF7F2;
+      --warm-dark: #1A1510;
+      --earth: #6B4C2A;
+      --moss: #4A5C3E;
+      --moss-light: #6B7F5A;
+      --clay: #B5663A;
+      --clay-light: #D4845A;
+      --dust: #C4A97D;
+      --fog: #8A8275;
+      --border: rgba(107, 76, 42, 0.18);
+      --sage: #7A9B6E;
+      --sage-light: #A8C49A;
+      --ochre: #C89B3C;
+      --mauve: #9E7B8C;
+      --terracotta: #C05840;
+      --teal-deep: #2E5C54;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 3.5rem;
+      background: rgba(245, 240, 232, 0.93);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      line-height: 1.2;
+    }
+
+    .nav-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--fog);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fog);
+      transition: color 0.3s;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--clay);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--clay);
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav-social {
+      display: flex;
+      gap: 0.7rem;
+    }
+
+    .social-icon {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.3s;
+      color: var(--fog);
+      text-decoration: none;
+    }
+
+    .social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .social-icon svg {
+      width: 15px;
+      height: 15px;
+      fill: currentColor;
+    }
+
+    @keyframes floatA {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-12px) rotate(1deg);
+      }
+    }
+
+    @keyframes floatB {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(3deg);
+      }
+
+      50% {
+        transform: translateY(-8px) rotate(-1deg);
+      }
+    }
+
+    @keyframes floatC {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+
+      50% {
+        transform: translateY(-15px) rotate(2deg);
+      }
+    }
+
+    @keyframes handFloat {
+
+      0%,
+      100% {
+        transform: translateY(0) rotate(2deg);
+      }
+
+      50% {
+        transform: translateY(-10px) rotate(-1deg);
+      }
+    }
+
+    /* ── MONTSERRAT 900 para headings de pantalla ── */
+    .page-hero-title,
+    .sec-title,
+    .stat-n,
+    .footer-brand,
+    .footer-quote,
+    .tl-title,
+    .inline-quote p,
+    .cat-title,
+    .intro-num,
+    .tc-product,
+    .method-title {
+      font-weight: 900;
+    }
+
+    /* ── BIBLIA NAV ── */
+    .nav-biblia {
+      color: #B28B17 !important;
+      border: 1px solid rgba(178, 139, 23, 0.38) !important;
+      padding: 0.28rem 0.75rem !important;
+      border-radius: 2px;
+    }
+
+    .nav-biblia:hover {
+      background: rgba(178, 139, 23, 0.1) !important;
+    }
+
+    .nav-biblia::after {
+      display: none !important;
+    }
+
+    /* ── LEAF ENTRANCE ── */
+    .leaf-deco {
+      transition: opacity 0.9s ease;
+    }
+
+    .leaf-deco.leaf-hidden {
+      opacity: 0 !important;
+    }
+
+    .leaf-deco {
+      position: absolute;
+      pointer-events: none;
+    }
+
+    /* PAGE HERO */
+    .page-hero {
+      padding: 10rem 3.5rem 5rem;
+      background: var(--mauve);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, #5a3a4c 0%, #321f2c 55%, #1a0f18 100%);
+    }
+
+    .page-crumb {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-crumb a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page-crumb a:hover {
+      color: var(--mauve-light, #C4A0B2);
+    }
+
+    .page-hero-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(3rem, 6vw, 6rem);
+      font-weight: 700;
+      line-height: 1.05;
+      position: relative;
+      z-index: 2;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-hero-title em {
+      font-style: italic;
+      color: var(--mauve-light, #C4A0B2);
+    }
+
+    .page-hero-sub {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.55);
+      font-weight: 300;
+      max-width: 520px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* INTRO STRIP */
+    .intro-strip {
+      padding: 5rem 3.5rem;
+      background: var(--warm-dark);
+      color: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 5rem;
+      align-items: start;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 6rem;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(196, 169, 125, 0.12);
+    }
+
+    /* TEAMS SECTIONS */
+    .teams-wrap {
+      padding: 5rem 3.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Category header */
+    .cat-header {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2rem;
+      align-items: center;
+      margin-bottom: 3rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cat-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: rgba(107, 76, 42, 0.12);
+      line-height: 1;
+    }
+
+    .cat-info {}
+
+    .cat-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .cat-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    /* Team block */
+    /* Team block */
+    .team-block {
+      margin-bottom: 6rem;
+      position: relative;
+      z-index: 10;
+    }
+
+    .team-grid {
+      display: grid;
+      /* Auto-fit adaptable por defecto */
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      background: transparent;
+      /* Quitamos el fondo gris que causaba el bloque vacío */
+    }
+
+    /* Forzamos 5 columnas exactas para transversales y 3 para productos en pantallas grandes */
+    @media(min-width: 1200px) {
+      #grid-transversales {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      #grid-productos {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .team-card {
+      background: var(--light-cream);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2.5rem 1.8rem;
+      transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.4s ease, background 0.4s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 35px rgba(107, 76, 42, 0.08);
+      background: #fff;
+      border-color: rgba(181, 102, 58, 0.3);
+    }
+
+    .tc-dept {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .tc-product {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      margin-bottom: 0.4rem;
+      line-height: 1.3;
+    }
+
+    .tc-role {
+      font-size: 0.82rem;
+      color: var(--fog);
+      font-weight: 300;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      flex-grow: 1;
+    }
+
+    .tc-members {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .tc-member {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .tc-avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--cream);
+      flex-shrink: 0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .tc-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--warm-dark);
+    }
+
+    /* METHODOLOGY SECTION */
+    .method-section {
+      padding: 6rem 3.5rem;
+      background: var(--warm-dark);
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .method-card {
+      padding: 2rem;
+      border: 1px solid rgba(245, 240, 232, 0.08);
+      border-radius: 3px;
+      transition: border-color 0.3s;
+    }
+
+    .method-card:hover {
+      border-color: rgba(181, 102, 58, 0.3);
+    }
+
+    .method-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+
+    .method-icon svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--cream);
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-width: 1.5;
+    }
+
+    .method-title {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--cream);
+    }
+
+    .method-body {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: rgba(245, 240, 232, 0.5);
+      font-weight: 300;
+    }
+
+    /* CREDITS */
+    .credits-section {
+      padding: 6rem 3.5rem;
+      background: var(--cream);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .credits-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 2.5rem;
+    }
+
+    .credits-table th {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--fog);
+      padding: 0.8rem 1.2rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .credits-table td {
+      font-size: 0.85rem;
+      padding: 0.9rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 300;
+      color: var(--warm-dark);
+    }
+
+    .credits-table tr:hover td {
+      background: var(--light-cream);
+    }
+
+    .credits-table td:first-child {
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    /* REVEAL */
+    [data-reveal] {
+      opacity: 0;
+      will-change: transform, opacity;
+    }
+
+    [data-reveal="fade-up"] {
+      transform: translateY(40px);
+    }
+
+    [data-reveal="fade-left"] {
+      transform: translateX(40px);
+    }
+
+    [data-reveal="fade-right"] {
+      transform: translateX(-40px);
+    }
+
+    [data-reveal="scale"] {
+      transform: scale(0.88);
+    }
+
+    [data-reveal].revealed {
+      opacity: 1;
+      transform: none;
+      transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-reveal].revealed.delay-1 {
+      transition-delay: 0.1s;
+    }
+
+    [data-reveal].revealed.delay-2 {
+      transition-delay: 0.22s;
+    }
+
+    [data-reveal].revealed.delay-3 {
+      transition-delay: 0.34s;
+    }
+
+    [data-reveal].revealed.delay-4 {
+      transition-delay: 0.46s;
+    }
+
+    .split-line {
+      overflow: hidden;
+      display: block;
+    }
+
+    .split-line span {
+      display: block;
+      transform: translateY(105%);
+      opacity: 0;
+      transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s ease;
+    }
+
+    .split-line.revealed span {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .split-line.delay-1 span {
+      transition-delay: 0.12s;
+    }
+
+    .split-line.delay-2 span {
+      transition-delay: 0.24s;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--warm-dark);
+      color: var(--cream);
+      padding: 4rem 3.5rem 2rem;
+      border-top: 1px solid rgba(245, 240, 232, 0.06);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 3rem;
+      border-bottom: 1px solid rgba(245, 240, 232, 0.08);
+      padding-bottom: 3rem;
+    }
+
+    .footer-brand {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .footer-about {
+      font-size: 0.8rem;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.4);
+      font-weight: 300;
+      max-width: 280px;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-social-row {
+      display: flex;
+      gap: 0.6rem;
+    }
+
+    .footer-social-icon {
+      width: 34px;
+      height: 34px;
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      text-decoration: none;
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    .footer-social-icon:hover {
+      border-color: var(--clay);
+      color: var(--clay);
+    }
+
+    .footer-social-icon svg {
+      width: 14px;
+      height: 14px;
+      fill: currentColor;
+    }
+
+    .footer-col-title {
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--dust);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .footer-col ul {
+      list-style: none;
+    }
+
+    .footer-col li {
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-col a {
+      font-size: 0.8rem;
+      color: rgba(245, 240, 232, 0.4);
+      text-decoration: none;
+      font-weight: 300;
+      transition: color 0.3s;
+    }
+
+    .footer-col a:hover {
+      color: var(--cream);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .footer-note {
+      font-size: 0.72rem;
+      color: rgba(245, 240, 232, 0.2);
+      font-weight: 300;
+    }
+
+    .footer-quote {
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-size: 0.85rem;
+      color: rgba(196, 169, 125, 0.45);
+      text-align: right;
+    }
+
+    @media(max-width:900px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .teams-wrap,
+      .credits-section,
+      .method-section {
+        padding: 4rem 1.5rem;
+      }
+
+      .page-hero {
+        padding: 8rem 1.5rem 4rem;
+      }
+
+      .intro-strip {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem;
+        gap: 2rem;
+      }
+
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .credits-table {
+        font-size: 0.78rem;
+      }
+    }
+
+    /* Hamburger CSS */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+      z-index: 201;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--warm-dark);
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
+
+    .nav-hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .nav-hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    .nav-mobile-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 199;
+      background: rgba(245, 240, 232, 0.98);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      padding: 5rem 2rem 3rem;
+    }
+
+    .nav-mobile-overlay.open {
+      display: flex;
+    }
+
+    .nav-mobile-overlay a {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-mobile-overlay a:hover,
+    .nav-mobile-overlay a.active {
+      color: var(--clay);
+    }
+
+    .nav-mobile-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    @media(max-width:900px) {
+
+      .nav-links,
+      .nav-social {
+        display: none !important;
+      }
+
+      .nav-hamburger {
+        display: flex !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="preloader"
+    style="position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: var(--cream); z-index: 9999; display: flex; align-items: center; justify-content: center; transition: opacity 1s ease;">
+    <img src="./logos/Logo_preloader.png" alt="Cargando..."
+      style="max-width: 250px; animation: smoothPulse 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;">
+  </div>
+  <style>
+    @keyframes smoothPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+
+      50% {
+        transform: scale(1.05);
+        opacity: 1;
+      }
+
+      100% {
+        transform: scale(0.95);
+        opacity: 0.6;
+      }
+    }
+  </style>
+  <script>
+    window.addEventListener('load', function () {
+      const preloader = document.getElementById('preloader');
+      if (preloader) {
+        setTimeout(() => {
+          preloader.style.opacity = '0';
+          setTimeout(() => preloader.style.display = 'none', 1000);
+        }, 1500);
+      }
+    });
+  </script>
+
+
+  <nav id="main-nav">
+    <a href="./index.html" class="nav-logo" style="display:flex;align-items:center;"><img src="./logos/Logo_header.png"
+        alt="Los colores de la guerra" style="height:80px;"></a>
+    <ul class="nav-links">
+      <li><a href="./index.html" class="">Inicio</a></li>
+      <li><a href="./contexto.html" class="">Contexto</a></li>
+      <li><a href="./historia.html" class="">Historia</a></li>
+      <li><a href="./experiencia.html" class="">Experiencia Transmedia</a></li>
+      <li><a href="./equipos.html" class="active">Equipos</a></li>
+      <li><a href="#" class="nav-biblia" title="Próximamente">Biblia ↗</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="social-icon"
+        aria-label="Facebook"><svg viewBox="0 0 24 24">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="social-icon"
+        aria-label="YouTube"><svg viewBox="0 0 24 24">
+          <path
+            d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+        </svg></a>
+      <a href="https://www.tiktok.com/@loscoloresdelaguerra" target="_blank" class="social-icon"
+        aria-label="TikTok"><svg viewBox="0 0 24 24">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+      <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank" class="social-icon"
+        aria-label="Instagram"><svg viewBox="0 0 24 24">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE NAV OVERLAY -->
+  <div class="nav-mobile-overlay" id="mobile-nav">
+    <a href="./index.html" class="">Inicio</a>
+    <a href="./contexto.html" class="">Contexto</a>
+    <a href="./historia.html" class="">Historia</a>
+    <a href="./experiencia.html" class="">Experiencia</a>
+    <a href="./equipos.html" class="active">Equipos</a>
+    <a href="#" style="color:#B28B17;font-size:1.5rem;">Biblia Transmedia</a>
+    <div class="nav-mobile-social">
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Instagram"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="Facebook"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+        </svg></a>
+      <a href="#" class="social-icon" style="border-color:rgba(107,76,42,0.3);" aria-label="TikTok"><svg
+          viewBox="0 0 24 24" style="width:15px;height:15px;fill:var(--fog)">
+          <path
+            d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+        </svg></a>
+    </div>
+  </div>
+
+  <!-- PAGE HERO (ACTUALIZADO: FLORA PARALLAX 100% OPACA Y TEXTO CENTRADO) -->
+  <div class="page-hero">
+    <div class="page-hero-bg"></div>
+
+    <!-- Definición de filtros de sombra vectorial de alta definición -->
+    <svg style="width:0;height:0;position:absolute;" aria-hidden="true" focusable="false">
+      <defs>
+        <filter id="vector-shadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="6" dy="12" stdDeviation="8" flood-color="#050505" flood-opacity="0.6" />
+        </filter>
+        <filter id="vector-shadow-light" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="3" dy="6" stdDeviation="4" flood-color="#050505" flood-opacity="0.4" />
+        </filter>
+      </defs>
+    </svg>
+
+    <!-- ========================================== -->
+    <!-- FLORA EN EL HERO DE EQUIPOS                -->
+    <!-- ========================================== -->
+
+    <!-- Planta 1: Esquina Superior Izquierda -->
+    <div class="leaf-deco" style="top:-20px; left:-30px; width:clamp(120px, 18vw, 220px); z-index:2;">
+      <svg viewBox="0 0 200 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,0 C80,10 150,60 180,180 C110,130 50,90 0,0 Z" fill="#2E4A35" />
+        <path d="M30,20 C80,5 120,25 130,55 C90,55 60,45 30,20 Z" fill="#4A7A40" />
+        <path d="M70,60 C130,30 170,50 180,90 C130,90 100,80 70,60 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <!-- Planta 2: Abajo Izquierda -->
+    <div class="leaf-deco"
+      style="bottom:-40px; left:10px; width:clamp(100px, 15vw, 180px); z-index:1; transform: rotate(15deg);">
+      <svg viewBox="0 0 150 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C30,100 80,40 140,0 C100,70 50,130 0,200 Z" fill="#3A6030" />
+        <path d="M20,200 C50,120 100,70 150,40 C110,100 60,150 20,200 Z" fill="#5C8A50" />
+      </svg>
+    </div>
+
+    <!-- Planta 3: Arriba Derecha (Enredadera colgante) -->
+    <div class="leaf-deco" style="top:-40px; right:-20px; width:clamp(180px, 28vw, 320px); z-index:2;">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 180,-20 Q 150,120 40,250" fill="none" stroke="#1A2D20" stroke-width="4" />
+        <path d="M 160,20 C 110,-10 60,20 70,60 C 100,70 140,50 160,20 Z" fill="#4A7A40" />
+        <path d="M 145,80 C 80,60 40,110 50,140 C 90,140 130,110 145,80 Z" fill="#5C8A50" />
+        <path d="M 115,150 C 60,140 30,190 45,220 C 80,210 105,180 115,150 Z" fill="#3A6030" />
+        <path d="M 80,210 C 30,210 10,250 30,280 C 60,260 75,240 80,210 Z" fill="#4A8C60" />
+      </svg>
+    </div>
+
+    <!-- Planta 4: Abajo Derecha (Hojas base) -->
+    <div class="leaf-deco" style="bottom:-50px; right:-30px; width:clamp(200px, 30vw, 400px); z-index:4;">
+      <svg viewBox="0 0 300 300" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 320,320 C 260,140 140,100 40,150 C 110,210 200,260 320,320 Z" fill="#1A332E" />
+        <path d="M 280,320 C 180,160 50,170 10,240 C 100,270 180,290 280,320 Z" fill="#2E5C54" />
+        <path d="M 220,320 C 140,200 30,230 20,310 C 80,330 160,330 220,320 Z" fill="#4A8C60" />
+      </svg>
+    </div>
+
+    <!-- Acento Púrpura/Mauve (Acorde al branding de la página Equipos) -->
+    <div class="leaf-deco"
+      style="top:25%; left:12%; width:clamp(50px, 8vw, 90px); z-index:3; transform: rotate(15deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#9E7B8C" />
+        <path d="M 50,140 Q 35,70 50,0" fill="none" stroke="#6b4c5e" stroke-width="2" />
+      </svg>
+    </div>
+
+    <!-- Textos Centralizados -->
+    <div
+      style="position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; text-align: center; width: 100%;">
+      <p class="page-crumb"><a href="./index.html">Inicio</a> &nbsp;/&nbsp; Equipos</p>
+      <h1 class="page-hero-title">
+        <span class="split-line"><span>El equipo</span></span>
+        <span class="split-line delay-1"><span>que construyó</span></span>
+        <span class="split-line delay-2"><span><em>todo esto</em></span></span>
+      </h1>
+      <p class="page-hero-sub">Maestría en Comunicación y Creación Interactiva · Pontificia Universidad Javeriana Cali ·
+        2026</p>
+    </div>
+  </div>
+
+  <!-- INTRO STRIP (REDISEÑO: NÚMERO MONUMENTAL Y FLORA PARALLAX) -->
+  <div class="intro-strip"
+    style="align-items: center; padding-top: 8rem; padding-bottom: 8rem; border-top: 1px solid rgba(245,240,232,0.04);">
+
+    <!-- ========================================== -->
+    <!-- FLORA PARALLAX PARA LA SECCIÓN SOBRE EL PROYECTO -->
+    <!-- ========================================== -->
+
+    <!-- Planta 1: Izquierda (Hojas anchas tropicales) -->
+    <div class="leaf-deco"
+      style="top: 50%; left: -40px; width: clamp(120px, 18vw, 220px); transform: translateY(-50%); z-index: 1;">
+      <svg viewBox="0 0 200 250" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 0,50 Q 100,0 180,180 C 100,120 40,100 0,50 Z" fill="#2E4A35" />
+        <path d="M 0,50 Q 90,20 180,180" fill="none" stroke="#1A2D20" stroke-width="3" />
+        <path d="M 30,70 Q 80,60 130,130 C 80,90 50,80 30,70 Z" fill="#4A7A40" />
+      </svg>
+    </div>
+
+    <!-- Planta 2: Derecha (Acento orgánico terracota) -->
+    <div class="leaf-deco"
+      style="bottom: 10%; right: 4%; width: clamp(60px, 8vw, 110px); z-index: 1; transform: rotate(-25deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#8A4A25" stroke-width="2" />
+      </svg>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- CONTENIDO DE LA SECCIÓN (GRILLA 1fr 2fr)   -->
+    <!-- ========================================== -->
+
+    <!-- Columna Izquierda: El número "11" Monumental -->
+    <div
+      style="text-align: center; position: relative; z-index: 10; display: flex; flex-direction: column; justify-content: center;">
+      <div class="intro-num" data-reveal="scale"
+        style="font-size: clamp(8rem, 15vw, 12rem); color: var(--clay); line-height: 0.8; text-shadow: 0 15px 40px rgba(181, 102, 58, 0.25);">
+        6</div>
+      <p style="font-size: 0.7rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--cream); font-weight: 700; margin-top: 1.5rem;"
+        data-reveal="fade-up" data-delay="0.1">Equipos de trabajo</p>
+    </div>
+
+    <!-- Columna Derecha: Texto Explicativo -->
+    <div style="position: relative; z-index: 10;">
+      <p style="font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--clay-light); font-weight: 700; margin-bottom: 1.2rem;"
+        data-reveal="fade-left">Sobre el proyecto</p>
+
+      <h2
+        style="font-family: 'Montserrat', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 900; line-height: 1.2; margin-bottom: 1.8rem; color: var(--cream); letter-spacing: -0.02em;"
+        data-reveal="fade-left">
+        <span class="split-line"><span>Un proyecto colectivo que nació</span></span>
+        <span class="split-line delay-1"><span>de la <em
+              style="font-style:italic; color:var(--dust); font-weight: 400;">necesidad de no callar.</em></span></span>
+      </h2>
+
+      <p style="font-size: 0.95rem; line-height: 1.9; color: rgba(245, 240, 232, 0.65); font-weight: 300; margin-bottom: 1.2rem; max-width: 600px;"
+        data-reveal="fade-left" data-delay="0.15">
+        Este proyecto transmedia fue construido colectivamente por estudiantes de la Maestría en Comunicación y Creación
+        Interactiva de la Pontificia Universidad Javeriana Cali, en el marco de la materia Transmedia.
+      </p>
+
+      <p style="font-size: 0.95rem; line-height: 1.9; color: rgba(245, 240, 232, 0.65); font-weight: 300; max-width: 600px;"
+        data-reveal="fade-left" data-delay="0.25">
+        Cada equipo asumió una responsabilidad específica dentro del universo compartido, trabajando de manera
+        simultánea y coordinada para construir una plataforma y un conjunto de productos que den vida a las historias de
+        Tomás y los suyos.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="teams-wrap">
+
+    <div class="leaf-deco" style="top: 2%; right: -20px; width: clamp(120px, 18vw, 240px); z-index: 1;">
+      <svg viewBox="0 0 200 300" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 200,0 C 100,50 50,150 0,250 C 80,180 150,100 200,0 Z" fill="#D4C9B5" opacity="0.3" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="top: 40%; left: 3%; width: clamp(50px, 8vw, 100px); z-index: 1; transform: rotate(45deg);">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#B5663A" opacity="0.15" />
+      </svg>
+    </div>
+
+    <div class="team-block">
+      <div class="cat-header" data-reveal="fade-up">
+        <div class="cat-num">A</div>
+        <div class="cat-info">
+          <p class="cat-label" style="color:var(--clay);">Equipos transversales</p>
+          <h3 class="cat-title">Identidad, comunicación y plataforma del proyecto</h3>
+        </div>
+      </div>
+
+      <div class="team-grid" id="grid-transversales">
+        <div class="team-card" data-reveal="scale" data-delay="0.05">
+          <p class="tc-dept" style="color:var(--clay);">Diseño Gráfico</p>
+          <p class="tc-product">Línea gráfica del universo</p>
+          <p class="tc-role">Manual de identidad visual, paleta, tipografía, elementos gráficos y sistema de diseño para
+            todos los productos.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--clay);">C</div><span class="tc-name">Catalina
+                Navarrete</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--clay);">D</div><span class="tc-name">David Ruales</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--clay);">G</div><span class="tc-name">Gabriela Mesa</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card" data-reveal="scale" data-delay="0.1">
+          <p class="tc-dept" style="color:var(--teal-deep);">Diseño Web</p>
+          <p class="tc-product">Plataforma web</p>
+          <p class="tc-role">Construcción y desarrollo de la plataforma web del proyecto. Arquitectura de información,
+            wireframes y maquetación.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--teal-deep);">S</div><span class="tc-name">Stephania
+                Montero</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--teal-deep);">A</div><span class="tc-name">Anna
+                Ocampo</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--teal-deep);">S</div><span class="tc-name">Santiago
+                Labrador</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card" data-reveal="scale" data-delay="0.15">
+          <p class="tc-dept" style="color:var(--sage);">Redacción</p>
+          <p class="tc-product">Estilo y textos</p>
+          <p class="tc-role">Revisión, corrección y unificación de todos los textos del proyecto asegurando el tono
+            editorial de la narrativa.</p>
+          <div class="tc-members">
+
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--sage);">T</div><span class="tc-name">Thairina
+                Franceschy</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--sage);">M</div><span class="tc-name">Merly Torres</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--sage);">K</div><span class="tc-name">Klaudia Gil</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--sage);">L</div><span class="tc-name">Laura Sepúlveda</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card" data-reveal="scale" data-delay="0.2">
+          <p class="tc-dept" style="color:var(--ochre);">Editorial</p>
+          <p class="tc-product">Biblia transmedia</p>
+          <p class="tc-role">Estructura narrativa y documental. Consolida el mundo posible, las reglas del universo y la
+            coherencia general.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">J</div><span class="tc-name">Jaime Mesa</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">A</div><span class="tc-name">Angélica</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">C</div><span class="tc-name">Camila Idrovo</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">E</div><span class="tc-name">Edward Celis</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="team-card" data-reveal="scale" data-delay="0.25">
+          <p class="tc-dept" style="color:var(--mauve);">Marketing</p>
+          <p class="tc-product">Ecosistema vivo</p>
+          <p class="tc-role">Redes sociales, piezas digitales, estrategia de difusión y gestión de comunidades de la
+            experiencia transmedia.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">A</div><span class="tc-name">Ana Marles</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">Y</div><span class="tc-name">Yanira
+                Paniagua</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">V</div><span class="tc-name">Valentina
+                Ocampo</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">S</div><span class="tc-name">Sol Solano</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">T</div><span class="tc-name">Thairina
+                Franceschy</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="team-block">
+      <div class="cat-header" data-reveal="fade-up">
+        <div class="cat-num">B</div>
+        <div class="cat-info">
+          <p class="cat-label" style="color:var(--moss);">Equipos de producto</p>
+          <h3 class="cat-title">Los seis relatos del universo transmedia</h3>
+        </div>
+      </div>
+      <div class="team-grid" id="grid-productos">
+        <div class="team-card" data-reveal="scale" data-delay="0.05">
+          <p class="tc-dept" style="color:var(--clay);">Novela Gráfica</p>
+          <p class="tc-product">Las Cartas de Tomás</p>
+          <p class="tc-role">Historia ilustrada del reclutamiento de Tomás. Obra seminal del universo. Microdocumentales
+            de memoria para Instagram.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--clay);">L</div><span class="tc-name">Laura</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--clay);">S</div><span class="tc-name">Simón</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card" data-reveal="scale" data-delay="0.1">
+          <p class="tc-dept" style="color:var(--teal-deep);">Cómic interactivo</p>
+          <p class="tc-product">El Silencio de los Arrozales</p>
+          <p class="tc-role">Desarrollo visual y narrativo del cómic alojado en Genially. Ilustración de viñetas,
+            estructuración de decisiones y mecánicas interactivas para explorar la dolorosa espera de los padres de
+            Tomás.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--teal-deep);">E</div><span class="tc-name">Edward</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--teal-deep);">M</div><span class="tc-name">Merly</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--teal-deep);">A</div><span class="tc-name">Angélica</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--teal-deep);">Ó</div><span class="tc-name">Óscar</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card" data-reveal="scale" data-delay="0.15">
+          <p class="tc-dept" style="color:var(--ochre);">Animación</p>
+          <p class="tc-product">The King</p>
+          <p class="tc-role">Shorts animados de 1 minuto para Facebook y TikTok. La historia de Joaquín "The King" en
+            Toribío, Cauca.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">Y</div><span class="tc-name">Yanira</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">K</div><span class="tc-name">Klaudia</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">G</div><span class="tc-name">Gabriela</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--ochre);">T</div><span class="tc-name">Thairina</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card" data-reveal="scale" data-delay="0.05">
+          <p class="tc-dept" style="color:var(--moss);">Podcast</p>
+          <p class="tc-product">Entre las Sombras</p>
+          <p class="tc-role">Tres capítulos de audiorelatos ~3 minutos. La historia de Fincamala publicada en YouTube.
+            Una mirada al perpetrador que también fue víctima.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--moss);">O</div><span class="tc-name">Omar</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--moss);">C</div><span class="tc-name">Camila</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--moss);">J</div><span class="tc-name">Jaime</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--moss);">C</div><span class="tc-name">Catalina</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card" data-reveal="scale" data-delay="0.1">
+          <p class="tc-dept" style="color:var(--mauve);">Novela Vertical</p>
+          <p class="tc-product">Morrales Vacíos</p>
+          <p class="tc-role">Historia de la profesora Diana para WhatsApp. Los mensajes llegan al teléfono del lector
+            como si fueran reales, en tiempo real narrativo.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">S</div><span class="tc-name">Sol</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">A</div><span class="tc-name">Ana</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">V</div><span class="tc-name">Valentina</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--mauve);">D</div><span class="tc-name">David</span>
+            </div>
+          </div>
+        </div>
+        <div class="team-card" data-reveal="scale" data-delay="0.15">
+          <p class="tc-dept" style="color:var(--terracotta);">Periódico AR · Con Lupa</p>
+          <p class="tc-product">Narrativas inmersivas</p>
+          <p class="tc-role">Desarrollo de realidad aumentada para prensa. El usuario descubre capas ocultas de la
+            historia al usar la cámara sobre el papel impreso.</p>
+          <div class="tc-members">
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--terracotta);">S</div><span class="tc-name">Stephania</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--terracotta);">A</div><span class="tc-name">Anna</span>
+            </div>
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--terracotta);">S</div><span class="tc-name">Santiago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="method-section">
+    <div class="leaf-deco"
+      style="top:-20px;right:-15px;width:clamp(130px,20vw,240px);animation:floatA 7.5s ease-in-out infinite;z-index:3;">
+      <svg viewBox="0 0 240 220" xmlns="http://www.w3.org/2000/svg">
+        <path d="M210,12 Q248,55 230,122 Q212,190 134,208 Q66,224 28,176 Q-8,130 18,78 Q48,26 124,10 Q168,0 210,12Z"
+          fill="#3D7A5A" opacity="0.85" />
+        <path d="M210,18 Q244,58 227,120 Q210,184 132,202 Q68,218 30,172 Q-2,130 25,80 Q55,30 128,16 Q170,5 210,18Z"
+          fill="#2E5C54" opacity="0.7" />
+        <path d="M124,10 Q138,75 134,208" stroke="#1e3d2e" stroke-width="1.8" fill="none" opacity="0.4" />
+        <path d="M124,48 Q75,85 32,122" stroke="#1e3d2e" stroke-width="1" fill="none" opacity="0.3" />
+        <path d="M130,78 Q178,100 228,103" stroke="#1e3d2e" stroke-width="1" fill="none" opacity="0.3" />
+        <ellipse cx="86" cy="108" rx="13" ry="9" fill="rgba(15,28,12,0.5)" transform="rotate(-30,86,108)" />
+        <ellipse cx="160" cy="118" rx="11" ry="8" fill="rgba(15,28,12,0.5)" transform="rotate(20,160,118)" />
+      </svg>
+    </div>
+    <p style="font-size:0.65rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--clay-light);font-weight:600;margin-bottom:1rem;"
+      data-reveal="fade-up">Metodología</p>
+    <h2
+      style="font-family:'Montserrat',sans-serif;font-size:clamp(2rem,3vw,2.6rem);font-weight:700;color:var(--cream);margin-bottom:0.8rem;"
+      data-reveal="fade-up">
+      <span class="split-line"><span>Cómo construimos</span></span>
+      <span class="split-line delay-1"><span>el <em
+            style="font-style:italic;color:var(--dust);">universo</em></span></span>
+    </h2>
+    <div class="method-grid">
+      <div class="method-card" data-reveal="scale" data-delay="0.05">
+        <div class="method-icon" style="background:rgba(181,102,58,0.2);"><svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="10" />
+            <path d="M12 6v6l4 2" />
+          </svg></div>
+        <h4 class="method-title">Trabajo paralelo</h4>
+        <p class="method-body">Todos los equipos trabajaron simultáneamente. La biblia transmedia fue la guía compartida
+          que garantizó la coherencia narrativa entre los productos.</p>
+      </div>
+      <div class="method-card" data-reveal="scale" data-delay="0.15">
+        <div class="method-icon" style="background:rgba(122,155,110,0.2);"><svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg></div>
+        <h4 class="method-title">Co-creación</h4>
+        <p class="method-body">Cada equipo tuvo autonomía creativa pero también responsabilidad colectiva. Las
+          decisiones que afectaban a otros productos se consultaban con toda la clase.</p>
+      </div>
+      <div class="method-card" data-reveal="scale" data-delay="0.25">
+        <div class="method-icon" style="background:rgba(200,155,60,0.2);"><svg viewBox="0 0 24 24">
+            <path d="M1 6s+.5-2 2.5-2 2.5 2 5 2 2.5-2 5-2 2.5 2 5 2 2.5-2 5-2" />
+            <path d="M1 12s+.5-2 2.5-2 2.5 2 5 2 2.5-2 5-2 2.5 2 5 2 2.5-2 5-2" />
+            <path d="M1 18s+.5-2 2.5-2 2.5 2 5 2 2.5-2 5-2 2.5 2 5 2 2.5-2 5-2" />
+          </svg></div>
+        <h4 class="method-title">Narrativa distribuida</h4>
+        <p class="method-body">El proyecto total es mayor que la suma de sus partes. Cada producto complementa a los
+          demás, creando un universo que se enriquece al cruzar entre plataformas.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CREDITS SECTION (REDISEÑO GAMIFICADO: NUBE MAGNÉTICA) -->
+  <div class="credits-section" style="position: relative; padding: 6rem 0; z-index: 10; overflow: hidden;">
+
+    <!-- Estilos inyectados específicos para la gamificación de los créditos -->
+    <style>
+      .credits-interactive-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      .credit-pill {
+        display: inline-block;
+        padding: 0.8rem 1.8rem;
+        border: 1px solid rgba(13, 10, 8, 0.15);
+        /* Borde sutil oscuro */
+        border-radius: 50px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--warm-dark);
+        background: transparent;
+        cursor: crosshair;
+        user-select: none;
+        /* Transición suave para el color y la física del script */
+        transition: background 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s, transform 0.15s ease-out;
+        will-change: transform;
+        position: relative;
+      }
+
+      /* Colores del Universo al hacer Hover */
+      .credit-pill:hover {
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        color: var(--cream);
+      }
+
+      .pill-clay:hover {
+        background: var(--clay);
+        border-color: var(--clay);
+      }
+
+      .pill-teal:hover {
+        background: var(--teal-deep);
+        border-color: var(--teal-deep);
+      }
+
+      .pill-sage:hover {
+        background: var(--sage);
+        border-color: var(--sage);
+      }
+
+      .pill-ochre:hover {
+        background: var(--ochre);
+        border-color: var(--ochre);
+      }
+
+      .pill-mauve:hover {
+        background: var(--mauve);
+        border-color: var(--mauve);
+      }
+
+      .pill-terra:hover {
+        background: var(--terracotta);
+        border-color: var(--terracotta);
+      }
+    </style>
+
+    <!-- ========================================== -->
+    <!-- FLORA PARALLAX PARA LOS CRÉDITOS FINALES   -->
+    <!-- ========================================== -->
+    <div class="leaf-deco" style="top: 20%; left: -30px; width: clamp(100px, 15vw, 180px); z-index: 1;">
+      <svg viewBox="0 0 150 200" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C30,100 80,40 140,0 C100,70 50,130 0,200 Z" fill="#1A332E" opacity="0.8" />
+        <path d="M20,200 C50,120 100,70 150,40 C110,100 60,150 20,200 Z" fill="#2E5C54" opacity="0.9" />
+      </svg>
+    </div>
+    <div class="leaf-deco"
+      style="bottom: 10%; right: -20px; width: clamp(85px, 12vw, 150px); z-index: 3; transform: scaleX(-1);">
+      <svg viewBox="0 0 150 100" filter="url(#vector-shadow)" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M0,58 Q22,52 44,50 Q66,48 82,42 Q96,36 102,33 Q108,30 106,36 Q104,42 91,46 Q102,40 108,38 Q114,35 112,42 Q110,49 96,53 Q106,49 110,54 Q108,62 90,61 L66,63 Q48,66 28,68 L0,72Z"
+          fill="#3A6030" />
+        <path d="M44,50 Q38,39 42,31 Q47,22 55,26 Q62,29 58,40 Q54,46 44,50Z" fill="#4A7B78" />
+      </svg>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- ENCABEZADO DE CRÉDITOS                     -->
+    <!-- ========================================== -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <p style="font-size:0.65rem; letter-spacing:0.3em; text-transform:uppercase; color:var(--clay); font-weight:700; margin-bottom:1rem;"
+        data-reveal="fade-up">Créditos completos</p>
+      <h2
+        style="font-family:'Montserrat',sans-serif; font-size:clamp(2rem,3vw,2.6rem); font-weight:900; line-height:1.2; color:var(--warm-dark); letter-spacing:-0.02em;"
+        data-reveal="fade-up">
+        <span class="split-line"><span>Todos los que hicieron</span></span>
+        <span class="split-line delay-1"><span>posible <em
+              style="font-style:italic; color:var(--clay); font-weight:400;">este proyecto</em></span></span>
+      </h2>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- NUBE INTERACTIVA DE NOMBRES (GAMIFICADA)   -->
+    <!-- ========================================== -->
+    <div class="credits-interactive-cloud" data-reveal="fade-up" data-delay="0.15">
+      <div class="credit-pill pill-clay">Ana María Ocampo</div>
+      <div class="credit-pill pill-teal">Ana Marles</div>
+      <div class="credit-pill pill-sage">Angélica Guerrero</div>
+      <div class="credit-pill pill-ochre">Camila Idrovo</div>
+      <div class="credit-pill pill-mauve">Cinthya Paniagua</div>
+      <div class="credit-pill pill-terra">Claudia Gil</div>
+      <div class="credit-pill pill-clay">Edward Celis</div>
+      <div class="credit-pill pill-teal">Francisco Torres</div>
+      <div class="credit-pill pill-sage">Gabriela Mesa</div>
+      <div class="credit-pill pill-ochre">Jaime Messa</div>
+      <div class="credit-pill pill-mauve">Juan Ruales</div>
+      <div class="credit-pill pill-terra">Laura Navarrete</div>
+      <div class="credit-pill pill-clay">Laura Sepúlveda</div>
+      <div class="credit-pill pill-teal">Merly Torres</div>
+      <div class="credit-pill pill-sage">Omar Romero</div>
+      <div class="credit-pill pill-ochre">Óscar López</div>
+      <div class="credit-pill pill-mauve">Santiago Labrador</div>
+      <div class="credit-pill pill-terra">Simón Valencia</div>
+      <div class="credit-pill pill-clay">Sol Solano</div>
+      <div class="credit-pill pill-teal">Stephania Montero</div>
+      <div class="credit-pill pill-sage">Tairina Atencio</div>
+      <div class="credit-pill pill-ochre">Valentina Ocampo</div>
+    </div>
+
+    <!-- Script del motor magnético -->
+    <script>
+      (function initMagneticCredits() {
+        const container = document.querySelector('.credits-interactive-cloud');
+        const pills = document.querySelectorAll('.credit-pill');
+
+        // Escucha el movimiento del ratón dentro del contenedor
+        container.addEventListener('mousemove', (e) => {
+          pills.forEach(pill => {
+            const rect = pill.getBoundingClientRect();
+            // Calcula el centro de cada pastilla
+            const x = rect.left + rect.width / 2;
+            const y = rect.top + rect.height / 2;
+            // Calcula la distancia entre el ratón y la pastilla
+            const dist = Math.hypot(e.clientX - x, e.clientY - y);
+
+            // Si el ratón está a menos de 150px, aplica atracción (gravedad)
+            if (dist < 150) {
+              const force = (150 - dist) / 150;
+              const dx = (e.clientX - x) * force * 0.35; // Nivel de atracción X
+              const dy = (e.clientY - y) * force * 0.35; // Nivel de atracción Y
+              pill.style.transform = `translate(${dx}px, ${dy}px) scale(${1 + force * 0.08})`;
+              pill.style.zIndex = 20;
+            } else {
+              pill.style.transform = `translate(0px, 0px) scale(1)`;
+              pill.style.zIndex = 1;
+            }
+          });
+        });
+
+        // Resetea la posición si el ratón sale de la zona
+        container.addEventListener('mouseleave', () => {
+          pills.forEach(pill => {
+            pill.style.transform = `translate(0px, 0px) scale(1)`;
+            pill.style.zIndex = 1;
+          });
+        });
+      })();
+    </script>
+  </div>
+
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><img src="./logos/Logo_footer.png" alt="Los colores de la guerra"
+            style="max-width: 180px;"></div>
+
+
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Páginas</p>
+        <ul>
+          <li><a href="./index.html">Inicio</a></li>
+          <li><a href="./contexto.html">Contexto</a></li>
+          <li><a href="./historia.html">Historia</a></li>
+          <li><a href="./experiencia.html">Experiencia</a></li>
+          <li><a href="./equipos.html">Equipos</a></li>
+          <li><a href="#" style="color:#B28B17;">Biblia Transmedia ↗</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Historias</p>
+        <ul>
+          <li><a href="./experiencia.html">Las Cartas de Tomás</a></li>
+          <li><a href="./experiencia.html">El Silencio de los Arrozales</a></li>
+          <li><a href="./experiencia.html">The King</a></li>
+          <li><a href="./experiencia.html">Entre las Sombras</a></li>
+          <li><a href="./experiencia.html">Morrales Vacíos</a></li>
+          <li><a href="./experiencia.html">El Azul No Se Borra</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Redes sociales</p>
+        <div class="footer-social-row" style="margin-top: 1rem;">
+          <a href="https://www.facebook.com/profile.php?id=61590556116665" target="_blank" class="footer-social-icon"
+            aria-label="Facebook"><svg viewBox="0 0 24 24">
+              <path
+                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+            </svg></a>
+          <a href="https://www.youtube.com/channel/UCg-IAenTEHyD0AGXqheVQrg" target="_blank" class="footer-social-icon"
+            aria-label="YouTube"><svg viewBox="0 0 24 24">
+              <path
+                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+            </svg></a>
+          <a href="https://www.tiktok.com/" target="_blank" class="footer-social-icon" aria-label="TikTok"><svg
+              viewBox="0 0 24 24">
+              <path
+                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+            </svg></a>
+          <a href="https://www.instagram.com/loscoloresdelaguerra?igsh=ZDJnaGlhbGNubXIz" target="_blank"
+            class="footer-social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-note">Pontificia Universidad Javeriana Cali · Maestría en Comunicación y Creación Interactiva</p>
+      <p class="footer-quote">"Hoy aprendí a disparar. No quería hacerlo. Cerré los ojos cuando sonó el tiro. A veces
+        pienso que si sigo escribiendo estas cartas todavía soy yo." — Tomás</p>
+    </div>
+  </footer>
+
+  <script>
+    const ro = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.style.transitionDelay = (e.target.dataset.delay || '0') + 's';
+          e.target.classList.add('revealed');
+          ro.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-reveal]').forEach(el => ro.observe(el));
+    const so = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('revealed'); so.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    document.querySelectorAll('.split-line').forEach(el => so.observe(el));
+    setTimeout(() => { document.querySelectorAll('.page-hero .split-line').forEach(el => el.classList.add('revealed')); }, 200);
+
+    // Leaf cursor trail
+    (function () {
+      const lc = ['#4A5C3E', '#7A9B6E', '#B5663A', '#C89B3C', '#9E7B8C', '#2E5C54'];
+      let lx = 0, ly = 0, tk = 0;
+      document.addEventListener('mousemove', (e) => {
+        tk++; if (tk % 6 !== 0) return;
+        const d = Math.hypot(e.clientX - lx, e.clientY - ly);
+        if (d < 30) return;
+        lx = e.clientX; ly = e.clientY;
+        const el = document.createElement('div');
+        const c = lc[Math.floor(Math.random() * lc.length)];
+        const s = 12 + Math.random() * 16;
+        const r = Math.random() * 360;
+        el.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;left:' + e.clientX + 'px;top:' + e.clientY + 'px;width:' + s + 'px;height:' + (s * 1.4) + 'px;opacity:0.5;transform:translate(-50%,-50%) rotate(' + r + 'deg);border-radius:50% 50% 50% 0;background:' + c + ';transition:opacity 0.8s ease,transform 1.2s ease;';
+        document.body.appendChild(el);
+        requestAnimationFrame(() => { el.style.opacity = '0'; el.style.transform = 'translate(-50%,-120%) rotate(' + (r + 45) + 'deg) scale(0.4)'; });
+        setTimeout(() => el.remove(), 1300);
+      });
+    })();
+  </script>
+
+  <script>
+    // ── HAMBURGER MENU ──
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-nav');
+    if (hamburger && mobileMenu) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('open');
+          document.body.style.overflow = '';
+        });
+      });
+    }
+    // ── NAV SCROLL ──
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('main-nav');
+      if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // ── ENGINE INTERACTIVE: PARALLAX + FLOTACIÓN ORGÁNICA (EQUIPOS) ──
+    (function initEquiposInteractive() {
+      const leaves = document.querySelectorAll('.leaf-deco');
+
+      leaves.forEach((leaf) => {
+        if (!leaf._baseTransform) {
+          leaf._baseTransform = leaf.style.transform || '';
+          leaf._parallaxDepth = Math.random() * 0.4 + 0.15;
+          leaf._floatPhase = Math.random() * Math.PI * 2;
+          leaf._floatSpeed = Math.random() * 0.001 + 0.0005;
+          leaf.style.transition = 'opacity 1s ease';
+        }
+      });
+
+      let mouseX = 0; let mouseY = 0; let currentX = 0; let currentY = 0;
+
+      window.addEventListener('mousemove', (e) => {
+        mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+        mouseY = (e.clientY / window.innerHeight) * 2 - 1;
+      });
+
+      function animate() {
+        currentX += (mouseX - currentX) * 0.05;
+        currentY += (mouseY - currentY) * 0.05;
+        const now = Date.now();
+
+        leaves.forEach(leaf => {
+          const d = leaf._parallaxDepth;
+          const tx = currentX * d * 80;
+          const ty = currentY * d * 80;
+
+          const floatY = Math.sin(now * leaf._floatSpeed + leaf._floatPhase) * 15;
+          const floatRot = Math.cos(now * leaf._floatSpeed + leaf._floatPhase) * 3;
+
+          leaf.style.transform = `${leaf._baseTransform} translate(${tx}px, ${ty + floatY}px) rotate(${floatRot}deg)`;
+        });
+
+        requestAnimationFrame(animate);
+      }
+
+      requestAnimationFrame(animate);
+    })();
+  </script>
+
+</body>
+
+</html>
