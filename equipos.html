@@ -1129,6 +1129,69 @@
     </div>
 
   </div>
+  <!-- ========================================== -->
+  <!-- DIRECCIÓN Y ORQUESTACIÓN TRANSMEDIA        -->
+  <!-- ========================================== -->
+  <section
+    style="padding: 4rem 2rem 2rem; background: var(--cream); position: relative; z-index: 10; display: flex; justify-content: center;">
+
+    <!-- Hojas Parallax Externas (Animadas por el mouse) -->
+    <div class="leaf-deco"
+      style="position: absolute; top: -10px; left: 2%; width: clamp(100px, 14vw, 180px); z-index: 5; transform: rotate(-20deg); pointer-events: none;">
+      <svg viewBox="0 0 150 200" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,200 C30,100 80,40 140,0 C100,70 50,130 0,200 Z" fill="#3A6030" opacity="0.85" />
+        <path d="M20,200 C50,120 100,70 150,40 C110,100 60,150 20,200 Z" fill="#4A7A40" opacity="0.95" />
+      </svg>
+    </div>
+
+    <div class="leaf-deco"
+      style="position: absolute; bottom: 10px; right: 3%; width: clamp(80px, 10vw, 140px); z-index: 15; transform: rotate(35deg); pointer-events: none;">
+      <svg viewBox="0 0 100 150" filter="url(#vector-shadow-light)" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="#C89B3C" opacity="0.9" />
+        <path d="M 50,140 Q 65,70 50,0" fill="none" stroke="#B28B17" stroke-width="2" />
+      </svg>
+    </div>
+
+    <!-- Tarjeta Central de Dirección -->
+    <div
+      style="background: var(--warm-dark); border: 1px solid var(--brand-gold); border-radius: 12px; padding: 4rem 3rem; text-align: center; max-width: 900px; width: 100%; box-shadow: 0 25px 50px rgba(0,0,0,0.15); position: relative; overflow: hidden; z-index: 10;"
+      data-reveal="fade-up">
+
+      <!-- Detalles decorativos botánicos internos (marcas de agua) -->
+      <svg style="position: absolute; top: -30px; right: -20px; opacity: 0.08; width: 150px; pointer-events: none;"
+        viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="var(--brand-gold)" />
+      </svg>
+      <svg
+        style="position: absolute; bottom: -30px; left: -20px; opacity: 0.08; width: 120px; transform: rotate(180deg); pointer-events: none;"
+        viewBox="0 0 100 150" xmlns="http://www.w3.org/2000/svg">
+        <path d="M 50,140 C 0,100 0,40 50,0 C 100,40 100,100 50,140 Z" fill="var(--brand-gold)" />
+      </svg>
+
+      <!-- Contenido -->
+      <p
+        style="font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--brand-gold); font-weight: 700; margin-bottom: 1rem;">
+        Dirección General del Proyecto
+      </p>
+
+      <h2
+        style="font-family: 'Montserrat', sans-serif; font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 900; color: var(--cream); letter-spacing: -0.02em; margin-bottom: 1.5rem;">
+        Laura y Simón
+      </h2>
+
+      <div style="width: 40px; height: 1px; background: var(--brand-gold); margin: 0 auto 1.8rem; opacity: 0.5;"></div>
+
+      <p
+        style="font-size: 0.95rem; line-height: 1.8; color: rgba(245, 240, 232, 0.7); font-weight: 300; max-width: 680px; margin: 0 auto;">
+        El equipo orquestador responsable de estructurar, unificar y dar coherencia a todo el universo de <strong
+          style="color: var(--cream); font-weight: 600;">Los Colores de la Guerra</strong>. Gracias a su visión y
+        liderazgo, las seis narrativas diegéticas, los formatos físicos y digitales, y las piezas paratextuales conviven
+        en un ecosistema transmedia sólido y con un profundo respeto por la memoria del territorio.
+      </p>
+
+    </div>
+  </section>
+
 
   <div class="teams-wrap">
 
@@ -1201,7 +1264,6 @@
           <p class="tc-role">Revisión, corrección y unificación de todos los textos del proyecto asegurando el tono
             editorial de la narrativa.</p>
           <div class="tc-members">
-
             <div class="tc-member">
               <div class="tc-avatar" style="background:var(--sage);">T</div><span class="tc-name">Thairina
                 Franceschy</span>
@@ -1214,6 +1276,10 @@
             </div>
             <div class="tc-member">
               <div class="tc-avatar" style="background:var(--sage);">L</div><span class="tc-name">Laura Sepúlveda</span>
+            </div>
+            <!-- Omar agregado al equipo -->
+            <div class="tc-member">
+              <div class="tc-avatar" style="background:var(--sage);">O</div><span class="tc-name">Omar Romero</span>
             </div>
           </div>
         </div>
@@ -1260,10 +1326,7 @@
             <div class="tc-member">
               <div class="tc-avatar" style="background:var(--mauve);">S</div><span class="tc-name">Sol Solano</span>
             </div>
-            <div class="tc-member">
-              <div class="tc-avatar" style="background:var(--mauve);">T</div><span class="tc-name">Thairina
-                Franceschy</span>
-            </div>
+            <!-- Thairina eliminada de este bloque -->
           </div>
         </div>
       </div>
