@@ -821,7 +821,7 @@
       flex-shrink: 0;
     }
 
-    /* Text panel — bottom 45% with solid dark bg */
+    /* 1. Reducimos el padding inferior para darle aire al botón */
     .c-info {
       background: #0e0c0a;
       padding: 1rem 1.2rem 1rem;
@@ -829,6 +829,36 @@
       flex-direction: column;
       flex: 1;
       min-height: 0;
+    }
+
+    /* 2. Reducimos sutilmente el título para que no ocupe tanto espacio */
+    .c-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 900;
+      color: #F5F0E8;
+      line-height: 1.2;
+      margin-bottom: 0.45rem;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+    }
+
+    /* 3. ¡LA MAGIA! Forzamos a que la descripción nunca pase de 3 líneas */
+    .c-desc {
+      font-size: 0.64rem;
+      line-height: 1.6;
+      color: rgba(245, 240, 232, 0.65);
+      /* Aumentamos el contraste para mejor lectura */
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+      font-family: 'Montserrat', sans-serif;
+      flex: 1;
+
+      /* Estas 4 líneas evitan que el texto desborde el botón */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     .c-type {
@@ -840,26 +870,7 @@
       font-family: 'Montserrat', sans-serif;
     }
 
-    .c-name {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 900;
-      color: #F5F0E8;
-      line-height: 1.1;
-      margin-bottom: 0.45rem;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-    }
 
-    .c-desc {
-      font-size: 0.64rem;
-      line-height: 1.6;
-      color: rgba(245, 240, 232, 0.5);
-      font-weight: 300;
-      margin-bottom: 0.7rem;
-      font-family: 'Montserrat', sans-serif;
-      flex: 1;
-    }
 
     .c-bottom-row {
       display: flex;
@@ -2118,7 +2129,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-brand" style="margin-bottom:1.5rem;">
-          <img src="./logos/Logo_footer.png" alt="Los colores de la guerra" style="max-width: 180px;">
+          <img src="./logos/Logo_footer.png" alt="Los colores de la guerra" style="max-width: 280px;">
         </div>
 
 
@@ -2273,10 +2284,54 @@
       dotsEl.appendChild(dot);
     });
 
+    // ── FUNCIÓN JS: AJUSTE DINÁMICO DE TEXTO ("SMART TRUNCATE") ──
+    function autoFitText() {
+      document.querySelectorAll('.c-info').forEach(info => {
+        const desc = info.querySelector('.c-desc');
+
+        // Guardamos el texto original intacto la primera vez que se carga
+        if (!desc.dataset.original) {
+          desc.dataset.original = desc.innerText;
+        }
+
+        // Restauramos el texto original en cada cálculo (útil si la pantalla crece)
+        desc.innerText = desc.dataset.original;
+
+        // Magia: Mientras el contenido interno desborde el alto de la tarjeta...
+        let text = desc.innerText;
+        while (info.scrollHeight > info.clientHeight && text.length > 20) {
+          // Buscamos el último espacio en blanco, cortamos la última palabra y agregamos '...'
+          text = text.substring(0, text.lastIndexOf(' ')) + '...';
+          desc.innerText = text;
+        }
+      });
+    }
+
+    // Ejecutamos la función apenas se crean las tarjetas
+    autoFitText();
+
+
     function goTo(idx) {
       current = ((idx % products.length) + products.length) % products.length;
       const cards = stage.querySelectorAll('.c-card');
       const n = cards.length;
+
+      // Cálculo responsivo de las distancias 3D según el ancho de pantalla
+      const vw = window.innerWidth;
+      let offset1 = 330; // Distancia original monitores grandes
+      let offset2 = 590;
+
+      if (vw <= 600) {
+        // Celulares
+        offset1 = 160; offset2 = 280;
+      } else if (vw <= 900) {
+        // Tablets
+        offset1 = 200; offset2 = 360;
+      } else if (vw <= 1366) {
+        // Laptops y resoluciones pequeñas
+        offset1 = 250; offset2 = 450;
+      }
+
       cards.forEach((card, i) => {
         const offset = ((i - current + n) % n);
         const isActive = offset === 0;
@@ -2284,16 +2339,25 @@
         const isLeft2 = offset === n - 2;
         const isRight1 = offset === 1;
         const isRight2 = offset === 2;
+
         let tx = 0, tz = -600, ry = 0, scale = 0.55, opacity = 0, zIndex = 0, blur = 0, brightness = 1;
+
         if (isActive) { tx = 0; tz = 0; ry = 0; scale = 1; opacity = 1; zIndex = 10; blur = 0; brightness = 1; }
-        else if (isRight1) { tx = 330; tz = -180; ry = -22; scale = 0.8; opacity = 0.72; zIndex = 8; blur = 1; brightness = 0.75; }
-        else if (isLeft1) { tx = -330; tz = -180; ry = 22; scale = 0.8; opacity = 0.72; zIndex = 8; blur = 1; brightness = 0.75; }
-        else if (isRight2) { tx = 590; tz = -420; ry = -32; scale = 0.62; opacity = 0.35; zIndex = 6; blur = 3; brightness = 0.5; }
-        else if (isLeft2) { tx = -590; tz = -420; ry = 32; scale = 0.62; opacity = 0.35; zIndex = 6; blur = 3; brightness = 0.5; }
+        else if (isRight1) { tx = offset1; tz = -180; ry = -22; scale = 0.8; opacity = 0.72; zIndex = 8; blur = 1; brightness = 0.75; }
+        else if (isLeft1) { tx = -offset1; tz = -180; ry = 22; scale = 0.8; opacity = 0.72; zIndex = 8; blur = 1; brightness = 0.75; }
+        else if (isRight2) { tx = offset2; tz = -420; ry = -32; scale = 0.62; opacity = 0.35; zIndex = 6; blur = 3; brightness = 0.5; }
+        else if (isLeft2) { tx = -offset2; tz = -420; ry = 32; scale = 0.62; opacity = 0.35; zIndex = 6; blur = 3; brightness = 0.5; }
+
         card.style.cssText = `transform:translateX(${tx}px) translateZ(${tz}px) rotateY(${ry}deg) scale(${scale});opacity:${opacity};z-index:${zIndex};filter:blur(${blur}px) brightness(${brightness});`;
       });
       document.querySelectorAll('.c-dot').forEach((d, i) => d.classList.toggle('active', i === current));
     }
+
+    // Aseguramos que el carrusel se recalcule automáticamente si el usuario cambia el tamaño de la ventana
+    window.addEventListener('resize', () => {
+      goTo(current);
+      autoFitText();
+    });
 
     goTo(0);
     document.getElementById('prev').addEventListener('click', () => goTo(current - 1));
